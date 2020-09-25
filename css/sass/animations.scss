@@ -1,5 +1,21 @@
+.scale {
+  transition: transform 0.4s $ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 .perks:after {
   animation: moveBg 10s linear infinite;
+}
+
+.waves:before {
+  animation: moveBg2 12s linear infinite;
+}
+
+.waves:after {
+  animation: moveBg2 20s linear infinite;
 }
 
 @keyframes moveBg {
@@ -8,5 +24,14 @@
   }
   to { 
     transform: translateX(-1440px);
+  }
+}
+
+@keyframes moveBg2 {
+  from {
+    transform: translateX(0);
+  }
+  to { 
+    transform: translateX(-2521px);
   }
 }
