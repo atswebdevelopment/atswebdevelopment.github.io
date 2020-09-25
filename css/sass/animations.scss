@@ -1,0 +1,12 @@
+.perks:after {
+  animation: moveBg 10s linear infinite;
+}
+
+@keyframes moveBg {
+  from {
+    transform: translateX(0);
+  }
+  to { 
+    transform: translateX(-1440px);
+  }
+}

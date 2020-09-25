@@ -54,54 +54,14 @@ h2 {
   margin-bottom: 30px;
 }
 
-// h1{
-//   font-size:4.375rem;
-//   line-height: 4.375rem;
-
-//   @include media-query(tablet, max){
-//       font-size:3.5rem;
-//       line-height: 3.5rem;
-//   }
-
-//   @include media-query(phone, max){
-//       font-size: 2rem;
-//       line-height: 2.2rem;
-//   }
-
-// }
-
-// h2{
-//   font-size:2.5rem;
-//   line-height: 2.5rem;
-//   @include font(secondary);
-
-//   @include media-query(phone, max){
-//       font-size: 1.75rem;
-//       line-height: 2rem;
-//   }
-// }
-
-// h3{
-//   font-size:1.25rem;
-//   margin-bottom:6px;
-// }
-
 img {
   max-width: 100%;
   align-self: center;
 }
 
-hr{
-  margin-bottom: 24px;
-}
-
-ol, ul{ 
+ul{ 
   padding: 0;
   list-style: none; 
-}
-
-ol{
-  counter-reset: item;
 }
 
 li{
@@ -113,11 +73,6 @@ li:before{
   width: 0;
   float: left;
   margin-left: -30px;
-}
-
-ol li:before {
-  content: counter(item);
-  counter-increment: item;
 }
 
 ul li:before {
@@ -155,35 +110,6 @@ textarea{
 
 .center {
   text-align: center;
-}
-
-table {
-  border-spacing: 0; 
-  border-collapse: collapse;
-  width: 100%;
-}
-
-thead tr{
-  background: $primary;
-  color: $white;
-}
-
-tr{
-  background: $table;
-}
-
-tr:nth-child(even){
-  background: $table-alt;
-}
-
-td{
-  border-right: 1px solid $white;
-  padding: 2px;
-}
-
-.bg-load,.img-load{
-  /*background:url(/Images/loader.svg) 50% 50% no-repeat;*/
-  background-size: 32px !important;
 }
 
 ::-moz-selection {

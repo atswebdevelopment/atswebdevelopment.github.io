@@ -1,7 +1,12 @@
+.container {
+  position: relative;
+}
+
 .inner {
   max-width: 910px;
   margin: 0 auto;
   padding: 0 30px;
+  @include group();
 
   @include media-query(phone, max){
     padding: 0 15px;
