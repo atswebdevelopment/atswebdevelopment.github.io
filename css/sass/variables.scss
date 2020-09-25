@@ -1,0 +1,33 @@
+/*#region Fonts*/
+
+$primaryfont: 'Rubik', sans-serif;
+$base: 16px;
+
+/*#endregion*/
+
+/*#region Colours */
+
+$black: #021112;
+$white: #FFF;
+$grey: #c8c8cd;
+
+$primary: #00AEEF;
+$primary-alt: #231F20;
+$secondary:#FF035E;
+$secondary-alt:#9e0000;
+$table: #FFF;
+$table-alt: #c8c8cd;
+$alert:#f47e5a;
+
+$ease: cubic-bezier(.21,.96,.59,.97);
+
+/*#endregion*/
+
+/*#region Media Queries*/
+
+$breakpoints: (
+    phone: 768px,
+    tablet: 1024px
+);
+
+/*#endregion*/

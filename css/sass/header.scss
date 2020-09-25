@@ -1,0 +1,19 @@
+.header {
+  position: sticky;
+  top: 0px;
+  z-index: 9;
+
+  &__inner {
+    display: flex;
+    height: 100px;
+    align-items: center;
+  }
+
+  svg {
+    width: 205px;
+  }
+
+  &__cta {
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,284 @@
+.main {
+  padding-top: 60px;
+}
+
+// Intro
+
+video {
+  width: 100%;
+  max-width: 675px;
+  display: block;
+  margin: 62px auto 90px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.section {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 80px;
+
+  &__content {
+    flex: 1;
+
+    p {
+      color: #C0C4C4;
+    }
+  }
+
+  > div:first-child {
+    margin-right: 55px;
+  }
+}
+
+.images-why {
+  display: flex;
+  align-items: center;
+
+  &__left {
+    width: 106px;
+    transform: translateX(47px);
+    margin-left: -47px;
+  }
+  
+  &__center {
+    width: 187px;
+    transform: translateY(31px);
+  }
+  
+  &__right {
+    width: 128px;
+    transform: translateX(-52px) translateY(69px);
+  }
+}
+
+.images-who {
+  &__center {
+    width: 200px;
+  }
+}
+
+.images-work {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  width: 322px;
+
+  &__left {
+    width: 149px;
+    transform: translateX(47px);
+    margin-left: -47px;
+  }
+  
+  &__center {
+    width: 168px;
+    transform: translateY(65px) translateX(51px);
+  }
+  
+  &__right {
+    width: 119px;
+    transform: translateX(-230px) translateY(148px);
+  }
+}
+
+.quote {
+  display: flex;
+  position: relative;
+  margin: 142px 0 122px;
+  padding: 60px 0;
+
+  &:before {
+    content: '';
+    width: 100vw;
+    height: 100%;
+    background: #07474A;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) skew(0deg, 4deg);
+    z-index: -1;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 40px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__icon {
+    margin-right: 34px;
+    align-self: flex-start;
+    margin-top: -18px;
+  }
+
+  &__content {
+    margin-right: 34px;
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0.38px;
+  }
+}
+
+.perks {
+  text-align: center;
+
+  &__inner {
+    border-top: 5px solid $secondary;
+    background: #3D0016;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  p {
+    color: #C0C4C4;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 107px;
+    background: url(/images/waves.svg) top center;
+  }
+}
+
+.cards {
+  @include group;
+  margin-bottom: 30px;
+
+  .card:nth-child(odd) {
+    margin-right: 30px;
+  }
+
+  .card {
+    float: left;
+    width: calc(50% - 15px);
+    background: $white;
+    color: #535E5E;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 30px;
+
+    &__inner {
+      display: flex;
+      align-items: center;
+      padding: 30px;
+    }
+
+    &__icon {
+      margin-right: 30px;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #FFD6E5;
+      align-self: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__image {
+      width: 205px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__logo {
+      width: 120px;
+    }
+
+    &__timestamp {
+      float: right;
+      font-size: 15px;
+      line-height: 150%;
+      color: #8A9191;
+    }
+
+    &__content {
+      flex: 1;
+      text-align: left;
+    }
+
+    &__title {
+      color: #021112;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 140%;
+      margin-bottom: 15px;
+    }
+  }
+
+  &--wide {
+    .card {
+      width: calc(100%);
+    }
+  }
+}
+
+.positions {
+  background: $white;
+  color: #535E5E;
+  padding-top: 30px;
+
+  h2 {
+    color: #021112;
+    text-align: center;
+  }
+
+  h3 {
+    color: #021112;
+  }
+}
+
+.accordion {
+  border-top: 1px solid #DBDDDE;
+  max-width: 735px;
+  margin: 0 auto;
+
+  &__header {
+    border-bottom: 1px solid #DBDDDE;
+    padding: 30px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  &__content {
+    padding: 30px;
+  }
+}
+
+.media {
+  padding: 60px 0;
+
+  &__inner {
+    max-width: 675px;
+  }
+
+  h2 {
+    margin-bottom: 60px;
+  }
+
+  .card {
+    &__inner {
+      padding: 0;
+      align-items: stretch;
+    }
+
+    &__content {
+      margin: 30px;
+      color: #021112;
+    }
+  }
+}

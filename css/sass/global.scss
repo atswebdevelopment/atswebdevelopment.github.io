@@ -1,0 +1,199 @@
+html, body, span, div, p, a, li, ul, ol, h1, h2, h3, h4, h5, img, input, button, table, blockquote, fieldset, svg {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  transition: color 0.15s $ease, background-color 0.15s $ease, fill 0.15s $ease;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: $primaryfont;
+  font-size: $base;
+  color: $white;
+  background: $black;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 150%;
+
+  @include media-query(phone, max){
+      font-size: $base - 2;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $white;
+}
+
+h1, h2, h3, h4, h5, h6, p, img, li, blockquote, table {
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 120%;
+  text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+  letter-spacing: 1px;
+
+  b {
+    display: block;
+  }
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 120%;
+  text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+  margin-bottom: 30px;
+}
+
+// h1{
+//   font-size:4.375rem;
+//   line-height: 4.375rem;
+
+//   @include media-query(tablet, max){
+//       font-size:3.5rem;
+//       line-height: 3.5rem;
+//   }
+
+//   @include media-query(phone, max){
+//       font-size: 2rem;
+//       line-height: 2.2rem;
+//   }
+
+// }
+
+// h2{
+//   font-size:2.5rem;
+//   line-height: 2.5rem;
+//   @include font(secondary);
+
+//   @include media-query(phone, max){
+//       font-size: 1.75rem;
+//       line-height: 2rem;
+//   }
+// }
+
+// h3{
+//   font-size:1.25rem;
+//   margin-bottom:6px;
+// }
+
+img {
+  max-width: 100%;
+  align-self: center;
+}
+
+hr{
+  margin-bottom: 24px;
+}
+
+ol, ul{ 
+  padding: 0;
+  list-style: none; 
+}
+
+ol{
+  counter-reset: item;
+}
+
+li{
+  padding-left: 30px;
+}
+
+li:before{
+  color: $primary;
+  width: 0;
+  float: left;
+  margin-left: -30px;
+}
+
+ol li:before {
+  content: counter(item);
+  counter-increment: item;
+}
+
+ul li:before {
+  content: '\2022';
+}
+
+button, .button a{
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  height: 50px;
+  line-height: 50px;
+  background: linear-gradient(180deg, #20DFE9 0%, #14C3CC 100%);
+  box-shadow: 0px 0px 15px rgba(32, 223, 233, 0.5);
+  border-radius: 100px;
+  font-weight: bold;
+  font-size: $base + 2;
+  text-align: center;
+  text-transform: uppercase;
+  color: $white;
+  padding: 0 50px;
+}
+
+audio, div, canvas, img, video {
+  vertical-align: top;
+}
+
+textarea{
+  resize: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+table {
+  border-spacing: 0; 
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr{
+  background: $primary;
+  color: $white;
+}
+
+tr{
+  background: $table;
+}
+
+tr:nth-child(even){
+  background: $table-alt;
+}
+
+td{
+  border-right: 1px solid $white;
+  padding: 2px;
+}
+
+.bg-load,.img-load{
+  /*background:url(/Images/loader.svg) 50% 50% no-repeat;*/
+  background-size: 32px !important;
+}
+
+::-moz-selection {
+  background: $primary-alt;
+  color: $white;
+  text-shadow: none;
+}
+
+::selection {
+  background: $primary-alt;
+  color: $white;
+  text-shadow: none;
+}
