@@ -52,7 +52,7 @@ module.exports = function (grunt) {
       },
       scripts: {
         files: ["scripts/js/*.js"],
-        tasks: ["jshint", "concat:scripts", "uglify:build"]
+        tasks: ["concat:scripts", "uglify:build"]
       }
     }
   })
