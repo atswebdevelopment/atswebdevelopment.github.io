@@ -1,3 +1,15 @@
+.intro, .main {
+  overflow: hidden;
+}
+
+.main {
+  margin-top: -50px;
+
+  @include media-query(phone, max){
+    margin-top: 0px;
+  }
+}
+
 .video {
   position: relative;
 }
@@ -418,11 +430,11 @@ video {
     border-radius: 5px;
     overflow: hidden;
     padding-top: 60px;
-    margin-bottom: 60px;
+    margin-bottom: 115px;
 
     @include media-query(phone, max){
       padding-top: 30px;
-      margin-bottom: 0px;
+      margin-bottom: 40px;
     }
   }
 
@@ -437,7 +449,7 @@ video {
     min-width: 200%;
     height: 107px;
     background: url(/images/waves.svg) top left;
-    top: 55px;
+    top: 1px;
     position: relative;
   }
 
@@ -574,7 +586,7 @@ video {
 .positions {
   background: $white;
   color: #535E5E;
-  padding-top: 85px;
+  padding-top: 35px;
 
   h2 {
     color: $black;

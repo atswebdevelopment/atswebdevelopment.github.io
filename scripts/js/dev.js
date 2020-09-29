@@ -60,8 +60,11 @@ play.addEventListener('click', () => {
 const toViewRoles = () => {
   setTimeout(() => {
     const positions = document.querySelector('.positions');
-    const positionsOffset = positions.getBoundingClientRect().top
-    if (positionsOffset > 55) {
+    let positionsOffset = positions.getBoundingClientRect().top
+    if (window.innerWidth < 767) {
+      positionsOffset += 100
+    }
+    if (positionsOffset > 110) {
       window.scrollTo(0, window.scrollY + (positionsOffset / 50))
       toViewRoles()
     }

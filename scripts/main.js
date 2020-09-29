@@ -66,7 +66,11 @@ var toViewRoles = function toViewRoles() {
     var positions = document.querySelector('.positions');
     var positionsOffset = positions.getBoundingClientRect().top;
 
-    if (positionsOffset > 55) {
+    if (window.innerWidth < 767) {
+      positionsOffset += 100;
+    }
+
+    if (positionsOffset > 110) {
       window.scrollTo(0, window.scrollY + positionsOffset / 50);
       toViewRoles();
     }
