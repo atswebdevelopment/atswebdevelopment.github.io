@@ -6,17 +6,59 @@
   background: rgba(2, 17, 18, 0.7);
   backdrop-filter: blur(15px);
 
+  @include media-query(phone, max){
+    margin-bottom: 30px;
+  }
+
+  &__logo {
+    position: relative;
+    height: 18px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 735px;
+      height: 226px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-280px);
+      top: 0;
+      opacity: 0.7;
+      border-radius: 50%;
+      box-shadow: 0px 4px 100px #20DFE9;
+
+      @include media-query(phone, max){
+        width: 248px;
+        height: 76px;
+        transform: translateX(-50%) translateY(-120px);
+      }
+    }
+  }
+
   &__inner {
     display: flex;
     height: 100px;
     align-items: center;
+
+    @include media-query(phone, max){
+      height: 80px;
+    }
   }
 
   svg {
     width: 205px;
+
+    @include media-query(phone, max){
+      width: 134px;
+    }
   }
 
   &__cta {
     margin-left: auto;
+
+    .button a {
+      @include media-query(phone, max){
+        padding: 0 25px;
+      }
+    }
   }
 }
