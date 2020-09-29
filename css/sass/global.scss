@@ -135,7 +135,7 @@ button, .button a{
   }
 
   &:focus, &:active {
-    transform: scale(1.05);
+    box-shadow: none;
   }
 }
 
