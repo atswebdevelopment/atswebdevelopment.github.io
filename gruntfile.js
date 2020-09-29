@@ -5,6 +5,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-jshint")
   grunt.loadNpmTasks("grunt-contrib-concat")
   grunt.loadNpmTasks('grunt-contrib-uglify')
+  grunt.loadNpmTasks('grunt-babel')
 
   grunt.initConfig({
     sass: {
@@ -33,10 +34,21 @@ module.exports = function (grunt) {
         ]
       }
     },
-    concat: {
-      scripts: {
-        src: ["scripts/js/*.js"],
-        dest: "scripts/main.js",
+    // concat: {
+    //   scripts: {
+    //     src: ["scripts/js/*.js"],
+    //     dest: "scripts/main.js",
+    //   }
+    // },
+    babel: {
+      dist: {
+        files: {
+          "scripts/main.js": "scripts/js/dev.js"
+        },
+        options: {
+          sourceMap: true,
+          presets: ["@babel/preset-env"]
+        }
       }
     },
     uglify: {
@@ -52,7 +64,7 @@ module.exports = function (grunt) {
       },
       scripts: {
         files: ["scripts/js/*.js"],
-        tasks: ["concat:scripts", "uglify:build"]
+        tasks: ["babel:dist", "uglify:build"]
       }
     }
   })
