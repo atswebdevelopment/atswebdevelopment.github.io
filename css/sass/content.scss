@@ -11,6 +11,7 @@
 
   @include media-query(phone, max){
     top: 40px;
+    opacity: 0.5;
   }
 
   &:after, &:before {

@@ -8,7 +8,7 @@ document.addEventListener('scroll', function () {
   if (!imagesWhyReached) {
     var imagesWhy = document.querySelector('.images-why');
     var imagesWhyOffset = imagesWhy.getBoundingClientRect().top;
-    var imagesWhyHeight = window.innerWidth < 767 ? window.innerHeight / 2 : imagesWhy.offsetHeight;
+    var imagesWhyHeight = window.innerWidth < 767 ? window.innerHeight / 4 : imagesWhy.offsetHeight;
 
     if (imagesWhyOffset - window.innerHeight + imagesWhyHeight < 0) {
       document.querySelector('.images-why').classList.add('active');
@@ -17,7 +17,7 @@ document.addEventListener('scroll', function () {
   } else if (!whoAreWeReached) {
     var whoAreWe = document.querySelector('.who-are-we');
     var whoAreWeOffset = whoAreWe.getBoundingClientRect().top;
-    var whoAreWeHeight = window.innerWidth < 767 ? window.innerHeight / 2 : whoAreWe.offsetHeight;
+    var whoAreWeHeight = window.innerWidth < 767 ? window.innerHeight / 4 : whoAreWe.offsetHeight;
 
     if (whoAreWeOffset - window.innerHeight + whoAreWeHeight < 0) {
       document.querySelector('.who-are-we').classList.add('active');
@@ -26,7 +26,7 @@ document.addEventListener('scroll', function () {
   } else if (!quotesReached) {
     var quotes = document.querySelector('.quote');
     var quotesOffset = quotes.getBoundingClientRect().top;
-    var quotesHeight = window.innerWidth < 767 ? window.innerHeight / 2 : quotes.offsetHeight;
+    var quotesHeight = window.innerWidth < 767 ? window.innerHeight / 4 : quotes.offsetHeight;
 
     if (quotesOffset - window.innerHeight + quotesHeight < 0) {
       document.querySelector('.quote').classList.add('active');
@@ -35,7 +35,7 @@ document.addEventListener('scroll', function () {
   } else if (!imagesWorkReached) {
     var imagesWork = document.querySelector('.work-here');
     var imagesWorkOffset = imagesWork.getBoundingClientRect().top;
-    var imagesWorkHeight = window.innerWidth < 767 ? window.innerHeight / 2 : imagesWork.offsetHeight;
+    var imagesWorkHeight = window.innerWidth < 767 ? window.innerHeight / 4 : imagesWork.offsetHeight;
 
     if (imagesWorkOffset - window.innerHeight + imagesWorkHeight < 0) {
       document.querySelector('.work-here').classList.add('active');

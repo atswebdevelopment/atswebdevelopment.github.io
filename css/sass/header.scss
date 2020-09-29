@@ -58,6 +58,8 @@
     .button a {
       @include media-query(phone, max){
         padding: 0 25px;
+        height: 40px;
+        line-height: 40px;
       }
     }
   }
