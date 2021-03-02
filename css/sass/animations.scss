@@ -8,14 +8,35 @@
 
 .perks:after {
   animation: moveBg 15s linear infinite;
-}
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
 
-.waves:before {
-  animation: moveBg2 50s linear infinite;
+  @include media-query(phone, max){
+    animation: none;
+  }
 }
 
 .waves:after {
+  animation: moveBg2 50s linear infinite;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+
+  @include media-query(phone, max){
+    animation: moveBg2 100s linear infinite;
+  }
+}
+
+.waves:before {
   animation: moveBg2 30s linear infinite;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+
+  @include media-query(phone, max){
+    animation: moveBg2 60s linear infinite;
+  }
 }
 
 .dot-1 {
@@ -162,23 +183,12 @@
   animation: moveDot36 40s linear infinite;
 }
 
-@keyframes hvr-ripple-out {
-  100% {
-    top: -12px;
-    right: -12px;
-    bottom: -12px;
-    left: -12px;
-    opacity: 0;
-    border-width: 6px;
-  }
-}
-
 @keyframes moveBg {
   from {
     transform: translateX(0);
   }
   to { 
-    transform: translateX(-1440px);
+    transform: translateX(-2880px);
   }
 }
 

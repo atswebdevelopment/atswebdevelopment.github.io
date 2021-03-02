@@ -1,14 +1,32 @@
 .container {
-  position: relative;
+  margin-top: -80px;
 }
 
 .inner {
-  max-width: 910px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 40px;
   @include group();
 
   @include media-query(phone, max){
-    padding: 0 15px;
+    padding: 0 20px;
+  }
+}
+
+.columns {
+  display: flex;
+
+  @include media-query(phone, max){
+    display: block;
+  }
+
+  .column {
+    @include media-query(phone, max){
+      margin-bottom: 20px;
+    }
+
+    &--fixed {
+      flex-shrink: 0;
+    }
   }
 }

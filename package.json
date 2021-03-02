@@ -19,16 +19,5 @@
   "scripts": {
     "watch": "grunt watch",
     "serve": "live-server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/atswebdevelopment/mindlabs.git"
-  },
-  "author": "Adam Southorn",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/atswebdevelopment/mindlabs/issues"
-  },
-  "homepage": "https://github.com/atswebdevelopment/mindlabs#readme",
-  "description": ""
+  }
 }

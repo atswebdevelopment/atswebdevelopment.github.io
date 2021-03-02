@@ -34,16 +34,16 @@ module.exports = function (grunt) {
         ]
       }
     },
-    // concat: {
-    //   scripts: {
-    //     src: ["scripts/js/*.js"],
-    //     dest: "scripts/main.js",
-    //   }
-    // },
+    concat: {
+      scripts: {
+        src: ["scripts/js/*.js"],
+        dest: "scripts/main.js",
+      }
+    },
     babel: {
       dist: {
         files: {
-          "scripts/main.js": "scripts/js/dev.js"
+          "scripts/main.js": "scripts/main.js"
         },
         options: {
           sourceMap: true,
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
       },
       scripts: {
         files: ["scripts/js/*.js"],
-        tasks: ["babel:dist", "uglify:build"]
+        tasks: ["concat", "babel:dist", "uglify:build"]
       }
     }
   })
