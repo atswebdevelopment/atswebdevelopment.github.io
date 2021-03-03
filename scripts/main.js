@@ -47,14 +47,15 @@
 //     }
 //   })
 // })
-// const play = document.querySelector('.play')
-// play.addEventListener('click', () => {
-//   play.classList.add('active')
-//   const video = document.querySelector('video')
-//   video.play()
-//   video.controls = true
-// })
-// const toViewRoles = () => {
+var play = document.querySelector('.video__button');
+play.addEventListener('click', function (e) {
+  e.preventDefault();
+  play.classList.add('hidden');
+  var video = document.querySelector('.video__video');
+  video.classList.add('video__video--play');
+  video.play();
+  video.controls = true;
+}); // const toViewRoles = () => {
 //   setTimeout(() => {
 //     const positions = document.querySelector('.positions');
 //     let positionsOffset = positions.getBoundingClientRect().top
@@ -83,6 +84,7 @@
 //     accordion.parentElement.classList.toggle('active')
 //   })
 // })
+
 var splides = document.querySelectorAll('.splide');
 splides.forEach(function (e, i) {
   var perMove = 1;
@@ -111,7 +113,7 @@ splides.forEach(function (e, i) {
     fixedWidth = 0;
   }
 
-  new Splide(e, {
+  var splide = new Splide(e, {
     type: type,
     arrows: arrows,
     height: height,
@@ -128,5 +130,15 @@ splides.forEach(function (e, i) {
     // }
 
   }).mount();
+
+  if (e.classList.contains('splide--quotes')) {
+    var indNo = document.querySelector('.indicator__number');
+    var indTot = document.querySelector('.indicator__total');
+    splide.on('move', function (newIndex) {
+      indNo.innerHTML = newIndex + 1;
+    });
+    indNo.innerHTML = 1;
+    indTot.innerHTML = splide.length;
+  }
 });
 //# sourceMappingURL=main.js.map

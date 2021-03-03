@@ -29,7 +29,7 @@ splides.forEach((e, i) => {
         fixedWidth = 0
     }
 
-    new Splide(e, {
+    const splide = new Splide(e, {
         type,
         arrows,
         height,
@@ -46,4 +46,15 @@ splides.forEach((e, i) => {
         //     }
         // }
     }).mount()
+
+    if (e.classList.contains('splide--quotes')) {
+        const indNo = document.querySelector('.indicator__number')
+        const indTot = document.querySelector('.indicator__total')
+
+        splide.on('move', (newIndex) => {
+            indNo.innerHTML = newIndex + 1
+        })
+        indNo.innerHTML = 1
+        indTot.innerHTML = splide.length
+    }
 })

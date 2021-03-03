@@ -48,14 +48,15 @@
 //   })
 // })
 
-// const play = document.querySelector('.play')
-// play.addEventListener('click', () => {
-//   play.classList.add('active')
-//   const video = document.querySelector('video')
-//   video.play()
-//   video.controls = true
-// })
-
+const play = document.querySelector('.video__button')
+play.addEventListener('click', (e) => {
+  e.preventDefault();
+  play.classList.add('hidden')
+  const video = document.querySelector('.video__video')
+  video.classList.add('video__video--play')
+  video.play()
+  video.controls = true
+})
 
 // const toViewRoles = () => {
 //   setTimeout(() => {

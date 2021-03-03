@@ -87,6 +87,10 @@ h3 {
   }
 }
 
+b, strong {
+  font-weight: 400;
+}
+
 img {
   max-width: 100%;
   align-self: center;
@@ -143,6 +147,17 @@ button, .button a{
   }
 }
 
+button.alt, .button--alt a{
+  border-color: $black;
+  color: $black;
+}
+
+button.alt2, .button--alt2 a{
+  border-color: $white;
+  color: $white;
+  background: none;
+}
+
 audio, div, canvas, img, video {
   vertical-align: top;
 }
@@ -157,6 +172,12 @@ textarea{
 
 .center {
   text-align: center;
+}
+
+.image {
+  @include fill();
+  background-size: cover;
+  background-position: center;
 }
 
 .no-overflow{
