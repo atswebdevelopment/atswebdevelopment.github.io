@@ -91,6 +91,15 @@
         text-transform: uppercase;
         color: $black;
         font-weight: 400;
+
+        &:hover {
+          color: $secondary;
+          text-decoration: none;
+        }
+      }
+
+      &.current-menu-item a {
+        color: $secondary;
       }
     }
   }

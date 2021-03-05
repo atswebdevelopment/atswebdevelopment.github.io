@@ -47,10 +47,25 @@
 //     }
 //   })
 // })
+window.addEventListener('scroll', () => {
+  const logoCircle = document.querySelector('.brandcards__icon--desktop')
+  if (logoCircle) {
+    logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 4) + 'deg)'
+  }
+})
+
+const burger = document.querySelectorAll('.header__hamburger')
+burger.forEach((burgerItem, i) => {
+  burgerItem.addEventListener('click', (e) => {
+    e.preventDefault()
+    const navigation = document.querySelector('.navigation')
+    navigation.classList.add('navigation--active')
+  })
+})
 
 const play = document.querySelector('.video__button')
 play.addEventListener('click', (e) => {
-  e.preventDefault();
+  e.preventDefault()
   play.classList.add('hidden')
   const video = document.querySelector('.video__video')
   video.classList.add('video__video--play')

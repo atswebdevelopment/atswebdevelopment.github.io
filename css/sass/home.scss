@@ -1,3 +1,59 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: $white;
+  z-index: 100;
+  transform: translate3d(100%, 0, 0);
+  transition: all 0.5s $ease;
+  will-change: transform;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  &__navigation {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1;
+
+    li {
+      &:before {
+        content: none;
+      }
+
+      a {
+        display: block;
+      }
+    }
+
+    li.current-menu-item a {
+      color:$secondary;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+  }
+
+  &--active {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .banner {
   background-size: cover;
   background-position: center;
@@ -181,6 +237,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: scale(1);
+    transition: transform 0.4s $ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     svg {
       width: 92px;
@@ -296,6 +358,8 @@
     position: absolute;
     top: 230px;
     left: -126px;
+    transform: rotateZ(0deg);
+    transition: transform 1s $ease;
 
     @include media-query(desktop, max){
       display: none;
@@ -307,12 +371,27 @@
     height: 556px;
     display: inline-block;
     position: relative;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
+
+    &__background {
+      @include fill();
+      background-size: cover;
+      background-position: center;
+      transform: scale(1);
+      transition: transform 0.4s $ease;
+    }
+
+    &:hover {
+      .brandcard__background {
+        transform: scale(1.1);
+      }
+    }
 
     &__inner {
       height: 100%;
       display: flex;
+      position: relative;
+      z-index:1;
     }
 
     &__content {
@@ -327,6 +406,7 @@
 
     &__link {
       @include fill();
+      z-index:2;
     }
 
     &__title {
@@ -533,6 +613,14 @@
     &__title {
       font-weight: 700;
       margin-bottom: 10px;
+
+      a {
+        color: $black;
+
+        &:hover {
+          color: $black;
+        }
+      }
     }
 
     &__link {
@@ -545,14 +633,20 @@
         margin-top: 20px;
       }
 
-      &:hover {
-        text-decoration: none;
-      }
-
       svg {
         position: relative;
         top: 5px;
         margin-left: 8px;
+        transform: translateX(0px);
+        transition: transform 0.4s $ease;
+      }
+
+      &:hover {
+        text-decoration: none;
+
+        svg {
+          transform: translateX(4px);
+        }
       }
     }
   }

@@ -47,6 +47,21 @@
 //     }
 //   })
 // })
+window.addEventListener('scroll', function () {
+  var logoCircle = document.querySelector('.brandcards__icon--desktop');
+
+  if (logoCircle) {
+    logoCircle.style.transform = 'rotateZ(' + window.scrollY / 4 + 'deg)';
+  }
+});
+var burger = document.querySelectorAll('.header__hamburger');
+burger.forEach(function (burgerItem, i) {
+  burgerItem.addEventListener('click', function (e) {
+    e.preventDefault();
+    var navigation = document.querySelector('.navigation');
+    navigation.classList.add('navigation--active');
+  });
+});
 var play = document.querySelector('.video__button');
 play.addEventListener('click', function (e) {
   e.preventDefault();
