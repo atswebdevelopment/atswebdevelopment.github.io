@@ -63,14 +63,17 @@ burger.forEach(function (burgerItem, i) {
   });
 });
 var play = document.querySelector('.video__button');
-play.addEventListener('click', function (e) {
-  e.preventDefault();
-  play.classList.add('hidden');
-  var video = document.querySelector('.video__video');
-  video.classList.add('video__video--play');
-  video.play();
-  video.controls = true;
-}); // const toViewRoles = () => {
+
+if (play) {
+  play.addEventListener('click', function (e) {
+    e.preventDefault();
+    play.classList.add('hidden');
+    var video = document.querySelector('.video__video');
+    video.classList.add('video__video--play');
+    video.play();
+    video.controls = true;
+  });
+} // const toViewRoles = () => {
 //   setTimeout(() => {
 //     const positions = document.querySelector('.positions');
 //     let positionsOffset = positions.getBoundingClientRect().top
@@ -99,6 +102,7 @@ play.addEventListener('click', function (e) {
 //     accordion.parentElement.classList.toggle('active')
 //   })
 // })
+
 
 var splides = document.querySelectorAll('.splide');
 splides.forEach(function (e, i) {

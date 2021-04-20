@@ -20,9 +20,11 @@
       height: 750px;
       position: relative;
       z-index: 1;
+      left: -40px;
 
       @include media-query(phone, max){
         height: 400px;
+        left: 0;
       }
 
       &:after {
@@ -89,6 +91,11 @@
     &:nth-child(even) {
       .servicecard__image {
         margin-left: auto;
+        left: 40px;
+
+        @include media-query(phone, max){
+          left: 0px;
+        }
 
         &:after {
           left: auto;

@@ -64,14 +64,16 @@ burger.forEach((burgerItem, i) => {
 })
 
 const play = document.querySelector('.video__button')
-play.addEventListener('click', (e) => {
-  e.preventDefault()
-  play.classList.add('hidden')
-  const video = document.querySelector('.video__video')
-  video.classList.add('video__video--play')
-  video.play()
-  video.controls = true
-})
+if (play) {
+  play.addEventListener('click', (e) => {
+    e.preventDefault()
+    play.classList.add('hidden')
+    const video = document.querySelector('.video__video')
+    video.classList.add('video__video--play')
+    video.play()
+    video.controls = true
+  })
+}
 
 // const toViewRoles = () => {
 //   setTimeout(() => {

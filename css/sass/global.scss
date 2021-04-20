@@ -56,7 +56,7 @@ h1 {
 }
 
 h2 {
-  font-weight: 300;
+  font-weight: 200;
   font-size: 45px;
   line-height: 53px;
   margin-bottom: 30px;
@@ -152,6 +152,10 @@ button.alt, .button--alt a{
   color: $black;
 }
 
+.button--marginTop a{
+  margin-top: 20px;
+}
+
 button.alt2, .button--alt2 a{
   border-color: $white;
   color: $white;
@@ -168,6 +172,13 @@ textarea{
 
 .hidden {
   display: none;
+}
+
+.anchor {
+  @include media-query(phone, max){
+    position: relative;
+    top: -100px;
+  }
 }
 
 .center {
@@ -197,6 +208,11 @@ textarea{
 .size-15 {
   font-size: 15px;
   line-height: 23px;
+}
+
+.size-20 {
+  font-size: 20px;
+  line-height: 28px;
 }
 
 .size-23 {
