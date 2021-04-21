@@ -138,6 +138,19 @@
     max-width: 900px;
     margin: 0 auto 20px;
   }
+
+  &--banner {
+    text-align: left;
+    padding-top: 180px;
+
+    @include media-query(phone, max){
+      padding-top: 140px;
+    }
+    
+    p {
+      max-width: none;
+    }
+  }
 }
 
 .location-links {
@@ -762,6 +775,8 @@
     flex-grow: 0;
     width: 63px;
     margin-right: 20px;
+    border-radius: 50%;
+    overflow: hidden;
   }
 
   &__name {
@@ -882,6 +897,7 @@
 
   &__link {
     @include fill();
+    z-index: 1;
   }
 
   &__button {
@@ -920,12 +936,18 @@
 }
 
 .cta {
-  background-size: cover;
-  background-position: center;
+  background-size: 100% auto;
+  background-position: 0 0;
+  background-repeat: no-repeat;
   padding: 0 20px;
   min-height: 450px;
   display: flex;
   align-items: center;
+
+  @include media-query(tablet, max){
+    background-size: cover;
+    background-position: center;
+  }
 
   &__inner {
     display: flex;
@@ -959,7 +981,7 @@
     min-height: 550px;
 
     @include media-query(phone, max){
-      padding-top: 450px;
+      min-height: 450px;
     }
 
     .cta__title {

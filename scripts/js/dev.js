@@ -52,6 +52,14 @@ window.addEventListener('scroll', () => {
   if (logoCircle) {
     logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 4) + 'deg)'
   }
+
+  const cta = document.querySelector('.cta')
+  if (cta && window.innerWidth > 1024) {
+    const bound = cta.getBoundingClientRect().top - window.innerHeight
+    if (bound < 0) {
+      cta.style.backgroundPosition = `0px -${(Math.abs(bound) / 5)}px`
+    }
+  }
 })
 
 const burger = document.querySelectorAll('.header__hamburger')

@@ -53,6 +53,16 @@ window.addEventListener('scroll', function () {
   if (logoCircle) {
     logoCircle.style.transform = 'rotateZ(' + window.scrollY / 4 + 'deg)';
   }
+
+  var cta = document.querySelector('.cta');
+
+  if (cta && window.innerWidth > 1024) {
+    var bound = cta.getBoundingClientRect().top - window.innerHeight;
+
+    if (bound < 0) {
+      cta.style.backgroundPosition = "0px -".concat(Math.abs(bound) / 5, "px");
+    }
+  }
 });
 var burger = document.querySelectorAll('.header__hamburger');
 burger.forEach(function (burgerItem, i) {

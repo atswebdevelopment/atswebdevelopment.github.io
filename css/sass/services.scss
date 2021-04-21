@@ -17,13 +17,12 @@
     &__image {
       width: 100%;
       max-width:1075px;
-      height: 750px;
+      height: calc(100vh - 80px);
       position: relative;
       z-index: 1;
       left: -40px;
 
       @include media-query(phone, max){
-        height: 400px;
         left: 0;
       }
 
@@ -63,7 +62,10 @@
 
       @include media-query(phone, max){
         padding: 30px;
-        margin-top: -45px;
+        margin: 0;
+        top: auto;
+        bottom: 90px;
+        transform: none;
       }
 
       h2 {

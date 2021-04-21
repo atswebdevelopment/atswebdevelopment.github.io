@@ -79,12 +79,12 @@
         margin-left: auto;
       }
 
-      &:last-child {
-        @include media-query(phone, max){
-          display: block;
-          margin-left: auto;
-        }
-      }
+      // &:last-child {
+      //   @include media-query(phone, max){
+      //     display: block;
+      //     margin-left: auto;
+      //   }
+      // }
 
       a {
         font-size: 12px;

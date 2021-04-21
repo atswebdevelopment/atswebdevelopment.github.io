@@ -175,14 +175,22 @@ textarea{
 }
 
 .anchor {
-  @include media-query(phone, max){
-    position: relative;
-    top: -100px;
-  }
+  position: relative;
+  top: -80px;
 }
 
 .center {
   text-align: center;
+}
+
+.float-link {
+  display: inline-block;
+  color: $black;
+  font-size: 10px;
+  font-weight: 500;
+  margin-left: 35px;
+  text-transform: uppercase;
+  line-height: 36px;
 }
 
 .image {
