@@ -47,7 +47,19 @@
 //     }
 //   })
 // })
+var timer = setInterval(function () {
+  var scContent = document.querySelector('.servicecard__content');
+
+  if (scContent && window.innerWidth > 1024) {
+    var bound = scContent.getBoundingClientRect().top - window.innerHeight;
+
+    if (bound < 0) {
+      scContent.style.top = "".concat(Math.abs(bound) / 5, "px");
+    }
+  }
+}, 100);
 window.addEventListener('scroll', function () {
+  clearInterval(timer);
   var logoCircle = document.querySelector('.brandcards__icon--desktop');
 
   if (logoCircle) {
@@ -62,6 +74,18 @@ window.addEventListener('scroll', function () {
     if (bound < 0) {
       cta.style.backgroundPosition = "0px -".concat(Math.abs(bound) / 5, "px");
     }
+  }
+
+  var scContentBoxes = document.querySelectorAll('.servicecard__content');
+
+  if (window.innerWidth > 1024) {
+    scContentBoxes.forEach(function (scContent, i) {
+      var bound = scContent.getBoundingClientRect().top - window.innerHeight;
+
+      if (bound < 0) {
+        scContent.style.top = "".concat(Math.abs(bound) / 5, "px");
+      }
+    });
   }
 });
 var burger = document.querySelectorAll('.header__hamburger');

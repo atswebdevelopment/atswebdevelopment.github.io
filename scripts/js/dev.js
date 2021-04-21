@@ -47,7 +47,19 @@
 //     }
 //   })
 // })
+
+const timer = setInterval(() => {
+  const scContent = document.querySelector('.servicecard__content')
+  if (scContent && window.innerWidth > 1024) {
+    const bound = scContent.getBoundingClientRect().top - window.innerHeight
+    if (bound < 0) {
+      scContent.style.top = `${(Math.abs(bound) / 5)}px`
+    }
+  }
+},100)
+
 window.addEventListener('scroll', () => {
+  clearInterval(timer)
   const logoCircle = document.querySelector('.brandcards__icon--desktop')
   if (logoCircle) {
     logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 4) + 'deg)'
@@ -59,6 +71,16 @@ window.addEventListener('scroll', () => {
     if (bound < 0) {
       cta.style.backgroundPosition = `0px -${(Math.abs(bound) / 5)}px`
     }
+  }
+
+  const scContentBoxes = document.querySelectorAll('.servicecard__content')
+  if (window.innerWidth > 1024) {
+    scContentBoxes.forEach((scContent, i) => {
+      const bound = scContent.getBoundingClientRect().top - window.innerHeight
+      if (bound < 0) {
+        scContent.style.top = `${(Math.abs(bound) / 5)}px`
+      }
+    })
   }
 })
 
