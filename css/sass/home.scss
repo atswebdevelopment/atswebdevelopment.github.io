@@ -62,7 +62,6 @@
   color: $white;
   position: relative;
   z-index: 10;
-  overflow: hidden;
 
   @include media-query(phone, max){
     background-attachment: scroll;
@@ -71,15 +70,24 @@
   
   &__video {
     @include fill();
-    width: 177.77777778vh;
-    min-width: 100%;
-    min-height: 56.25vw;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    overflow: hidden;
 
     @include media-query(phone, max){
       display: none;
+    }
+  
+    video {
+      @include fill();
+      width: 177.77777778vh;
+      min-width: 100%;
+      min-height: 56.25vw;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+  
+      @include media-query(phone, max){
+        display: none;
+      }
     }
   }
 
