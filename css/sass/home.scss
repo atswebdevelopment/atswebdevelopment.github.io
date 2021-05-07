@@ -71,10 +71,6 @@
   &__video {
     @include fill();
     overflow: hidden;
-
-    @include media-query(phone, max){
-      display: none;
-    }
   
     video {
       @include fill();
@@ -84,10 +80,6 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%,-50%);
-  
-      @include media-query(phone, max){
-        display: none;
-      }
     }
   }
 
@@ -178,7 +170,7 @@
       content: none;
     }
 
-    a {
+    li, a {
       text-transform: uppercase;
       font-size: 13px;
       color: $black;
@@ -865,7 +857,15 @@
   width: 100%;
 
   @include media-query(phone, max){
-    display: block;
+    display: none;
+  }
+
+  &--mobile {
+    display: none;
+
+    @include media-query(phone, max){
+      display: block;
+    }
   }
 
   &__content {
@@ -944,8 +944,8 @@
 }
 
 .cta {
-  background-size: 100% auto;
-  background-position: 0 0;
+  background-size: auto 100vh;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
   padding: 0 20px;
   min-height: 450px;
@@ -954,7 +954,6 @@
 
   @include media-query(tablet, max){
     background-size: cover;
-    background-position: center;
   }
 
   &__inner {

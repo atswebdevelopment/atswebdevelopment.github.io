@@ -47,7 +47,7 @@
       position: absolute;
       top: 0;
       right: 129px;
-      padding: 66px;
+      padding: 46px;
       background: $white;
       z-index: 1;
       margin-top: 40px;
@@ -62,8 +62,12 @@
       @include media-query(phone, max){
         padding: 30px;
         margin: 0;
-        top: auto;
+        top: 0;
         transform: none;
+      }
+
+      p {
+        font-size: 15px;
       }
 
       h2 {
@@ -73,11 +77,12 @@
 
       li {
         @include clearlist();
-        width: 45%;
+        width: calc(50% - 10px);
         font-size: 10px;
         line-height: 18px;
         font-weight: 500;
         margin-bottom: 5px;
+        margin-right: 6px;
 
         &:before {
           content: '+';

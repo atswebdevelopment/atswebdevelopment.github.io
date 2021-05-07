@@ -65,6 +65,10 @@
     display: flex;
     width: 100%;
     align-content: center;
+      
+    @include media-query(phone, max){
+      width: auto;
+    }
 
     li {
       @include clearlist();
@@ -104,15 +108,24 @@
     }
   }
 
-  &__hamburger {
+  &__hamburger{
+    display: none !important;
     position: relative;
-    margin-top: 4px;
-    display: block;
-    width: 26px;
-    height: 19px;
 
     @include media-query(phone, max){
-      margin-top: 0px;
+      display: block !important;
+    }
+
+    a {
+      position: relative;
+      margin-top: 4px;  
+      width: 26px;
+      display: block;
+      height: 19px;
+
+      @include media-query(phone, max){
+        margin-top: 0px;
+      }
     }
 
     &:after, &:before, span {

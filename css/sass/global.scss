@@ -14,7 +14,6 @@ body {
   font-weight: 200;
   font-size: 16px;
   line-height: 150%;
-  -webkit-transform:translate3d(0,0,0);
 
   @include media-query(phone, max){
     font-size: 14px;
