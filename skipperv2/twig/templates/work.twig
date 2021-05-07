@@ -1,0 +1,37 @@
+{% extends 'base.twig' %}
+
+{% set hero_content = post.get_field('hero_content') %}
+{% set message_content = post.get_field('message_content') %}
+
+{% block content %}
+<div class="content">
+  <div class="intro intro--banner">
+    <div class="inner intro__inner">
+      <p class="ss-animate size-35" data-animation="ssFadeInUp">{{ hero_content.text }}</p>
+    </div>
+  </div>
+
+  <div class="row work-items-row">
+    {% for project in projects  %}
+      <div class="col-lg-6">
+        <article class="work-item ss-animate-work" data-animation="ssFadeInUp" data-animation-duration="750">
+          <a href="{{ project.link }}">
+            <figure style="background-image: url('{{ project.thumbnail.src }}');">
+              <img src="{{ project.thumbnail.src }}" alt="{{ project.thumbnail.alt ?: project.thumbnail.title }}">
+            </figure>
+
+            <div class="overlay">
+              <h3>{{ project.title }}</h3>
+              <h4>{{ project.get_field('headline') }}</h4>
+            </div>
+          </a>
+        </article> <!-- end .work-item -->
+      </div>
+    {% endfor %}
+  </div>
+
+  <aside class="work-message">
+    <p>{{ message_content.text }}</p>
+  </aside>
+</div>
+{% endblock %}

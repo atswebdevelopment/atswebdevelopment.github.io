@@ -1,0 +1,284 @@
+html, body, span, div, p, a, li, ul, ol, h1, h2, h3, h4, h5, img, input, button, table, blockquote, fieldset, svg {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  transition: color 0.15s $ease, background-color 0.15s $ease, border-color 0.15s $ease, fill 0.15s $ease;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: $primaryfont;
+  font-size: $base;
+  color: $black;
+  background: $white;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 150%;
+
+  @include media-query(phone, max){
+    font-size: 14px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $white;
+}
+
+h1, h2, h3, h4, h5, h6, p, img, li, blockquote, table {
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 70px;
+  line-height: 78px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+
+  b, strong {
+    display: block;
+    font-weight: 400;
+    font-family: $secondaryfont;
+  }
+
+  @include media-query(phone, max){
+    font-size: 39px;
+    line-height: 47px;
+  }
+}
+
+h2 {
+  font-weight: 200;
+  font-size: 45px;
+  line-height: 53px;
+  margin-bottom: 30px;
+
+  b, strong {
+    display: block;
+    font-weight: 400;
+    font-family: $secondaryfont;
+  }
+
+  @include media-query(phone, max){
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 20px;
+  }
+}
+
+h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  margin-bottom: 30px;
+
+  @include media-query(phone, max){
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+b, strong {
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  align-self: center;
+}
+
+ul{ 
+  padding: 0;
+  list-style: none; 
+}
+
+li{
+  padding-left: 30px;
+}
+
+li:before{
+  color: $primary;
+  width: 0;
+  float: left;
+  margin-left: -30px;
+}
+
+ul li:before {
+  content: '\2022';
+}
+
+button, .button a{
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  height: 36px;
+  line-height: 36px;
+  background: $white;
+  color: $secondary;
+  border-radius: 36px;
+  font-weight: 500;
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 36px;
+  position: relative;
+  transform: scale(1);
+  transition: all 0.4s $ease;
+  border: 1px solid $secondary;
+
+  @include media-query(phone, max){
+    font-size: 10px;
+  }
+
+  &:hover, &:focus, &:active {
+    text-decoration: none;
+    background: $secondary;
+    color: $white;
+    border-color: $secondary;
+  }
+}
+
+button.alt, .button--alt a{
+  border-color: $black;
+  color: $black;
+}
+
+.button--marginTop a{
+  margin-top: 20px;
+}
+
+button.alt2, .button--alt2 a{
+  border-color: $white;
+  color: $white;
+  background: none;
+}
+
+audio, div, canvas, img, video {
+  vertical-align: top;
+}
+
+textarea{
+  resize: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.anchor {
+  position: relative;
+  top: -80px;
+}
+
+.center {
+  text-align: center;
+}
+
+.float-link {
+  display: inline-block;
+  color: $black;
+  font-size: 10px;
+  font-weight: 500;
+  margin-left: 35px;
+  text-transform: uppercase;
+  line-height: 36px;
+}
+
+.image {
+  @include fill();
+  background-size: cover;
+  background-position: center;
+}
+
+.no-overflow{
+  overflow: visible !important;
+}
+
+.size-12 {
+  font-size: 12px;
+  line-height: 20px;
+
+  @include media-query(phone, max){
+    font-size: 11px;
+    line-height: 19px;
+  }
+}
+
+.size-15 {
+  font-size: 15px;
+  line-height: 23px;
+}
+
+.size-20 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.size-23 {
+  font-size: 23px;
+  line-height: 31px;
+
+  @include media-query(phone, max){
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+
+.size-25 {
+  font-size: 25px;
+  line-height: 33px;
+  margin-bottom: 30px;
+
+  @include media-query(phone, max){
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.size-32 {
+  font-size: 32px;
+  line-height: 40px;
+
+  @include media-query(phone, max){
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.size-35 {
+  font-size: 35px;
+  line-height: 43px;
+
+  @include media-query(phone, max){
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+.logo-a {
+  fill: $black;
+}
+
+.logo-b {
+  fill:#989998;
+}
+
+::-moz-selection {
+  background: $primary-alt;
+  color: $white;
+  text-shadow: none;
+}
+
+::selection {
+  background: $primary-alt;
+  color: $white;
+  text-shadow: none;
+}

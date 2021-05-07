@@ -1,0 +1,560 @@
+.scale {
+  transition: transform 0.4s $ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.perks:after {
+  animation: moveBg 15s linear infinite;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+
+  @include media-query(phone, max){
+    animation: none;
+  }
+}
+
+.waves:after {
+  animation: moveBg2 50s linear infinite;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+
+  @include media-query(phone, max){
+    animation: moveBg2 100s linear infinite;
+  }
+}
+
+.waves:before {
+  animation: moveBg2 30s linear infinite;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+
+  @include media-query(phone, max){
+    animation: moveBg2 60s linear infinite;
+  }
+}
+
+.dot-1 {
+  animation: moveDot1 30s linear infinite;
+}
+
+.dot-2 {
+  animation: moveDot2 44s linear infinite;
+}
+
+.dot-3 {
+  animation: moveDot3 30s linear infinite;
+}
+
+.dot-4 {
+  animation: moveDot4 37s linear infinite;
+}
+
+.dot-5 {
+  animation: moveDot5 38s linear infinite;
+}
+
+.dot-6 {
+  animation: moveDot6 50s linear infinite;
+}
+
+.dot-7 {
+  animation: moveDot7 44s linear infinite;
+}
+
+.dot-8 {
+  animation: moveDot8 32s linear infinite;
+}
+
+.dot-9 {
+  animation: moveDot9 37s linear infinite;
+}
+
+.dot-10 {
+  animation: moveDot10 44s linear infinite;
+}
+
+.dot-11 {
+  animation: moveDot11 33s linear infinite;
+}
+
+.dot-12 {
+  animation: moveDot12 42s linear infinite;
+}
+
+.dot-13 {
+  animation: moveDot13 32s linear infinite;
+}
+
+.dot-14 {
+  animation: moveDot14 38s linear infinite;
+}
+
+.dot-15 {
+  animation: moveDot15 30s linear infinite;
+}
+
+.dot-16 {
+  animation: moveDot16 50s linear infinite;
+}
+
+.dot-17 {
+  animation: moveDot17 44s linear infinite;
+}
+
+.dot-18 {
+  animation: moveDot18 36s linear infinite;
+}
+
+.dot-19 {
+  animation: moveDot19 35s linear infinite;
+}
+
+.dot-20 {
+  animation: moveDot20 32s linear infinite;
+}
+
+.dot-21 {
+  animation: moveDot21 42s linear infinite;
+}
+
+.dot-22 {
+  animation: moveDot22 48s linear infinite;
+}
+
+.dot-23 {
+  animation: moveDot23 38s linear infinite;
+}
+
+.dot-24 {
+  animation: moveDot24 32s linear infinite;
+}
+
+.dot-25 {
+  animation: moveDot25 33s linear infinite;
+}
+
+.dot-26 {
+  animation: moveDot26 42s linear infinite;
+}
+
+.dot-27 {
+  animation: moveDot27 37s linear infinite;
+}
+
+.dot-28 {
+  animation: moveDot28 36s linear infinite;
+}
+
+.dot-29 {
+  animation: moveDot29 34s linear infinite;
+}
+
+.dot-30 {
+  animation: moveDot30 46s linear infinite;
+}
+
+.dot-31 {
+  animation: moveDot31 44s linear infinite;
+}
+
+.dot-32 {
+  animation: moveDot32 30s linear infinite;
+}
+
+.dot-33 {
+  animation: moveDot33 30s linear infinite;
+}
+
+.dot-34 {
+  animation: moveDot34 38s linear infinite;
+}
+
+.dot-35 {
+  animation: moveDot35 44s linear infinite;
+}
+
+.dot-36 {
+  animation: moveDot36 40s linear infinite;
+}
+
+@keyframes moveBg {
+  from {
+    transform: translateX(0);
+  }
+  to { 
+    transform: translateX(-2880px);
+  }
+}
+
+@keyframes moveBg2 {
+  from {
+    transform: translateX(0);
+  }
+  to { 
+    transform: translateX(-2521px);
+  }
+}
+
+@keyframes moveDot1 {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to { 
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes moveDot2 {
+  from {
+    transform: rotateZ(10deg);
+  }
+  to { 
+    transform: rotateZ(370deg);
+  }
+}
+
+
+@keyframes moveDot3 {
+  from {
+    transform: rotateZ(14deg);
+  }
+  to { 
+    transform: rotateZ(374deg);
+  }
+}
+
+
+@keyframes moveDot4 {
+  from {
+    transform: rotateZ(269deg);
+  }
+  to { 
+    transform: rotateZ(529deg);
+  }
+}
+
+
+@keyframes moveDot5 {
+  from {
+    transform: rotateZ(22deg);
+  }
+  to { 
+    transform: rotateZ(382deg);
+  }
+}
+
+
+@keyframes moveDot6 {
+  from {
+    transform: rotateZ(28deg);
+  }
+  to { 
+    transform: rotateZ(388deg);
+  }
+}
+
+
+@keyframes moveDot7 {
+  from {
+    transform: rotateZ(39deg);
+  }
+  to { 
+    transform: rotateZ(399deg);
+  }
+}
+
+
+@keyframes moveDot8 {
+  from {
+    transform: rotateZ(52deg);
+  }
+  to { 
+    transform: rotateZ(412deg);
+  }
+}
+
+
+@keyframes moveDot9 {
+  from {
+    transform: rotateZ(61deg);
+  }
+  to { 
+    transform: rotateZ(421deg);
+  }
+}
+
+
+@keyframes moveDot10 {
+  from {
+    transform: rotateZ(66deg);
+  }
+  to { 
+    transform: rotateZ(426deg);
+  }
+}
+
+
+@keyframes moveDot11 {
+  from {
+    transform: rotateZ(75deg);
+  }
+  to { 
+    transform: rotateZ(435deg);
+  }
+}
+
+
+@keyframes moveDot12 {
+  from {
+    transform: rotateZ(92deg);
+  }
+  to { 
+    transform: rotateZ(452deg);
+  }
+}
+
+
+@keyframes moveDot13 {
+  from {
+    transform: rotateZ(110deg);
+  }
+  to { 
+    transform: rotateZ(470deg);
+  }
+}
+
+
+@keyframes moveDot14 {
+  from {
+    transform: rotateZ(115deg);
+  }
+  to { 
+    transform: rotateZ(475deg);
+  }
+}
+
+
+@keyframes moveDot15 {
+  from {
+    transform: rotateZ(128deg);
+  }
+  to { 
+    transform: rotateZ(488deg);
+  }
+}
+
+
+@keyframes moveDot16 {
+  from {
+    transform: rotateZ(144deg);
+  }
+  to { 
+    transform: rotateZ(504deg);
+  }
+}
+
+
+@keyframes moveDot17 {
+  from {
+    transform: rotateZ(149deg);
+  }
+  to { 
+    transform: rotateZ(509deg);
+  }
+}
+
+
+@keyframes moveDot18 {
+  from {
+    transform: rotateZ(160deg);
+  }
+  to { 
+    transform: rotateZ(520deg);
+  }
+}
+
+
+@keyframes moveDot19 {
+  from {
+    transform: rotateZ(175deg);
+  }
+  to { 
+    transform: rotateZ(535deg);
+  }
+}
+
+
+@keyframes moveDot20 {
+  from {
+    transform: rotateZ(188deg);
+  }
+  to { 
+    transform: rotateZ(548deg);
+  }
+}
+
+
+@keyframes moveDot21 {
+  from {
+    transform: rotateZ(199deg);
+  }
+  to { 
+    transform: rotateZ(559deg);
+  }
+}
+
+
+@keyframes moveDot22 {
+  from {
+    transform: rotateZ(219deg);
+  }
+  to { 
+    transform: rotateZ(579deg);
+  }
+}
+
+
+@keyframes moveDot23 {
+  from {
+    transform: rotateZ(242deg);
+  }
+  to { 
+    transform: rotateZ(602deg);
+  }
+}
+
+
+@keyframes moveDot24 {
+  from {
+    transform: rotateZ(268deg);
+  }
+  to { 
+    transform: rotateZ(628deg);
+  }
+}
+
+
+@keyframes moveDot25 {
+  from {
+    transform: rotateZ(275deg);
+  }
+  to { 
+    transform: rotateZ(635deg);
+  }
+}
+
+
+@keyframes moveDot26 {
+  from {
+    transform: rotateZ(285deg);
+  }
+  to { 
+    transform: rotateZ(645deg);
+  }
+}
+
+
+@keyframes moveDot27 {
+  from {
+    transform: rotateZ(298deg);
+  }
+  to { 
+    transform: rotateZ(658deg);
+  }
+}
+
+
+@keyframes moveDot28 {
+  from {
+    transform: rotateZ(309deg);
+  }
+  to { 
+    transform: rotateZ(669deg);
+  }
+}
+
+
+@keyframes moveDot29 {
+  from {
+    transform: rotateZ(312deg);
+  }
+  to { 
+    transform: rotateZ(672deg);
+  }
+}
+
+
+@keyframes moveDot30 {
+  from {
+    transform: rotateZ(316deg);
+  }
+  to { 
+    transform: rotateZ(676deg);
+  }
+}
+
+
+@keyframes moveDot31 {
+  from {
+    transform: rotateZ(318deg);
+  }
+  to { 
+    transform: rotateZ(678deg);
+  }
+}
+
+
+@keyframes moveDot32 {
+  from {
+    transform: rotateZ(330deg);
+  }
+  to { 
+    transform: rotateZ(690deg);
+  }
+}
+
+
+@keyframes moveDot33 {
+  from {
+    transform: rotateZ(338deg);
+  }
+  to { 
+    transform: rotateZ(698deg);
+  }
+}
+
+
+@keyframes moveDot34 {
+  from {
+    transform: rotateZ(242deg);
+  }
+  to { 
+    transform: rotateZ(602deg);
+  }
+}
+
+
+@keyframes moveDot35 {
+  from {
+    transform: rotateZ(248deg);
+  }
+  to { 
+    transform: rotateZ(608deg);
+  }
+}
+
+
+@keyframes moveDot36 {
+  from {
+    transform: rotateZ(350deg);
+  }
+  to { 
+    transform: rotateZ(710deg);
+  }
+}
