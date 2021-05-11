@@ -3732,13 +3732,13 @@ textarea.form-control {
   position: fixed;
   top: 0;
   right: 0;
-  width: 50%;
+  width: 36%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../img/main-nav-bg.jpg");
+  background-image: url("../images/S&S_menu@2x.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3805,10 +3805,10 @@ textarea.form-control {
       color: #ffffff; }
   @media (max-width: 991.98px) {
     .main-nav {
-      width: 60%; } }
+      width: 50%; } }
   @media (max-width: 767.98px) {
     .main-nav {
-      width: 75%; }
+      width: 100%; }
       .main-nav ul {
         font-size: 28px; } }
   @media (max-width: 575.98px) {
@@ -3926,10 +3926,15 @@ textarea.form-control {
     margin: 0;
     max-width: 50%;
     font-weight: 100;
+    font-size: 46px;
     letter-spacing: -.04em;
-    line-height: 1.1em; }
+    line-height: 1.1em; 
+    font-family: "Gotham", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}
     .home-hero h1 strong {
-      font-weight: 400; }
+      font-family: "HCo Gotham SSm",sans-serif;
+      font-weight: 400;
+      display: inline;
+      font-family: "Gotham", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
   @media (min-width: 1200px) {
     .home-hero [data-stellar-ratio] {
       position: relative;
@@ -5391,3 +5396,30 @@ body.wp-debug:after {
   @media (min-width: 1200px) {
     body.wp-debug:after {
       content: "xl"; } }
+.home-container {
+  max-width: 1440px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100%;
+  margin: 0 auto;
+}
+@media (max-width: 576px) {
+  .home-container {
+    max-width: 540px;
+  }
+}
+@media (max-width: 768px) {
+  .home-container {
+    max-width: 720px;
+  }
+}
+@media (max-width: 992px) {
+  .home-container {
+    max-width: 960px;
+  }
+}
+@media (max-width: 1200px) {
+  .home-container {
+    max-width: 1140px;
+  }
+}
