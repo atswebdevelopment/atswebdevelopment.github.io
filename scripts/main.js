@@ -72,7 +72,7 @@ window.addEventListener('scroll', function () {
     var bound = cta.getBoundingClientRect().top - window.innerHeight;
 
     if (bound < 0) {
-      cta.style.backgroundPosition = "50% -".concat(Math.abs(bound) / 5, "px");
+      cta.style.backgroundPosition = "0px -".concat(Math.abs(bound) / 5, "px");
     }
   }
 
@@ -92,6 +92,7 @@ var burger = document.querySelectorAll('.header__hamburger a');
 burger.forEach(function (burgerItem, i) {
   burgerItem.addEventListener('click', function (e) {
     e.preventDefault();
+    console.log('menu active');
     var body = document.querySelector('body');
     body.classList.add('main-nav-active');
   });
@@ -101,6 +102,7 @@ var burgerClose = document.querySelector('.main-nav-close span');
 if (burgerClose) {
   burgerClose.addEventListener('click', function (e) {
     e.preventDefault();
+    console.log('menu inactive');
     var body = document.querySelector('body');
     body.classList.remove('main-nav-active');
   });

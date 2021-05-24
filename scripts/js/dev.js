@@ -88,6 +88,7 @@ const burger = document.querySelectorAll('.header__hamburger a')
 burger.forEach((burgerItem, i) => {
   burgerItem.addEventListener('click', (e) => {
     e.preventDefault()
+    console.log('menu active')
     const body = document.querySelector('body')
     body.classList.add('main-nav-active')
   })
@@ -97,6 +98,7 @@ const burgerClose = document.querySelector('.main-nav-close span')
 if (burgerClose) {
   burgerClose.addEventListener('click', (e) => {
     e.preventDefault()
+    console.log('menu inactive')
     const body = document.querySelector('body')
     body.classList.remove('main-nav-active')
   })
