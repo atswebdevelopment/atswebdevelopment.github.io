@@ -161,6 +161,12 @@ button.alt2, .button--alt2 a{
   background: none;
 }
 
+button, .btn, input[type=submit] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 audio, div, canvas, img, video {
   vertical-align: top;
 }

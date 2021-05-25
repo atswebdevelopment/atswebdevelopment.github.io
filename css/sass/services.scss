@@ -23,6 +23,7 @@
       left: -40px;
 
       @include media-query(phone, max){
+        height: calc(50vh - 80px);
         left: 0;
       }
 
@@ -45,24 +46,28 @@
 
     &__content {
       position: absolute;
-      top: 0;
+      top: calc(50% - 112px);
       right: 129px;
       padding: 46px;
       background: $white;
-      z-index: 1;
+      z-index: 2;
       margin-top: 40px;
       width: 100%;
       max-width: 532px;
       box-sizing: border-box;
+      transform: translateY(-50%);
 
       @include media-query(desktop, max){
         right: 0px;
       }
 
       @include media-query(phone, max){
+        position: relative;
         padding: 30px;
         margin: 0;
+        right: 0;
         top: 0;
+        max-width: none;
         transform: none;
       }
 
@@ -83,12 +88,14 @@
         font-weight: 500;
         margin-bottom: 5px;
         margin-right: 6px;
+        position: relative;
 
         &:before {
           content: '+';
-          margin-right: 14px;
           margin-left: 0;
           color: $black;
+          position: absolute;
+          left: -12px;
         }
       }
     }

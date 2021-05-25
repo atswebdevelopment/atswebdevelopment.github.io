@@ -3961,6 +3961,7 @@ textarea.form-control {
       .home-hero .bg-mobile {
         display: block; }
       .home-hero h1 {
+        font-size: 36px;
         max-width: 100%; }
       .home-hero h4 {
         font-size: 12px; } }
@@ -5323,7 +5324,7 @@ textarea.form-control {
         margin-bottom: 10px; } }
   @media (max-width: 767.98px) {
     .contact-content {
-      padding: 80px 0; } }
+      padding: 80px 20px; } }
 
 .supports-divi.et_divi_builder .page-container > .container, .supports-divi.et_divi_builder .page-container > .container-medium {
   max-width: 100% !important;
@@ -5402,6 +5403,7 @@ body.wp-debug:after {
   padding-right: 50px;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 @media (max-width: 576px) {
   .home-container {
