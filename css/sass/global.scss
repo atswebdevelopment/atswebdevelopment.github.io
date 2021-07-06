@@ -56,14 +56,16 @@ h1 {
 
 h2 {
   font-weight: 200;
-  font-size: 45px;
-  line-height: 53px;
+  font-size: 30px;
+  line-height: 40px;
   margin-bottom: 30px;
+  color: $primary;
 
   b, strong {
     display: block;
     font-weight: 400;
     font-family: $secondaryfont;
+    font-size: 35px;
   }
 
   @include media-query(phone, max){

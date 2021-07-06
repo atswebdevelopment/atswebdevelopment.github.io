@@ -3,50 +3,49 @@
 // let quotesReached = false
 // let imagesWorkReached = false
 
-// document.addEventListener('scroll', () => {
-//   if (!imagesWhyReached) {
-//     const imagesWhy = document.querySelector('.images-why');
-//     const imagesWhyOffset = imagesWhy.getBoundingClientRect().top
-//     const imagesWhyHeight = window.innerHeight / 10
-//     if (imagesWhyOffset - window.innerHeight + imagesWhyHeight < 0) {
-//       document.querySelector('.images-why').classList.add('active')
-//       imagesWhyReached = true
-//     }
-//   } else if (!whoAreWeReached) {
-//     const whoAreWe = document.querySelector('.who-are-we');
-//     const whoAreWeOffset = whoAreWe.getBoundingClientRect().top
-//     const whoAreWeHeight = window.innerHeight / 10
-//     if (whoAreWeOffset - window.innerHeight + whoAreWeHeight < 0) {
-//       document.querySelector('.who-are-we').classList.add('active')
-//       whoAreWeReached = true
-//     }
-//   } else if (!quotesReached) {
-//     const quotes = document.querySelector('.quote');
-//     const quotesOffset = quotes.getBoundingClientRect().top
-//     const quotesHeight = window.innerHeight / 10
-//     if (quotesOffset - window.innerHeight + quotesHeight < 0) {
-//       document.querySelector('.quote').classList.add('active')
-//       quotesReached = true
-//     }
-//   } else if (!imagesWorkReached) {
-//     const imagesWork = document.querySelector('.work-here');
-//     const imagesWorkOffset = imagesWork.getBoundingClientRect().top
-//     const imagesWorkHeight = window.innerHeight / 10
-//     if (imagesWorkOffset - window.innerHeight + imagesWorkHeight < 0) {
-//       document.querySelector('.work-here').classList.add('active')
-//       imagesWorkReached = true
-//     }
-//   }
+document.addEventListener('scroll', () => {
+  // if (!imagesWhyReached) {
+  //   const imagesWhy = document.querySelector('.images-why');
+  //   const imagesWhyOffset = imagesWhy.getBoundingClientRect().top
+  //   const imagesWhyHeight = window.innerHeight / 10
+  //   if (imagesWhyOffset - window.innerHeight + imagesWhyHeight < 0) {
+  //     document.querySelector('.images-why').classList.add('active')
+  //     imagesWhyReached = true
+  //   }
+  // } else if (!whoAreWeReached) {
+  //   const whoAreWe = document.querySelector('.who-are-we');
+  //   const whoAreWeOffset = whoAreWe.getBoundingClientRect().top
+  //   const whoAreWeHeight = window.innerHeight / 10
+  //   if (whoAreWeOffset - window.innerHeight + whoAreWeHeight < 0) {
+  //     document.querySelector('.who-are-we').classList.add('active')
+  //     whoAreWeReached = true
+  //   }
+  // } else if (!quotesReached) {
+  //   const quotes = document.querySelector('.quote');
+  //   const quotesOffset = quotes.getBoundingClientRect().top
+  //   const quotesHeight = window.innerHeight / 10
+  //   if (quotesOffset - window.innerHeight + quotesHeight < 0) {
+  //     document.querySelector('.quote').classList.add('active')
+  //     quotesReached = true
+  //   }
+  // } else if (!imagesWorkReached) {
+  //   const imagesWork = document.querySelector('.work-here');
+  //   const imagesWorkOffset = imagesWork.getBoundingClientRect().top
+  //   const imagesWorkHeight = window.innerHeight / 10
+  //   if (imagesWorkOffset - window.innerHeight + imagesWorkHeight < 0) {
+  //     document.querySelector('.work-here').classList.add('active')
+  //     imagesWorkReached = true
+  //   }
+  // }
 
-//   const cards = document.querySelectorAll('.card');
-//   cards.forEach((card) => {
-//     const cardsOffset = card.getBoundingClientRect().top
-//     const cardsHeight = window.innerHeight / 100
-//     if (cardsOffset - window.innerHeight + cardsHeight < 0) {
-//       card.classList.add('active')
-//     }
-//   })
-// })
+  const header = document.querySelector('.container .header')
+  if(window.scrollY > 127) {
+    header.classList.add('header--white')
+  }
+  else {
+    header.classList.remove('header--white')
+  }
+})
 
 const timer = setInterval(() => {
   const scContent = document.querySelector('.servicecard__content')

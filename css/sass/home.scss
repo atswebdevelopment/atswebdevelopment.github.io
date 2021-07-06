@@ -55,32 +55,20 @@
 }
 
 .banner {
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  height: 100vh;
+  height: calc(100vh - 127px);
+  width: calc(100% - 82px);
   color: $white;
   position: relative;
   z-index: 10;
-
-  @include media-query(phone, max){
-    background-attachment: scroll;
-    height: 500px;
-  }
   
-  &__video {
+  &__backgrounds {
     @include fill();
-    overflow: hidden;
-  
-    video {
-      @include fill();
-      width: 177.77777778vh;
-      min-width: 100%;
-      min-height: 56.25vw;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-    }
+  }
+
+  &__background {
+    @include fill();
+    background-size: cover;
+    background-position: center;
   }
 
   &__inner {
@@ -99,30 +87,66 @@
     @include media-query(phone, max){
       padding: 0 10px;
     }
+
+    > span {
+      font-size: 18px;
+      color: #b9b6a6;
+      text-transform: uppercase;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 10px;
+    }
   }
+  
+  &__fadeText {
+    position: relative;
 
-  p {
-    max-width: 490px;
-    font-weight: 300;
-  }
-
-  .button a{
-    border-color: $white;
-    color: $black;
-
-    @include media-query(phone, max){
-      display: none;
+    h1 {
+      position:absolute;
+      top: 0;
+      left: 0;
+      font-weight: 300;
+      max-width: 500px;
+      transition: all 0.5s $ease;
+      transition-delay: 0.6s;
+      opacity: 0;
+      
+      > span {
+        transition: all 0.5s $ease;
+        transition-delay: 0.6s;
+        transform: translateX(100px);
+        opacity: 0;
+      }
     }
 
-    &:hover, &:focus, &:active {
-      border-color: $secondary;
-      color: $white;
+    .active {
+      opacity: 1;
+      > span {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .blue {
+      color: $primary;
+      > span {
+        color: $primary;
+      }
     }
   }
 }
 
+.splide__slide {
+  transition: all 0.8s cubic-bezier(0.42, 0.65, 0.27, 0.99) 0s !important;
+  transform: scale(1.1);
+
+  &.is-active {
+    
+  transform: scale(1);
+  }
+}
+
 .intro {
-  text-align: center;
   padding: 100px 0 80px;
 
   @include media-query(phone, max){
@@ -153,34 +177,12 @@
   }
 }
 
-.location-links {
-  margin-bottom: 20px;
+.content-area {
+  max-width: 524px;
+}
 
-  li {
-    @include clearlist();
-
-    &:after {
-      content: 'I';
-      color: #05b9a5;
-      margin: 0 2px;
-      font-weight: 400;
-    }
-
-    &:last-child:after{
-      content: none;
-    }
-
-    li, a {
-      text-transform: uppercase;
-      font-size: 13px;
-      color: $black;
-      font-weight: 500;
-
-      @include media-query(phone, max){
-        font-size: 11px;
-      }
-    }
-  }
+.two-col {
+  columns: 2;
 }
 
 .services {
@@ -384,7 +386,8 @@
 
   .brandcard {
     width: calc(33.33% - 4px);
-    height: 556px;
+    height: 550px;
+    max-width: 382px;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -401,6 +404,10 @@
       .brandcard__background {
         transform: scale(1.1);
       }
+    }
+
+    h2 {
+      color: $white;
     }
 
     &__inner {

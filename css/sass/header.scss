@@ -1,13 +1,21 @@
-.banner .header {
-  background: none;
-  padding-top: 45px;
-
-  @include media-query(phone, max){
-    padding-top: 20px;
-  }
+.container .header {
+  background: $primary;
+  position: fixed;
 
   .header__navigation li a {
     color: $white;
+  }
+
+  &--white {
+    background: $white;
+
+    .header__navigation li a {
+      color: $primary;
+    }
+
+    svg path, svg rect {
+      fill: $primary !important;
+    }
   }
 
   svg {
@@ -31,10 +39,11 @@
   left: 0;
   z-index: 9;
   width: 100%;
-  padding-top:20px;
   overflow: hidden;
-  height: 60px;
+  height: 127px;
+  padding: 0;
   background: $white;
+  display: flex;
 
   &__logo{
     display: block;
@@ -50,6 +59,7 @@
     display: flex;
     max-width: 1200px;
     align-items: center;
+    width: 100%;
 
     @include media-query(phone, max){
       padding: 0 30px;
