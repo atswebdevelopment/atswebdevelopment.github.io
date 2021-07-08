@@ -8,6 +8,7 @@
 
   &--white {
     background: $white;
+    height: 87px;
 
     .header__navigation li a {
       color: $primary;
@@ -101,10 +102,9 @@
       // }
 
       a {
-        font-size: 12px;
-        text-transform: uppercase;
+        font-size: 15px;
         color: $black;
-        font-weight: 400;
+        font-weight: 300;
 
         &:hover {
           text-decoration: none;

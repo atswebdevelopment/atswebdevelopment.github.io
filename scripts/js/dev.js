@@ -39,48 +39,12 @@ document.addEventListener('scroll', () => {
   // }
 
   const header = document.querySelector('.container .header')
-  if(window.scrollY > 127) {
+  if(window.scrollY > 320) {
     header.classList.add('header--white')
   }
   else {
     header.classList.remove('header--white')
   }
-})
-
-const timer = setInterval(() => {
-  const scContent = document.querySelector('.servicecard__content')
-  if (scContent && window.innerWidth > 1024) {
-    const bound = scContent.getBoundingClientRect().top - window.innerHeight
-    if (bound < 0) {
-      scContent.style.top = `${(Math.abs(bound) / 5)}px`
-    }
-  }
-},100)
-
-window.addEventListener('scroll', () => {
-  clearInterval(timer)
-  const logoCircle = document.querySelector('.brandcards__icon--desktop')
-  if (logoCircle) {
-    logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 4) + 'deg)'
-  }
-
-  const cta = document.querySelector('.cta')
-  if (cta && window.innerWidth > 1024) {
-    const bound = cta.getBoundingClientRect().top - window.innerHeight
-    if (bound < 0) {
-      cta.style.backgroundPosition = `0px -${(Math.abs(bound) / 5)}px`
-    }
-  }
-
-  // const scContentBoxes = document.querySelectorAll('.servicecard__content')
-  // if (window.innerWidth > 1024) {
-  //   scContentBoxes.forEach((scContent, i) => {
-  //     const bound = scContent.getBoundingClientRect().top - window.innerHeight
-  //     if (bound < 0) {
-  //       scContent.style.top = `${(Math.abs(bound) / 5)}px`
-  //     }
-  //   })
-  // }
 })
 
 const burger = document.querySelectorAll('.header__hamburger a')
@@ -98,18 +62,6 @@ if (burgerClose) {
     e.preventDefault()
     const body = document.querySelector('body')
     body.classList.remove('main-nav-active')
-  })
-}
-
-const play = document.querySelector('.video__button')
-if (play) {
-  play.addEventListener('click', (e) => {
-    e.preventDefault()
-    play.classList.add('hidden')
-    const video = document.querySelector('.video__video')
-    video.classList.add('video__video--play')
-    video.play()
-    video.controls = true
   })
 }
 

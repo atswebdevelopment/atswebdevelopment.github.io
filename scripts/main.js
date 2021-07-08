@@ -40,49 +40,11 @@ document.addEventListener('scroll', function () {
   // }
   var header = document.querySelector('.container .header');
 
-  if (window.scrollY > 127) {
+  if (window.scrollY > 320) {
     header.classList.add('header--white');
   } else {
     header.classList.remove('header--white');
   }
-});
-var timer = setInterval(function () {
-  var scContent = document.querySelector('.servicecard__content');
-
-  if (scContent && window.innerWidth > 1024) {
-    var bound = scContent.getBoundingClientRect().top - window.innerHeight;
-
-    if (bound < 0) {
-      scContent.style.top = "".concat(Math.abs(bound) / 5, "px");
-    }
-  }
-}, 100);
-window.addEventListener('scroll', function () {
-  clearInterval(timer);
-  var logoCircle = document.querySelector('.brandcards__icon--desktop');
-
-  if (logoCircle) {
-    logoCircle.style.transform = 'rotateZ(' + window.scrollY / 4 + 'deg)';
-  }
-
-  var cta = document.querySelector('.cta');
-
-  if (cta && window.innerWidth > 1024) {
-    var bound = cta.getBoundingClientRect().top - window.innerHeight;
-
-    if (bound < 0) {
-      cta.style.backgroundPosition = "0px -".concat(Math.abs(bound) / 5, "px");
-    }
-  } // const scContentBoxes = document.querySelectorAll('.servicecard__content')
-  // if (window.innerWidth > 1024) {
-  //   scContentBoxes.forEach((scContent, i) => {
-  //     const bound = scContent.getBoundingClientRect().top - window.innerHeight
-  //     if (bound < 0) {
-  //       scContent.style.top = `${(Math.abs(bound) / 5)}px`
-  //     }
-  //   })
-  // }
-
 });
 var burger = document.querySelectorAll('.header__hamburger a');
 burger.forEach(function (burgerItem, i) {
@@ -99,19 +61,6 @@ if (burgerClose) {
     e.preventDefault();
     var body = document.querySelector('body');
     body.classList.remove('main-nav-active');
-  });
-}
-
-var play = document.querySelector('.video__button');
-
-if (play) {
-  play.addEventListener('click', function (e) {
-    e.preventDefault();
-    play.classList.add('hidden');
-    var video = document.querySelector('.video__video');
-    video.classList.add('video__video--play');
-    video.play();
-    video.controls = true;
   });
 } // const toViewRoles = () => {
 //   setTimeout(() => {
@@ -155,7 +104,7 @@ splides.forEach(function (e, i) {
   var rewind = true;
   var fixedWidth = '100%';
   var pagination = false;
-  var arrowPath = "m 0,0 c -0.187,0 -0.364,0.073 -0.497,0.206 -0.268,0.287 -0.268,0.75 0.008,1.045 l 9.024,9.216 -8.712,8.92 c -0.271,0.289 -0.271,0.749 0.004,1.042 0.125,0.125 0.301,0.198 0.489,0.198 0.188,0 0.364,-0.073 0.497,-0.206 l 9.202,-9.396 c 0.288,-0.299 0.288,-0.77 0,-1.07 L 0.493,0.202 C 0.364,0.073 0.188,0 0,0";
+  var arrowPath = "M40.07,40.76a4,4,0,0,0-1-2.28l-32-37a4,4,0,0,0-6.21,5l.17.21L30.79,41.1,1.07,75.48a4,4,0,0,0,5.86,5.45l.18-.2,32-37A4,4,0,0,0,40.07,40.76Z";
   var splide = new Splide(e, {
     type: type,
     arrows: arrows,
@@ -165,8 +114,8 @@ splides.forEach(function (e, i) {
     height: height,
     fixedWidth: fixedWidth,
     trimSpace: trimSpace,
-    pagination: pagination //arrowPath: arrowPath
-    // breakpoints: {
+    pagination: pagination,
+    arrowPath: arrowPath // breakpoints: {
     //     600: {
     //         perPage: 2,
     //         height : '6rem',
