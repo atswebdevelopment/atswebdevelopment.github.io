@@ -56,14 +56,16 @@ h1 {
 
 h2 {
   font-weight: 200;
-  font-size: 45px;
-  line-height: 53px;
+  font-size: 30px;
+  line-height: 40px;
   margin-bottom: 30px;
+  color: $primary;
 
   b, strong {
     display: block;
     font-weight: 400;
     font-family: $secondaryfont;
+    font-size: 35px;
   }
 
   @include media-query(phone, max){
@@ -119,20 +121,20 @@ button, .button a{
   display: inline-block;
   outline: none;
   cursor: pointer;
-  height: 36px;
+  height: 48px;
   line-height: 36px;
-  background: $white;
-  color: $secondary;
-  border-radius: 36px;
-  font-weight: 500;
-  font-size: 10px;
+  background: $primary;
+  font-family: $primaryfont;
+  color: $white;
+  border-radius: 3px;
+  font-weight: 300;
+  font-size: 13px;
   text-align: center;
-  text-transform: uppercase;
   padding: 0 36px;
   position: relative;
   transform: scale(1);
   transition: all 0.4s $ease;
-  border: 1px solid $secondary;
+  border: 1px solid $primary;
 
   @include media-query(phone, max){
     font-size: 10px;
