@@ -3,14 +3,30 @@
   color: $white;
   margin-top: 195px;
 
+  @include media-query(phone, max){
+    margin-top: 120px;
+    background: none;
+  }
+
   &__inner {
     max-width: 1140px;
     display: flex;
+
+    @include media-query(phone, max){
+      padding: 0;
+      display: block;
+    }
   }
 
   &__left {
     width: 60%;
     background: $primary;
+
+    @include media-query(phone, max){
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
 
     h3 {
       font-size: 14px;
@@ -38,6 +54,12 @@
     background: $secondary;
     position: relative;
 
+    @include media-query(phone, max){
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
+
     h2 {
       color: $white;
     }
@@ -56,9 +78,17 @@
 
     .footer__content {
       margin-left: auto;
+
+      @include media-query(phone, max){
+        margin: 0;
+      }
     }
 
     form {
+      @include media-query(phone, max){
+        margin-bottom: 80px;
+      }
+
       ::placeholder {
         color: $white;
         opacity: 1;
@@ -92,6 +122,10 @@
     z-index: 1;
     height: 100%;
     box-sizing: border-box;
+
+    @include media-query(phone, max){
+      padding-top: 60px;
+    }
   }
 
   &__logo {

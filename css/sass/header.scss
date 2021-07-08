@@ -46,6 +46,10 @@
   background: $white;
   display: flex;
 
+  @include media-query(phone, max){
+    height: 80px;
+  }
+
   &__logo{
     display: block;
     width: 202px;
