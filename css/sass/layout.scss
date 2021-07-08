@@ -1,5 +1,9 @@
 .container {
   padding-top: 127px;
+
+  @include media-query(phone, max){
+    padding-top: 80px;
+  }
 }
 
 .content {

@@ -60,15 +60,34 @@
   color: $white;
   position: relative;
   z-index: 10;
+
+  @include media-query(phone, max){
+    width: 100%;
+    height: 350px;
+  }
   
   &__backgrounds {
     @include fill();
+
+    @include media-query(phone, max){
+      height: 350px;
+    }
+  }
+
+  .splide__slide {
+    @include media-query(phone, max){
+      height: 350px !important;
+    }
   }
 
   &__background {
     @include fill();
     background-size: cover;
     background-position: center;
+
+    @include media-query(phone, max){
+      height: 350px;
+    }
   }
 
   &__social {
@@ -82,6 +101,10 @@
     display: flex;
     flex-direction: column-reverse;
     padding-bottom: 24px;
+
+    @include media-query(phone, max){
+      display: none;
+    }
 
     a {
       display: block;
@@ -172,21 +195,31 @@
 }
 
 .intro {
-  padding: 120px 0;
+  padding: 120px 0 0;
 
   @include media-query(phone, max){
-    padding: 45px 0 40px;
+    padding: 55px 0 40px;
   }
 
-  &__inner {
+  &__inner .flex {
     display: flex;
     align-items: top;
+    margin-bottom: 120px;
+
+    @include media-query(phone, max){
+      display: block;
+    }
   }
 
   img {
     width: 414px;
     margin-left: auto;
     align-self: flex-start;
+
+    @include media-query(phone, max){
+      margin: 60px auto;
+      display: block;
+    }
   }
 
   p {
@@ -209,7 +242,8 @@ h2 {
       margin-top: 30px;
 
       @include media-query(desktop, max){
-        content: none;
+        margin-top: 20px;
+        width: 10px;
       }
     }
   }
@@ -226,10 +260,6 @@ h2 {
   &__inner {
     max-width: 1140px;
     position: relative;
-
-    @include media-query(phone, max){
-      padding: 0;
-    }
   }
 
   &__video {
@@ -270,8 +300,9 @@ h2 {
 
   @include media-query(phone, max){
     flex-direction: column;
-    padding: 0 20px;
     margin-bottom: 32px;
+    margin-left: 0;
+    width: 100%;
   }
 
   .card {
@@ -284,7 +315,7 @@ h2 {
     overflow: hidden;
 
     @include media-query(phone, max){
-      margin: 0 0 12px;
+      margin: 0 0 20px;
     }
 
     img {
@@ -295,9 +326,6 @@ h2 {
 
     &__inner {
       padding: 40px 40px 20px;
-      @include media-query(phone, max){
-        padding: 20px 20px 10px 60px;
-      }
     }
 
     &__title {
@@ -344,24 +372,17 @@ h2 {
 
     p {
       margin-bottom: 10px;
-
-      @include media-query(phone, max){
-        display: none;
-      }
-    }
-
-    &__arrow {
-      height: 9px;
-
-      @include media-query(phone, max){
-        height: 7px;
-      }
     }
   }
 }
 
 .brands {
   margin-bottom: 70px;
+
+  @include media-query(desktop, max){
+    background: #e4e4e4;
+  }
+
   p {
     max-width: 550px;
   }
@@ -375,8 +396,8 @@ h2 {
   width: calc(var(--widthC) + 2px);
   position: relative;
 
-  @include media-query(phone, max){
-    display: none;
+  @include media-query(desktop, max){
+    width: 100%;
   }
 
   &__icon {
@@ -386,7 +407,11 @@ h2 {
     left: -236px;
 
     @include media-query(desktop, max){
-      display: none;
+      position: relative;
+      left: 0;
+      padding: 72px 0 82px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     svg {
@@ -406,6 +431,12 @@ h2 {
       position: absolute;
       bottom: -230px;
       left: 26px;
+
+      @include media-query(desktop, max){
+        left: 50%;
+        bottom: 24px;
+        height: 60px;
+      }
     }
   }
 
@@ -416,6 +447,13 @@ h2 {
     display: inline-block;
     position: relative;
     overflow: hidden;
+
+    @include media-query(desktop, max){
+      width: 100%;
+      height: 466px;
+      max-width: none;
+      margin-bottom: 15px;
+    }
 
     &__background {
       @include fill();
@@ -450,7 +488,7 @@ h2 {
       margin-top: auto;
 
       @include media-query(phone, max){
-        padding: 20px 20px 0;
+        padding: 20px;
       }
 
       svg {
@@ -462,52 +500,6 @@ h2 {
       @include fill();
       z-index:2;
     }
-  }
-}
-
-.splide--brandcards {
-  display: none;
-
-  @include media-query(phone, max){
-    display: block;
-    margin-top: 40px;
-  }
-
-  .brandcards {
-    @include media-query(phone, max){
-      display: block;
-    }
-
-    .brandcard {
-      margin-right:9px;
-    }
-  }
-
-  .splide__arrow--next,
-  .splide__arrow--prev {
-    left: -8px;
-    top: auto;
-    bottom: -90px;
-    border: none;
-    width: 60px;
-
-    &:active, &:hover, &:focus {
-      background:none;
-    }
-
-    &[disabled] {
-      opacity: 0.3;
-    }
-
-    svg {
-      fill: $black;
-      width: 48px;
-      height: 48px;
-    }
-  }
-
-  .splide__arrow--next {
-    left: 28px;
   }
 }
 
@@ -541,12 +533,21 @@ h2 {
   background: #e4e4e4;
   margin-top: -532px;
   padding-top: 532px;
+
+  @include media-query(desktop, max){
+    margin-top: -590px;
+  }
 }
 
 .two-col {
   columns: 2;
   column-gap: 50px;
   margin-bottom: 84px;
+
+  @include media-query(phone, max){
+    columns: 1;
+    margin-bottom: 20px;
+  }
 }
 
 .two-col-images {
@@ -556,11 +557,19 @@ h2 {
   width: calc(100% + 24px);
   position: relative;
   z-index: 1;
+
   img {
     width: calc(50% - 18px);
     padding-right: 12px;
     margin-bottom: 0;
     padding-bottom: 12px;
+
+    @include media-query(phone, max){
+      height: 246px;
+      object-fit: cover;
+      object-position: center;
+    }
+
     &:first-child {
       padding-left: 12px;
     }
@@ -572,10 +581,19 @@ h2 {
   background: #e4e4e4;
   padding-bottom: 328px;
 
+  @include media-query(phone, max){
+    margin-top: -25px;
+    padding-bottom: 186px;
+  }
+
   &__inner {
     display: flex;
     align-items: flex-end;
     max-width: 1140px;
+
+    @include media-query(phone, max){
+      display: block;
+    }
   }
 
   &__image {
@@ -602,6 +620,13 @@ h2 {
     width: 100%;
     margin-top: -174px;
     position: relative;
+
+    @include media-query(phone, max){
+      margin-top: -52px;
+      max-width: none;
+      padding: 34px;
+      box-sizing: border-box;
+    }
 
     &:before, &:after {
       content: '';
@@ -632,6 +657,10 @@ h2 {
     flex-shrink: 0;
     padding-bottom: 56px;
 
+    @include media-query(phone, max){
+      margin: 74px auto 0;
+    }
+
     img {
       margin-bottom: 40px;
       width: 62px;
@@ -655,6 +684,10 @@ h2 {
   background: #efefef;
   padding-bottom: 318px;
 
+  @include media-query(phone, max){
+    padding-bottom: 225px;
+  }
+
   &__inner {
     max-width: 1140px;
     position: relative;
@@ -664,6 +697,16 @@ h2 {
       right: 0;
       top: -220px;
       height: 985px;
+
+      @include media-query(phone, max){
+        position: relative;
+        top: 0;
+        margin-top: -220px;
+        height: auto;
+        width: 100%;
+        z-index: 1;
+        margin-bottom: 40px;
+      }
     }
   }
 
@@ -675,6 +718,12 @@ h2 {
     position: relative;
     z-index: 1;
     top: -162px;
+
+    @include media-query(phone, max){
+      top: -92px;
+      margin-left: -20px;
+      padding: 80px 20px 160px;
+    }
   }
 
   &__list-item {
@@ -687,6 +736,10 @@ h2 {
       height: 44px;
       flex-shrink: 0;
       margin-right: 46px;
+
+      @include media-query(phone, max){
+        margin-right: 26px;
+      }
     }
 
     h3 {
@@ -711,11 +764,19 @@ h2 {
 
   img {
     width:493px;
+
+    @include media-query(phone, max){
+      display: none;
+    }
   }
 
   &__content {
     width: 438px;
     margin-left: auto;
+
+    @include media-query(phone, max){
+      width: 100%;
+    }
   }
 }
 
@@ -736,9 +797,17 @@ h2 {
       justify-content: center;
       align-items: center;
 
+      @include media-query(phone, max){
+        padding: 60px 20px 80px;
+      }
+
       > img {
         width: 211px;
         margin: 0 auto;
+
+        @include media-query(phone, max){
+          display: none;
+        }
       }
     }
 
@@ -750,6 +819,12 @@ h2 {
       background: url(/images/frame.png) no-repeat;
       width: 358px;
       height: 342px;
+
+      @include media-query(phone, max){
+        width: 100%;
+        background-size: 100% auto;
+        right: 0;
+      }
     }
   }
 
@@ -766,6 +841,12 @@ h2 {
     align-items: center;
   }
 
+  h2 {
+    @include media-query(phone, max){
+      text-align: center;
+    }
+  }
+
   &__user {
     display: flex;
     align-items: center;
@@ -773,6 +854,10 @@ h2 {
     font-size: 14px;
     color: $primary;
     font-weight: 300;
+
+    @include media-query(phone, max){
+      margin: 18px auto 44px;
+    }
 
     .icon {
       border-radius: 50%;
@@ -796,12 +881,29 @@ h2 {
   &__images {
     display: flex;
     margin-bottom: 30px;
+
+    @include media-query(phone, max){
+      display: block;
+      text-align: center;
+    }
+
     img {
       width: 25%;
       margin-left: 10px;
       max-width: 246px;
+
+      @include media-query(phone, max){
+        width: calc(50% - 8px);
+        display: inline-block;
+        margin: 0 0 4px;
+      }
+
       &:first-child {
         margin-left: 0;
+
+        @include media-query(phone, max){
+          margin: 0;
+        }
       }
     }
   }
@@ -830,6 +932,7 @@ h2 {
       outline: none;
       font-weight: 300;
       font-size: 13px;
+      box-sizing: border-box;
     }
   }
 
@@ -837,6 +940,10 @@ h2 {
     display: flex;
     align-items: center;
     margin-top: 42px;
+
+    @include media-query(phone, max){
+      margin-top: 22px;
+    }
   }
 
   button {
@@ -960,6 +1067,10 @@ h2 {
   width: 56px;
   height: 105px;
   padding: 0 20px;
+
+  @include media-query(phone, max){
+    display: none;
+  }
 
   &:hover, &:active, &:focus {
     background: none;
