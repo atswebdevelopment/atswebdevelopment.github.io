@@ -50,6 +50,26 @@ headerLinks.forEach(function (headerLink, i) {
     body.classList.remove('main-nav-active');
   });
 });
+
+if (window.innerWidth > 1312) {
+  var active = 0;
+  var brandcards = document.querySelectorAll('.brandcard__link');
+  brandcards.forEach(function (brandcard, i) {
+    brandcard.addEventListener('click', function (e) {
+      e.preventDefault();
+      var brandcardActive = document.querySelector('.brandcards--active--' + active);
+      console.log(active);
+
+      if (brandcardActive) {
+        brandcardActive.classList.remove('brandcards--active--' + active);
+      }
+
+      brandcard.parentNode.parentNode.parentNode.classList.add('brandcards--active--' + i);
+      active = i;
+    });
+  });
+}
+
 var splides = document.querySelectorAll('.splide');
 splides.forEach(function (e, i) {
   var perMove = 1;
