@@ -122,10 +122,10 @@
   }
 
   &__inner {
-    padding-top: calc(40vh - 100px);
+    padding-top: 110px;
 
     @include media-query(phone, max){
-      padding-top: calc(100px);
+      padding-top: 100px;
     }
   }
 
@@ -395,9 +395,11 @@ h2 {
   --widthC: calc(100vw - var(--widthB));
   width: calc(var(--widthC) + 2px);
   position: relative;
+  max-width: 1158px;
 
   @include media-query(desktop, max){
     width: 100%;
+    max-width: none;
   }
 
   &__icon {
@@ -440,19 +442,82 @@ h2 {
     }
   }
 
+  &.brandcards--active--0,
+  &.brandcards--active--1,
+  &.brandcards--active--2 {
+    .brandcard {
+      width: calc(18% - 4px);
+      p {
+        opacity: 0;
+        height: 0;
+      }
+    }
+  }
+
+  &.brandcards--active--0 {
+    .brandcard:nth-child(2) {
+      width: calc(64% - 4px);
+
+      p {
+        opacity: 1;
+        height: auto;
+        min-width: 550px;
+      }
+      
+      .brandcard__background {
+        transform: scale(1) !important;
+      }
+    }
+  }
+
+  &.brandcards--active--1 {
+    .brandcard:nth-child(3) {
+      width: calc(64% - 4px);
+
+      p {
+        opacity: 1;
+        height: auto;
+        min-width: 550px;
+      }
+      
+      .brandcard__background {
+        transform: scale(1) !important;
+      }
+    }
+  }
+
+  &.brandcards--active--2 {
+    .brandcard:nth-child(4) {
+      width: calc(64% - 4px);
+
+      p {
+        opacity: 1;
+        height: auto;
+        min-width: 550px;
+      }
+      
+      .brandcard__background {
+        transform: scale(1) !important;
+      }
+    }
+  }
+
   .brandcard {
     width: calc(33.33% - 4px);
     height: 550px;
-    max-width: 382px;
     display: inline-block;
     position: relative;
-    overflow: hidden;
+    transition: width 0.4s $ease;
 
     @include media-query(desktop, max){
       width: 100%;
       height: 466px;
-      max-width: none;
       margin-bottom: 15px;
+    }
+
+    &__inner {
+      @include fill();
+      overflow: hidden;
     }
 
     &__background {
