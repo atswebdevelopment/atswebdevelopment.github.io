@@ -9,6 +9,13 @@ document.addEventListener('scroll', () => {
       header.classList.remove('header--white')
     }
   }
+
+  document.querySelectorAll('.fadeIn').forEach((e, i) => {
+    const offsetter = window.innerWidth < 767 ? 4 : 2
+    if (window.innerHeight > e.getBoundingClientRect().top + (e.offsetHeight / offsetter)) {
+      e.classList.remove('fadeIn')
+    }
+  })
 })
 
 const burger = document.querySelectorAll('.header__hamburger a')

@@ -10,6 +10,14 @@ document.addEventListener('scroll', function () {
       header.classList.remove('header--white');
     }
   }
+
+  document.querySelectorAll('.fadeIn').forEach(function (e, i) {
+    var offsetter = window.innerWidth < 767 ? 4 : 2;
+
+    if (window.innerHeight > e.getBoundingClientRect().top + e.offsetHeight / offsetter) {
+      e.classList.remove('fadeIn');
+    }
+  });
 });
 var burger = document.querySelectorAll('.header__hamburger a');
 burger.forEach(function (burgerItem, i) {

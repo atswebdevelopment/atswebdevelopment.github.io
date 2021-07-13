@@ -190,6 +190,18 @@ textarea{
   text-align: center;
 }
 
+.fade {
+  transform: translateY(0px);
+  opacity: 1;
+  transition: all 1s $ease;
+  transition-delay: 0.2s;
+}
+
+.fadeIn {
+  transform: translateY(40px) !important;
+  opacity: 0 !important;
+}
+
 .float-link {
   display: inline-block;
   color: $black;
