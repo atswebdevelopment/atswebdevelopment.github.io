@@ -1,4 +1,4 @@
-# Skipper & Skipper
+# BHG
 2021 website
 
 To build the project:
