@@ -9,7 +9,9 @@ splides.forEach((e, i) => {
     let type = 'fade'
 	let rewind = true
     let fixedWidth = '100%'
+    let autoplay = true
     let pagination = false
+    let interval = 4000
     let arrowPath = "M40.07,40.76a4,4,0,0,0-1-2.28l-32-37a4,4,0,0,0-6.21,5l.17.21L30.79,41.1,1.07,75.48a4,4,0,0,0,5.86,5.45l.18-.2,32-37A4,4,0,0,0,40.07,40.76Z"
 
     const splide = new Splide(e, {
@@ -20,6 +22,8 @@ splides.forEach((e, i) => {
         focus,
         height,
         fixedWidth,
+        autoplay,
+        interval,
         trimSpace,
         pagination,
         arrowPath: arrowPath

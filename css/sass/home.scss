@@ -187,9 +187,12 @@
 
 .splide__slide {
   transition: all 0.8s cubic-bezier(0.42, 0.65, 0.27, 0.99) 0s !important;
+  transition-delay: 0.8s !important;
   transform: scale(1.1);
 
   &.is-active {
+    transition: all 0.8s cubic-bezier(0.42, 0.65, 0.27, 0.99) 0s !important;
+    transition-delay: 0s !important;
     transform: scale(1);
   }
 }
@@ -393,7 +396,6 @@
   --widthC: calc(100vw - var(--widthB));
   width: calc(var(--widthC) + 2px);
   position: relative;
-  max-width: 1158px;
 
   @include media-query(desktop, max){
     width: 100%;
@@ -401,10 +403,10 @@
   }
 
   &__icon {
-    width: 228px;
+    width: 175px;
     position: absolute;
     bottom: 0px;
-    left: -236px;
+    left: -192px;
 
     @include media-query(desktop, max){
       position: relative;
@@ -420,7 +422,11 @@
     }
 
     h2 {
-      font-size: 32px;
+      font-size: 27px;
+
+      b {
+        font-size: 27px;
+      }
     }
 
     &:after {
@@ -502,7 +508,7 @@
 
   .brandcard {
     width: calc(33.33% - 4px);
-    height: 550px;
+    height: 42vw;
     display: inline-block;
     position: relative;
     transition: width 0.4s $ease;
@@ -562,6 +568,18 @@
     &__link {
       @include fill();
       z-index:2;
+    }
+
+    .hide {
+      opacity: 0;
+      height: 0;
+    }
+
+    &--active {
+      .hide {
+        opacity: 1;
+        height: auto;
+      }
     }
   }
 }
@@ -824,9 +842,11 @@
   display: flex;
   max-width: 1032px;
   margin:0 auto;
+  align-items: flex-start;
 
   img {
     width:493px;
+    align-self: flex-start;
 
     @include media-query(phone, max){
       display: none;

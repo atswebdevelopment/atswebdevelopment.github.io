@@ -57,19 +57,25 @@ headerLinks.forEach((headerLink, i) => {
   })
 })
 
+const brandcards = document.querySelectorAll('.brandcard__link')
 if (window.innerWidth > 1312) {
   let active = 0
-  const brandcards = document.querySelectorAll('.brandcard__link')
   brandcards.forEach((brandcard, i) => {
     brandcard.addEventListener('click', (e) => {
       e.preventDefault()
       const brandcardActive = document.querySelector('.brandcards--active--' + active)
-      console.log(active)
       if (brandcardActive) {
         brandcardActive.classList.remove('brandcards--active--' + active)
       }
       brandcard.parentNode.parentNode.parentNode.classList.add('brandcards--active--' + i)
       active = i
+    })
+  })
+} else {
+  brandcards.forEach((brandcard, i) => {
+    brandcard.addEventListener('click', (e) => {
+      e.preventDefault()
+      brandcard.parentNode.parentNode.classList.add('brandcard--active')
     })
   })
 }

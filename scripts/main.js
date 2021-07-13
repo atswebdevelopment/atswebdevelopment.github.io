@@ -58,15 +58,14 @@ headerLinks.forEach(function (headerLink, i) {
     body.classList.remove('main-nav-active');
   });
 });
+var brandcards = document.querySelectorAll('.brandcard__link');
 
 if (window.innerWidth > 1312) {
   var active = 0;
-  var brandcards = document.querySelectorAll('.brandcard__link');
   brandcards.forEach(function (brandcard, i) {
     brandcard.addEventListener('click', function (e) {
       e.preventDefault();
       var brandcardActive = document.querySelector('.brandcards--active--' + active);
-      console.log(active);
 
       if (brandcardActive) {
         brandcardActive.classList.remove('brandcards--active--' + active);
@@ -74,6 +73,13 @@ if (window.innerWidth > 1312) {
 
       brandcard.parentNode.parentNode.parentNode.classList.add('brandcards--active--' + i);
       active = i;
+    });
+  });
+} else {
+  brandcards.forEach(function (brandcard, i) {
+    brandcard.addEventListener('click', function (e) {
+      e.preventDefault();
+      brandcard.parentNode.parentNode.classList.add('brandcard--active');
     });
   });
 }
@@ -88,7 +94,9 @@ splides.forEach(function (e, i) {
   var type = 'fade';
   var rewind = true;
   var fixedWidth = '100%';
+  var autoplay = true;
   var pagination = false;
+  var interval = 4000;
   var arrowPath = "M40.07,40.76a4,4,0,0,0-1-2.28l-32-37a4,4,0,0,0-6.21,5l.17.21L30.79,41.1,1.07,75.48a4,4,0,0,0,5.86,5.45l.18-.2,32-37A4,4,0,0,0,40.07,40.76Z";
   var splide = new Splide(e, {
     type: type,
@@ -98,6 +106,8 @@ splides.forEach(function (e, i) {
     focus: focus,
     height: height,
     fixedWidth: fixedWidth,
+    autoplay: autoplay,
+    interval: interval,
     trimSpace: trimSpace,
     pagination: pagination,
     arrowPath: arrowPath // breakpoints: {
