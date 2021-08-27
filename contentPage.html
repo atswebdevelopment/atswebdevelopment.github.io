@@ -1,0 +1,34 @@
+<!-- Banner -->
+<div class="banner">
+  <div class="banner__background"></div>
+  <div class="inner banner__inner">
+      <div class="banner__content">
+          <h1 class="title"></h1>
+          <p class="subtitle banner__subtitle"></p>
+      </div>
+  </div>
+</div>
+<!-- End Banner -->
+<div class="content">
+  <div class="inner">
+    <div class="section section--flex">
+      @if (!Model.Value<bool>("showContentPageLinks"))
+      {
+          <div class="section__aside">
+              @Html.Partial("Share/Share", Model, new ViewDataDictionary(this.ViewData) {
+                  { "reverse", "true" }
+              })
+              @Html.Partial("Related/Related", Model)
+          </div>
+      }
+      <div class="section__inner section__inner--maxwidth">
+          @Model.Value("content")
+          @Html.Partial("Content/Content", Model)
+      </div>
+      @if (Model.Value<bool>("showContentPageLinks"))
+      {
+          @Html.Partial("ContentPageLinks/ContentPageLinks", Model)
+      }
+    </div>
+  </div>
+</div>

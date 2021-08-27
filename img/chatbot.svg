@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="52" viewBox="0 0 52 52">
+    <defs>
+    <filter id="Oval_Copy_3" x="0" y="0" width="52" height="52" filterUnits="userSpaceOnUse">
+        <feOffset dy="2" input="SourceAlpha"/>
+        <feGaussianBlur stdDeviation="4" result="blur"/>
+        <feFlood flood-opacity="0.102"/>
+        <feComposite operator="in" in2="blur"/>
+        <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.117" y1="0.101" x2="0.904" y2="1" gradientUnits="objectBoundingBox">
+        <stop offset="0" stop-color="#e9f800"/>
+        <stop offset="0.808" stop-color="#d1f000"/>
+        <stop offset="1" stop-color="#cfef00"/>
+    </linearGradient>
+    </defs>
+    <g id="Group_4" data-name="Group 4" transform="translate(12 10)">
+    <g transform="matrix(1, 0, 0, 1, -12, -10)" filter="url(#Oval_Copy_3)">
+        <circle id="Oval_Copy_3-2" data-name="Oval Copy 3" cx="14" cy="14" r="14" transform="translate(12 10)" fill="#c5e304"/>
+    </g>
+    <circle id="Oval_Copy_4" data-name="Oval Copy 4" cx="12.5" cy="12.5" r="12.5" transform="translate(1 1)" fill="url(#linear-gradient)"/>
+    <path id="Line_3_Copy" data-name="Line 3 Copy" d="M0,.166A4.218,4.218,0,0,0,2,.834,4.218,4.218,0,0,0,4,.166" transform="translate(12 19)" fill="none" stroke="#003a3c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+    <rect id="Rectangle" width="16" height="5" rx="2.5" transform="translate(6 9)" fill="none" stroke="#003a3c" stroke-miterlimit="10" stroke-width="2"/>
+    <circle id="Oval_Copy" data-name="Oval Copy" cx="0.5" cy="0.5" r="0.5" transform="translate(9 11)" fill="#003a3c"/>
+    <circle id="Oval_Copy-2" data-name="Oval Copy" cx="0.5" cy="0.5" r="0.5" transform="translate(18 11)" fill="#003a3c"/>
+    </g>
+</svg>

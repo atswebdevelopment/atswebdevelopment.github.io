@@ -1,9 +1,249 @@
-@import "variables";
-@import "mixins";
-@import "global";
-@import "layout";
-@import "header";
-@import "home";
-@import "footer";
-@import "fonts";
-@import "animations";
+.container {
+  background-color: white;
+}
+.loading {
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  height: calc(100% - 72px);
+  top: 72px;
+  left: 0;
+  background: url(../img/loading.svg) no-repeat 50% rgba(0,0,0,0.5);
+  background-size: 50px 50px;
+}
+.header {
+  z-index: 10001;
+}
+.footer, .partners {
+  background: white;
+}
+.partners{
+  border-top: 4px solid #F2F2F2;
+  padding-top: 20px;
+}
+.footer__inner {
+  padding: 0 20px;
+}
+.content-container {
+  overflow-x: hidden;
+}
+#ccc .ccc-button-solid:hover, button.button:hover, .button a:hover {
+  padding: 7px 20px;
+}
+.banner__utils {
+  .select {
+    margin: 0 auto;
+    border-radius: 22px;
+  }
+  .select__text {
+    margin: 0 auto;
+  }
+}
+.banner--app-home {
+  padding-bottom: 60px;
+}
+.content--home {
+  margin-top: -66px;
+  padding-top: 0;
+}
+.width-280 {
+  max-width: 280px;
+  margin: 0 auto 18px;
+}
+.most-read .scroll {
+  width: 1550px;
+}
+.latest-news {
+  position: relative;
+  margin: 20px 0 0;
+  padding-top: 28px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    height: 228px;
+    width: calc(100% + 40px);
+    background: #F2F2F2;
+  }
+  &__inner {
+    position: relative;
+    z-index: 1;
+  }
+}
+.panel {
+  max-width: 500px;
+  margin: 0 auto 24px;
+  width: 100%;
+  text-align: center;
+  &__item {
+    max-width: 114px;
+    width: calc(50% - 71px);
+    height: 114px;
+    display:inline-block;
+    border: 12px solid white;
+    background: #F2F2F2;
+    text-decoration: none;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 20px 0px 12px rgba(0, 0, 0, 0.1);
+
+    &:nth-child(even){
+      margin-left: 14px;
+    }
+
+    img {
+      display: block;
+      margin:0 auto 12px;
+    }
+
+    span {
+      font-size: 16px;
+      font-family: "Mulish",sans-serif;
+      font-weight: 500;
+      color: black;
+    }
+  }
+}
+.chat .chatbot {
+  transform: translateX(0);
+}
+.chatbot {
+  height: calc(100% - 72px);
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 4;
+  transform: translateX(100%);
+  transition: 0.2s transform ease-out;
+
+  h2 {
+    color: black;
+    font-size: 18px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    width: 24px;
+    height: 24px;
+    
+    a {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+
+  &__content {
+    height: calc(100% - 146px);
+    background: #F2F2F2;
+    padding: 60px 26px 20px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &__input {
+    height: 30px;
+    display: flex;
+    padding: 18px 20px;
+    background: white;
+    border-top: 1px solid #979797;
+
+    input {
+      width: calc(100% - 50px);
+    }
+
+    button {
+      margin-left: auto;
+      width: 30px;
+      height: 30px;
+      background: #CFEF00;
+      border-radius: 50px;
+      text-align: center;
+      line-height: 30px;
+      color: #635555;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+
+  &__header {
+    background: #f2f2f2;
+    padding: 20px 0 10px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}
+
+.message {
+  text-align: left;
+  display: flex;
+  margin: 10px 0;
+
+  img {
+    margin: 0 6px 0 -15px;
+    width: 48px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    position: relative;
+    top: -5px;
+  }
+
+  &__text {
+    background: white;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 12px 14px 20px;
+    font-size: 12px;
+    font-family: "Mulish",sans-serif;
+    font-weight: 500;
+    line-height: 20px;
+    position: relative;
+
+    a {
+      color: #333;
+      text-decoration: underline;
+    }
+    
+    &:after{
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: -7px;
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-right: 7px solid #fff;
+    }
+  }
+
+  &--user {
+    margin: 30px 0;
+
+    .message__text {
+      background: #235773;
+      color: white;
+      margin-left: auto;
+    
+      &:after{
+        left: auto;
+        right: -7px;
+        border-right: none;
+        border-left: 7px solid #235773;
+      }
+    }
+  }
+}
