@@ -591,12 +591,14 @@ var renderContent = function renderContent(data) {
 var registerLinks = function registerLinks(container) {
   container.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', function (e) {
+      e.preventDefault();
       url = link.getAttribute('href');
 
-      if (url === '#') {
-        e.preventDefault();
-      } else if (url.indexOf('http') > -1 || !url) {// open url in new window
-      } else if (url.indexOf('/media/') > -1) {// media
+      if (url === '#' || !url) {// null
+      } else if (url.indexOf('http') > -1) {
+        cordova.InAppBrowser.open(url, '_system', 'location=yes');
+      } else if (url.indexOf('/media/') > -1) {
+        cordova.InAppBrowser.open(url, '_system', 'location=yes');
       } else {
         console.log('Launching request...');
         document.querySelector('.loading').classList.remove('hidden');
@@ -610,7 +612,6 @@ var registerLinks = function registerLinks(container) {
         setTimeout(function () {
           document.querySelector('.loading').classList.add('hidden');
         }, 10000);
-        e.preventDefault();
       }
 
       if (container && container.classList && container.classList.contains('menu')) {
@@ -786,7 +787,7 @@ var renderContentContainer = function renderContentContainer(array, cards, html)
   html += "<div class=\"column-container\"><div class=\"column-container__inner\"><div class=\"column-container__content\"><h2 class=\"title column-container__title\">".concat(array[0].title, "</h2>\n  <p class=\"column-container__subtitle\">").concat(array[0].subtitle, "</p><div class=\"columns\">");
   cards.forEach(function (e, i) {
     var link = JSON.parse(e.itemURL)[0];
-    html += "<div class=\"column\">\n      ".concat(e.image && "<img src=\"".concat(websiteUrl + e.image, "?anchor=center&mode=crop&width=767\" />") || '', "\n      <h3 class=\"title\">").concat(e.title, "</h3>\n      ").concat(e.content, "\n      ").concat(link && link.udi && link.udi.indexOf('pdf') > -1 && "<span class=\"button button--alt\">\n          <a href=\"".concat(link.udi, "\" target=\"_blank\" download=\"\">\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16.5\" height=\"18\" viewBox=\"0 0 16.5 18\">\n                  <path id=\"Shape\" d=\"M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z\" fill=\"#003a3c\" />\n              </svg>\n              ").concat(link.name, "\n          </a>\n      </span>") || link && "<p class=\"link\">\n          <a href=\"".concat(link.url || link.udi, "\">\n              ").concat(link.name, "\n              <svg class=\"link-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                                                    <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(-180)\">\n                                                        <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" fill=\"#225773\"></path>\n                                                    </g>\n                                                    <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\"></path>\n                                                </svg>\n          </a>\n      </p>") || '', "\n  </div>");
+    html += "<div class=\"column\">\n      ".concat(e.image && "<img src=\"".concat(websiteUrl + e.image, "?anchor=center&mode=crop&width=767\" />") || '', "\n      <h3 class=\"title\">").concat(e.title, "</h3>\n      ").concat(e.content || '', "\n      ").concat(link && link.udi && link.udi.indexOf('pdf') > -1 && "<span class=\"button button--alt\">\n          <a href=\"".concat(link.udi, "\" target=\"_blank\" download=\"\">\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16.5\" height=\"18\" viewBox=\"0 0 16.5 18\">\n                  <path id=\"Shape\" d=\"M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z\" fill=\"#003a3c\" />\n              </svg>\n              ").concat(link.name, "\n          </a>\n      </span>") || link && "<p class=\"link\">\n          <a href=\"".concat(link.url || link.udi, "\">\n              ").concat(link.name, "\n              <svg class=\"link-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                                                    <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(-180)\">\n                                                        <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" fill=\"#225773\"></path>\n                                                    </g>\n                                                    <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\"></path>\n                                                </svg>\n          </a>\n      </p>") || '', "\n  </div>");
   });
   return html + '</div></div></div></div>';
 };
@@ -1040,7 +1041,7 @@ var renderInvestigation = function renderInvestigation(data) {
     var text = data.Properties.find(function (m) {
       return m.Name === 'hoverText';
     }).Content;
-    content.innerHTML = "<h2 class=\"content-footer__title title\">Click / Tap on a section for more info</h2>\n    <p>".concat(text, "</p>");
+    content.innerHTML = "<h2 class=\"content-footer__title title\">Click / Tap on a section for more info</h2>\n    <p>".concat(text || '', "</p>");
   }
 
   content = document.querySelector('.investigation');
@@ -1070,6 +1071,7 @@ var renderInvestigation = function renderInvestigation(data) {
   }
 
   setAccordion();
+  setInvestigation();
   setPageDefaults();
 };
 
@@ -1430,6 +1432,11 @@ var renderRules = function renderRules(data) {
       html += "<div class=\"accordion__item\">\n            <div class=\"accordion__item-title\">\n                <a class=\"accordion__link\" href=\"\"></a>\n                <span class=\"large\">".concat(e.title, "</span>\n                <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n                </svg>\n            </div>\n            <div class=\"accordion__item-content\">\n                <div class=\"accordion__cell\">\n                  ").concat(e.content, "\n                </div>\n            </div>\n        </div>");
     });
     content.innerHTML = html;
+    content.querySelectorAll('img').forEach(function (e) {
+      if (e.getAttribute('data-udi')) {
+        e.setAttribute('src', websiteUrl + e.getAttribute('data-udi') + '?anchor=center&mode=crop&width=767');
+      }
+    });
   }
 
   content = document.querySelector('.scroll');

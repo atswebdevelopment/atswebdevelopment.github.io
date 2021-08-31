@@ -67,6 +67,11 @@ const renderRules = (data) => {
         </div>`
     })
     content.innerHTML = html
+    content.querySelectorAll('img').forEach((e) => {
+      if (e.getAttribute('data-udi')) {
+        e.setAttribute('src', websiteUrl + e.getAttribute('data-udi') + '?anchor=center&mode=crop&width=767')
+      }
+    })
   }
 
   content = document.querySelector('.scroll')

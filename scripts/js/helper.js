@@ -97,7 +97,7 @@ const renderContentContainer = (array, cards, html) => {
     html += `<div class="column">
       ${e.image && `<img src="${websiteUrl + e.image}?anchor=center&mode=crop&width=767" />` || ''}
       <h3 class="title">${e.title}</h3>
-      ${e.content}
+      ${e.content || ''}
       ${link && link.udi && link.udi.indexOf('pdf') > -1 && `<span class="button button--alt">
           <a href="${link.udi}" target="_blank" download="">
               <svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="18" viewBox="0 0 16.5 18">

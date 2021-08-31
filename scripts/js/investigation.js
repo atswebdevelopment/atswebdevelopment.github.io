@@ -36,7 +36,7 @@ const renderInvestigation = (data) => {
   if (content) {
     const text = data.Properties.find(m => m.Name === 'hoverText').Content
     content.innerHTML = `<h2 class="content-footer__title title">Click / Tap on a section for more info</h2>
-    <p>${text}</p>`
+    <p>${text || ''}</p>`
   }
 
   content = document.querySelector('.investigation')
@@ -63,5 +63,6 @@ const renderInvestigation = (data) => {
   }
   
   setAccordion()
+  setInvestigation()
   setPageDefaults()
 }

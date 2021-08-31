@@ -238,13 +238,14 @@ const renderContent = (data) => {
 const registerLinks = (container) => {
   container.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', (e) => {
+      e.preventDefault()
       url = link.getAttribute('href')
-      if (url === '#') {
-        e.preventDefault()
-      } else if (url.indexOf('http') > -1 || !url) {
-        // open url in new window
+      if (url === '#' || !url) {
+        // null
+      } else if (url.indexOf('http') > -1) {
+        cordova.InAppBrowser.open(url, '_system', 'location=yes')
       } else if (url.indexOf('/media/') > -1) {
-        // media
+        cordova.InAppBrowser.open(url, '_system', 'location=yes')
       } else {
         console.log('Launching request...')
         document.querySelector('.loading').classList.remove('hidden')
@@ -256,7 +257,6 @@ const registerLinks = (container) => {
         setTimeout(() => {
           document.querySelector('.loading').classList.add('hidden')
         }, 10000)
-        e.preventDefault()
       }
       if (container && container.classList && container.classList.contains('menu')){
         const menuOpen = document.querySelector('.menu--active')
