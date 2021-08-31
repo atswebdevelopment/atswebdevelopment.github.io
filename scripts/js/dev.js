@@ -100,6 +100,12 @@ const renderData = () => {
   const data = JSON.parse(content)
   console.log(data)
   window.scrollTo(0, 0)
+  
+  const chatOpen = document.querySelector('.chat')
+  if(chatOpen) {
+    chatOpen.classList.remove('chat')
+  }
+
   if (data.Type === "homepage") {
     renderLayout(data)
     renderHome(data)
@@ -108,6 +114,9 @@ const renderData = () => {
 
   if (data.Type === "about" || data.Type === "tadp") {
     renderAbout(data)
+  }
+  if (data.Type === "tACP" || data.Type === "tACP1") {
+    renderTacp(data)
   }
   if (data.Type === "learn") {
     renderLearn(data)
@@ -118,14 +127,29 @@ const renderData = () => {
   if (data.Type === "caseStudies") {
     renderCaseStudies(data)
   }
+  if (data.Type === "sanctions") {
+    renderSanctions(data)
+  }
+  if (data.Type === "retirements") {
+    renderRetirements(data)
+  }
   if (data.Type === "contact") {
     renderContact(data)
+  }
+  if (data.Type === "contentPage") {
+    renderContentPage(data)
   }
   if (data.Type === "rules") {
     renderRules(data)
   }
+  if (data.Type === "history") {
+    renderHistory(data)
+  }
   if (data.Type === "news") {
     renderNews(data)
+  }
+  if (data.Type === "investigation") {
+    renderInvestigation(data)
   }
   if (data.Type === "newsCategory") {
     renderNewsCategory(data)
@@ -255,96 +279,4 @@ const setPageDefaults = () => {
   })
 }
 
-const setSelects = () => {
-  const selects = document.querySelectorAll('.select')
-  selects.forEach((selectContainer, i) => {
-    const select = selectContainer.querySelector('select')
-    if (selectContainer.classList.contains('select--language')) {
-      select.value = lang
-      if (select.options[select.selectedIndex]) {
-        selectContainer.querySelector('.select__text').innerHTML = select.options[select.selectedIndex].text
-      }
-      selectContainer.querySelector('.select__icon').style.backgroundImage = `url(https://itiawebsite-itiastaging.azurewebsites.net/images/icon-${lang}.svg)`
-    }
-    select.addEventListener('change', (e) => {
-      if (selectContainer.classList.contains('select--language')) {
-        window.localStorage.setItem('lang', e.target.value)
-        lang = e.target.value
-        if (!url || url === '/') {
-          httpGet(websiteUrl + '/umbraco/api/contentapi/GetHome?lang=' + e.target.value)
-        } else {
-          httpGet(websiteUrl + '/umbraco/api/contentapi/GetPage?lang=' + e.target.value + '&url=' + url)
-        }
-      }
-      else {
-        const selectText = selectContainer.querySelector('.select__text')
-        selectText.innerHTML = e.target.value
-      }
-      if (selectContainer.classList.contains('select--inline')) {
-        const items = document.querySelectorAll('.content-list__item')
-        items.forEach((item, i) => {
-          if (e.target.value === 'everywhere') {
-            item.classList.remove('hidden')
-          } else if (item.classList.contains('type-article') && e.target.value === 'articles') {
-            item.classList.remove('hidden')
-          } else if (!item.classList.contains('type-article') && e.target.value !== 'articles') {
-            item.classList.remove('hidden')
-          } else {
-            item.classList.add('hidden')
-          }
-        })
-      }
-    })
-  })
-}
-
-const renderContentContainer = (array, cards, html) => {
-  html += `<h2 class="title column-container__title">${array[0].title}</h2>
-  <p class="column-container__subtitle">${array[0].subtitle}</p><div class="columns">`
-  cards.forEach((e, i) => {
-    const link = JSON.parse(e.itemURL)[0]
-    html += `<div class="column">
-      ${e.image && `<img src="${websiteUrl + e.image}?anchor=center&mode=crop&width=767" />` || ''}
-      <h3 class="title">${e.title}</h3>
-      ${e.content}
-      ${link && link.udi && link.udi.indexOf('pdf') > -1 && `<span class="button button--alt">
-          <a href="${link.udi}" download="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="18" viewBox="0 0 16.5 18">
-                  <path id="Shape" d="M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z" fill="#003a3c" />
-              </svg>
-              ${link[0].name}
-              <svg class="button__arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                  <g id="Icon_CtaChevron_Passive" data-name="Icon/CtaChevron/Passive" transform="translate(1)">
-                      <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(180)">
-                          <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" class="a" />
-                      </g>
-                      <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" class="b" />
-                  </g>
-              </svg>
-          </a>
-      </span>` || (link && `<p class="link">
-          <a href="${link.url || link.udi}">
-              ${link.name}
-              <svg class="link-arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                  <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(-180)">
-                      <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" fill="#225773" />
-                  </g>
-                  <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke="#235773" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" />
-              </svg>
-          </a>
-      </p>`) || ''}
-  </div>`
-  })
-  return html + '</div>'
-}
-
 registerLinks(document)
-
-const getDate = () => {
-  const today = new Date()
-  const dd = String(today.getDate()).padStart(2, '0')
-  const month = today.toLocaleString('default', { month: 'long' })
-  const yyyy = today.getFullYear()
-  return dd + ' ' + month + ' ' + yyyy
-}
-//document.querySelector('.year').innerHTML = new Date().getFullYear()

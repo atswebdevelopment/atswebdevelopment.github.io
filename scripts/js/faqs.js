@@ -1,7 +1,6 @@
 const renderFaqs = (data) => {
   let content = ''
   let html = ''
-  let array = []
   const accordion = JSON.parse(data.Properties.find(m => m.Name === 'accordion').Content)[0]
   const accordionItems = JSON.parse(accordion.accordionList)
 
@@ -61,6 +60,6 @@ const renderFaqs = (data) => {
     content.innerHTML = html
   }
 
-  setPageDefaults()
   setAccordion()
+  setPageDefaults()
 }

@@ -12,7 +12,7 @@
 <div class="content">
   <div class="inner">
     <div class="section section--flex">
-      @if (!Model.Value<bool>("showContentPageLinks"))
+      <!-- @if (!Model.Value<bool>("showContentPageLinks"))
       {
           <div class="section__aside">
               @Html.Partial("Share/Share", Model, new ViewDataDictionary(this.ViewData) {
@@ -20,15 +20,15 @@
               })
               @Html.Partial("Related/Related", Model)
           </div>
-      }
+      } -->
       <div class="section__inner section__inner--maxwidth">
-          @Model.Value("content")
-          @Html.Partial("Content/Content", Model)
+          <div class="content-intro"></div>
+          <div class="content-areas"></div>
       </div>
-      @if (Model.Value<bool>("showContentPageLinks"))
+      <!-- @if (Model.Value<bool>("showContentPageLinks"))
       {
           @Html.Partial("ContentPageLinks/ContentPageLinks", Model)
-      }
+      } -->
     </div>
   </div>
 </div>

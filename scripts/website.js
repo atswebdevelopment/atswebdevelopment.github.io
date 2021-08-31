@@ -484,46 +484,13 @@ var validate = function validate() {
 };
 
 validate();
+var pagination = document.querySelector('.pagination');
+var paginationNumbers = document.querySelectorAll('.pagination__item--number');
 
 var setAccordion = function setAccordion() {
-  var pagination = document.querySelector('.pagination');
-  var paginationNumbers = document.querySelectorAll('.pagination__item--number');
+  pagination = document.querySelector('.pagination');
+  paginationNumbers = document.querySelectorAll('.pagination__item--number');
   var activePage = 0;
-
-  var setPagination = function setPagination() {
-    var accordionItems = document.querySelectorAll('.accordion__item');
-    var accordionItemsFiltered = document.querySelectorAll('.accordion__item:not(.displaynone):not(.hidden)');
-    accordionItems.forEach(function (e, i) {
-      e.classList.remove('paginated-hidden');
-    });
-    accordionItemsFiltered.forEach(function (e, i) {
-      if (!(i >= activePage * 10 && i < (activePage + 1) * 10)) {
-        e.classList.add('paginated-hidden');
-      }
-    });
-    var pages = Math.ceil(accordionItemsFiltered.length / 10);
-
-    if (pages < 2) {
-      pagination.classList.add('hidden');
-    } else {
-      pagination.classList.remove('hidden');
-    }
-
-    paginationNumbers.forEach(function (e, i) {
-      if (i < pages) {
-        e.classList.remove('hidden');
-      } else {
-        e.classList.add('hidden');
-      }
-    });
-    var activePageNumber = document.querySelector('.pagination__item--active');
-
-    if (activePageNumber) {
-      activePageNumber.classList.remove('pagination__item--active');
-    }
-
-    paginationNumbers[activePage].classList.add('pagination__item--active');
-  };
 
   if (paginationNumbers.length) {
     var pageLeft = document.querySelector('.pagination__item--left');
@@ -563,150 +530,21 @@ var setAccordion = function setAccordion() {
 
   var accordion = document.querySelector('.accordion');
 
-  var setAccordion = function setAccordion() {
-    var accordionLinks = document.querySelectorAll('.accordion__link');
-    accordionLinks.forEach(function (accordionLink, i) {
-      accordionLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        var accordionItem = e.target.parentNode.parentNode;
-        var accordionContent = accordionItem.querySelector('.accordion__item-content');
-        var openItem = document.querySelector('.accordion__item--open');
-
-        if (accordionItem.classList.contains('accordion__item--open')) {
-          accordionItem.classList.remove('accordion__item--open');
-          accordionContent.style.height = '0px';
-          return;
-        }
-
-        if (openItem) {
-          openItem.classList.remove('accordion__item--open');
-          openItem.querySelector('.accordion__item-content').style.height = '0px';
-        }
-
-        accordionItem.classList.add('accordion__item--open');
-
-        if (accordionContent.getAttribute('data-height')) {
-          accordionContent.style.height = accordionContent.getAttribute('data-height');
-        } else {
-          var height = accordionContent.offsetHeight;
-          accordionContent.style.height = '0px';
-          setTimeout(function () {
-            accordionContent.style.height = height + 'px';
-            accordionContent.setAttribute('data-height', height + 'px');
-          }, 1);
-        }
-      });
-    });
-  };
-
   if (accordion) {
-    setAccordion();
+    resetAccordion();
   }
 
-  var searchAccordionItems = function searchAccordionItems(e) {
-    var value = e.target.value.toLowerCase();
-    var accordionItems = document.querySelectorAll('.accordion__item');
-    accordionItems.forEach(function (e, i) {
-      var textContent = e.textContent.toString().toLowerCase();
-
-      if (textContent.includes(value)) {
-        e.classList.remove('hidden');
-      } else {
-        e.classList.add('hidden');
-      }
-    });
-
-    if (pagination) {
-      activePage = 0;
-      setPagination();
-    }
-  };
-
-  var accordionSearch = document.querySelector('.accordion__search input');
-
-  if (accordionSearch) {
-    accordionSearch.addEventListener('keyup', searchAccordionItems, false);
-    accordionSearch.addEventListener('change', searchAccordionItems, false);
-  } //const accordionSelects = document.querySelectorAll('.select')
+  var accordionSearch = document.querySelectorAll('.accordion__search input');
+  accordionSearch.forEach(function (acc) {
+    acc.addEventListener('keyup', searchAccordionItems, false);
+    acc.addEventListener('change', searchAccordionItems, false);
+  }); //const accordionSelects = document.querySelectorAll('.select')
   //accordionSelects.forEach((selectContainer, i) => {
   //    const select = selectContainer.querySelector('select')
   //    select.addEventListener('change', (e) => {
   //        runAccordion(e)
   //    })
   //})
-
-
-  var runAccordion = function runAccordion(e, reverse, accordionContainer) {
-    if (e.parentNode.classList.contains('select--sort')) {
-      var accordions = accordionContainer.querySelectorAll('.accordion');
-      accordions.forEach(function (accordion, i) {
-        var accordionItems = accordion.querySelectorAll('.accordion__item');
-        var accordionItemsString = '';
-        var accordionArray = Array.prototype.slice.call(accordionItems, 0);
-        accordionArray.sort(function (a, b) {
-          var aValue = "";
-          var bValue = "";
-
-          if (e.value.includes('Name') || e.value.includes('Role')) {
-            if (a.querySelector('.sort1') != null) {
-              aValue = a.querySelector('.sort1').innerText;
-              bValue = b.querySelector('.sort1').innerText;
-            }
-          } else if (e.value.includes('Sanction') || e.value.includes('Date')) {
-            if (a.querySelector('.sort2') != null) {
-              aValue = a.querySelector('.sort2').innerText;
-              bValue = b.querySelector('.sort2').innerText;
-            }
-          } else if (e.value.includes('Nationality')) {
-            if (a.querySelector('.sort3') != null) {
-              aValue = a.querySelector('.sort3').innerText;
-              bValue = b.querySelector('.sort3').innerText;
-            }
-          }
-
-          return reverse ? bValue.localeCompare(aValue) : aValue.localeCompare(bValue);
-        });
-        accordionArray.forEach(function (accordionItem, i) {
-          accordionItemsString += '<div class="' + accordionItem.classList.value + '">' + accordionItem.innerHTML + '</div>';
-        });
-        var accordionItemsContainer = accordion.querySelector('.accordion__items');
-        accordionItemsContainer.innerHTML = accordionItemsString;
-      });
-      setAccordion();
-    }
-
-    if (e.parentNode.classList.contains('select--filter')) {
-      var items = accordionContainer.querySelectorAll('.accordion__item');
-      items.forEach(function (item, i) {
-        if (e.value.indexOf('All') === 0) {
-          item.classList.remove('displaynone');
-        } else if (item.classList.contains("accordion__item--".concat(e.value))) {
-          item.classList.remove('displaynone');
-        } else {
-          item.classList.add('displaynone');
-        }
-      });
-    }
-
-    if (e.parentNode.classList.contains('select--faqs')) {
-      var _items = accordionContainer.querySelectorAll('.accordion__item');
-
-      _items.forEach(function (item, i) {
-        if (e.value === 'View: All') {
-          item.classList.remove('displaynone');
-        } else if (item.classList.contains("accordion__item--".concat(e.value))) {
-          item.classList.remove('displaynone');
-        } else {
-          item.classList.add('displaynone');
-        }
-      });
-    }
-
-    if (pagination) {
-      activePage = 0;
-      setPagination();
-    }
-  };
 
   var accImg = document.querySelectorAll('.accordion__cell img');
   accImg.forEach(function (e, i) {
@@ -719,6 +557,174 @@ var setAccordion = function setAccordion() {
 };
 
 setAccordion();
+
+var resetAccordion = function resetAccordion() {
+  var accordionLinks = document.querySelectorAll('.accordion__link');
+  accordionLinks.forEach(function (accordionLink, i) {
+    accordionLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      var accordionItem = e.target.parentNode.parentNode;
+      var accordionContent = accordionItem.querySelector('.accordion__item-content');
+      var openItem = document.querySelector('.accordion__item--open');
+
+      if (accordionItem.classList.contains('accordion__item--open')) {
+        accordionItem.classList.remove('accordion__item--open');
+        accordionContent.style.height = '0px';
+        return;
+      }
+
+      if (openItem) {
+        openItem.classList.remove('accordion__item--open');
+        openItem.querySelector('.accordion__item-content').style.height = '0px';
+      }
+
+      accordionItem.classList.add('accordion__item--open');
+
+      if (accordionContent.getAttribute('data-height')) {
+        accordionContent.style.height = accordionContent.getAttribute('data-height');
+      } else {
+        var height = accordionContent.offsetHeight;
+        accordionContent.style.height = '0px';
+        setTimeout(function () {
+          accordionContent.style.height = height + 'px';
+          accordionContent.setAttribute('data-height', height + 'px');
+        }, 1);
+      }
+    });
+  });
+};
+
+var setPagination = function setPagination() {
+  var accordionItems = document.querySelectorAll('.accordion__item');
+  var accordionItemsFiltered = document.querySelectorAll('.accordion__item:not(.displaynone):not(.hidden)');
+  accordionItems.forEach(function (e, i) {
+    e.classList.remove('paginated-hidden');
+  });
+  accordionItemsFiltered.forEach(function (e, i) {
+    if (!(i >= activePage * 10 && i < (activePage + 1) * 10)) {
+      e.classList.add('paginated-hidden');
+    }
+  });
+  var pages = Math.ceil(accordionItemsFiltered.length / 10);
+
+  if (pages < 2) {
+    pagination.classList.add('hidden');
+  } else {
+    pagination.classList.remove('hidden');
+  }
+
+  paginationNumbers.forEach(function (e, i) {
+    if (i < pages) {
+      e.classList.remove('hidden');
+    } else {
+      e.classList.add('hidden');
+    }
+  });
+  var activePageNumber = document.querySelector('.pagination__item--active');
+
+  if (activePageNumber) {
+    activePageNumber.classList.remove('pagination__item--active');
+  }
+
+  paginationNumbers[activePage].classList.add('pagination__item--active');
+};
+
+var runAccordion = function runAccordion(e, reverse, accordionContainer) {
+  if (e.parentNode.classList.contains('select--sort')) {
+    var accordions = accordionContainer.querySelectorAll('.accordion');
+    accordions.forEach(function (accordion, i) {
+      var accordionItems = accordion.querySelectorAll('.accordion__item');
+      var accordionItemsString = '';
+      var accordionArray = Array.prototype.slice.call(accordionItems, 0);
+      accordionArray.sort(function (a, b) {
+        var aValue = "";
+        var bValue = "";
+
+        if (e.value.includes('Name') || e.value.includes('Role')) {
+          if (a.querySelector('.sort1') != null) {
+            aValue = a.querySelector('.sort1').innerText;
+            bValue = b.querySelector('.sort1').innerText;
+          }
+        } else if (e.value.includes('Sanction') || e.value.includes('Date')) {
+          if (a.querySelector('.sort2') != null) {
+            aValue = a.querySelector('.sort2').innerText;
+            bValue = b.querySelector('.sort2').innerText;
+          }
+        } else if (e.value.includes('Nationality')) {
+          if (a.querySelector('.sort3') != null) {
+            aValue = a.querySelector('.sort3').innerText;
+            bValue = b.querySelector('.sort3').innerText;
+          }
+        }
+
+        return reverse ? bValue.localeCompare(aValue) : aValue.localeCompare(bValue);
+      });
+      accordionArray.forEach(function (accordionItem, i) {
+        accordionItemsString += '<div class="' + accordionItem.classList.value + '">' + accordionItem.innerHTML + '</div>';
+      });
+      var accordionItemsContainer = accordion.querySelector('.accordion__items');
+      accordionItemsContainer.innerHTML = accordionItemsString;
+    });
+    resetAccordion();
+  }
+
+  if (e.parentNode.classList.contains('select--filter')) {
+    var items = accordionContainer.querySelectorAll('.accordion__item');
+    items.forEach(function (item, i) {
+      if (e.value.indexOf('All') === 0) {
+        item.classList.remove('displaynone');
+      } else if (item.classList.contains("accordion__item--".concat(e.value))) {
+        item.classList.remove('displaynone');
+      } else {
+        item.classList.add('displaynone');
+      }
+    });
+  }
+
+  if (e.parentNode.classList.contains('select--faqs')) {
+    var _items = accordionContainer.querySelectorAll('.accordion__item');
+
+    _items.forEach(function (item, i) {
+      if (e.value === 'View: All') {
+        item.classList.remove('displaynone');
+      } else if (item.classList.contains("accordion__item--".concat(e.value))) {
+        item.classList.remove('displaynone');
+      } else {
+        item.classList.add('displaynone');
+      }
+    });
+  }
+
+  if (pagination) {
+    activePage = 0;
+    setPagination();
+  }
+};
+
+var searchAccordionItems = function searchAccordionItems(e) {
+  var value = e.target.value.toLowerCase();
+  var accordionItems = document.querySelectorAll('.tab-content--active .accordion__item');
+
+  if (!accordionItems || !accordionItems.length) {
+    accordionItems = document.querySelectorAll('.accordion__item');
+  }
+
+  accordionItems.forEach(function (e, i) {
+    var textContent = e.textContent.toString().toLowerCase();
+
+    if (textContent.includes(value)) {
+      e.classList.remove('hidden');
+    } else {
+      e.classList.add('hidden');
+    }
+  });
+
+  if (pagination) {
+    activePage = 0;
+    setPagination();
+  }
+};
+
 var bannerImages = document.querySelectorAll('.banner__image');
 
 if (bannerImages.length) {
@@ -962,12 +968,7 @@ menuButton.addEventListener('click', function (e) {
 });
 var related = document.querySelectorAll('.introduction__content h2, .section__inner h2, .accordion__title');
 var relatedContainer = document.querySelector('.onthispage');
-var html = ''; //menuButton.addEventListener('click', (e) => {
-//    menu.classList.toggle('menu--active')
-//    e.target.classList.toggle('header__burger--active')
-//    e.preventDefault()
-//})
-
+var html = '';
 related.forEach(function (e, i) {
   html += "<p><a href=\"\">".concat(e.innerText, "</a></p>");
 });
@@ -999,29 +1000,33 @@ if (resultText) {
   bannerText.innerHTML = resultText.innerHTML;
 }
 
-var timeline = document.querySelector('.timeline');
+var setTimeline = function setTimeline() {
+  var timeline = document.querySelector('.timeline');
 
-if (timeline) {
-  var timelineIndicator = document.querySelector('.timeline__indicator');
-  var timelineBalls = document.querySelectorAll('.timeline__ball');
-  document.addEventListener('scroll', function (e) {
-    var position = timelineIndicator.getBoundingClientRect().top - window.innerHeight / 2;
+  if (timeline) {
+    var timelineIndicator = document.querySelector('.timeline__indicator');
+    var timelineBalls = document.querySelectorAll('.timeline__ball');
+    document.addEventListener('scroll', function (e) {
+      var position = timelineIndicator.getBoundingClientRect().top - window.innerHeight / 2;
 
-    if (position < 0) {
-      timelineIndicator.style.height = position - position - position + 'px';
-    } else {
-      timelineIndicator.style.height = '0px';
-    }
-
-    timelineBalls.forEach(function (e, i) {
-      var ballPosition = e.getBoundingClientRect().top - window.innerHeight / 2;
-
-      if (ballPosition < -30) {
-        e.classList.add('timeline__ball--active');
+      if (position < 0) {
+        timelineIndicator.style.height = position - position - position + 'px';
       } else {
-        e.classList.remove('timeline__ball--active');
+        timelineIndicator.style.height = '0px';
       }
+
+      timelineBalls.forEach(function (e, i) {
+        var ballPosition = e.getBoundingClientRect().top - window.innerHeight / 2;
+
+        if (ballPosition < -30) {
+          e.classList.add('timeline__ball--active');
+        } else {
+          e.classList.remove('timeline__ball--active');
+        }
+      });
     });
-  });
-}
+  }
+};
+
+setTimeline();
 //# sourceMappingURL=main.js.map

@@ -31,325 +31,37 @@
   <div class="inner">
     <div class="introduction">
       <div class="introduction__share">
-          <!-- @Html.Partial("Share/Share", Model, new ViewDataDictionary(this.ViewData) {
-              { "reverse", "true" }
-          })
-          @Html.Partial("Related/Related", Model) -->
+        <div class="share"></div>
+        <div class="related">
+          <h3>On this Page:</h3>
+          <div class="onthispage"></div>
+        </div>
       </div>
-      <div class="introduction__content">
-          <!-- @Model.Value("introduction", lang) -->
-      </div>
+      <div class="introduction__content"></div>
     </div>
-    <!-- @if (Model.HasValue("accordion", lang))
-    {
-        @Html.Partial("Accordion/Accordion", Model, new ViewDataDictionary(this.ViewData) {
-            { "alias", "accordion" },
-            { "controls", "false" },
-            { "filter", "true" },
-            { "search", "true" },
-            { "pagination", "false" }
-        })
-    } -->
-    <!-- <div class="border-top">
-      @foreach (IPublishedElement item in contentItems)
-      {
-          if (item.HasProperty("contentArea"))
-          {
-              <div class="content-area">
-                  @item.Value("contentArea")
+    <div class="accordion">
+        <div class="accordion__inner">
+            <div class="accordion__header controls">
+              <div class="controls__left">
+                  <h3 class="accordion__title title"></h3>
               </div>
-          }
-          if (item.HasProperty("contentAreaGrey"))
-          {
-              <div class="article__inset">
-                  @item.Value("contentAreaGrey")
+              <div class="controls__right accordion__search">
+                <div class="label">
+                    Search:
+                </div>
+                <div class="input">
+                    <input type="text" name="search" placeholder="Type here" />
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9424 11.3994L18.6692 17.1269L18.6692 17.127C19.1101 17.5678 19.1101 18.2287 18.6702 18.6696C18.4492 18.8895 18.1746 19 17.8989 19C17.6232 19 17.3475 18.8895 17.1275 18.6696L11.3997 12.942C10.1875 13.8228 8.75633 14.3184 7.15891 14.3184C3.19378 14.3184 0 11.1247 0 7.15973C0 3.19473 3.19484 0 7.15997 0C11.1251 0 14.3189 3.19367 14.3189 7.15867C14.3189 8.75603 13.8232 10.2429 12.9424 11.3994ZM2.20355 7.15973C2.20355 9.91355 4.40603 12.116 7.15991 12.116C9.91277 12.116 12.1163 9.91249 12.1163 7.15973C12.1163 4.4059 9.9138 2.20348 7.15991 2.20348C4.40603 2.20348 2.20355 4.4059 2.20355 7.15973Z" fill="#003A3C"></path>
+                    </svg>
+                </div>
               </div>
-          }
-          if (item.HasProperty("cards"))
-          {
-              IEnumerable<IPublishedElement> cardItems = item.Value<IEnumerable<IPublishedElement>>("cards");
-
-              int groupNumber = cardItems.Count() == 4 ? 4 : 3;
-              IEnumerable<IEnumerable<IPublishedElement>> groupedItems = cardItems.Select((s, i) => new { Value = s, Index = i })
-                  .GroupBy(m => m.Index / groupNumber)
-                  .Select(m => m.Select(v => v.Value));
-              <div class="wide">
-                  <div class="column-container fadein">
-                      <div class="column-container__inner">
-                          <div class="column-container__content">
-                              <h2 class="title column-container__title">@item.Value("title")</h2>
-                              <p class="column-container__subtitle">@item.Value("subtitle")</p>
-                              @foreach (var items in groupedItems)
-                              {
-                                  <div class="columns">
-                                      @foreach (var item2 in items)
-                                      {
-                                          <div class="column">
-                                              @if (item2.HasValue("image"))
-                                              {
-                                                  IPublishedContent image = item2.Value<IPublishedContent>("image");
-                                                  if (image != null)
-                                                  {
-                                                      <img class="img-load" data-src="@image.Url()" data-resize="767" alt="@image.Name" />
-                                                  }
-                                              }
-                                              <h3 class="title">@item2.Value("title")</h3>
-                                              @item2.Value("content")
-                                              @{
-                                                  Umbraco.Web.Models.Link link = item2.Value<Umbraco.Web.Models.Link>("itemURL");
-                                                  if (link != null)
-                                                  {
-                                                      if (link.Url.Contains(".pdf"))
-                                                      {
-                                                          <span class="button button--alt">
-                                                              <a href="@link.Url" target="_blank" rel="noopener">
-                                                                  <svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="18" viewBox="0 0 16.5 18">
-                                                                      <path id="Shape" d="M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z" fill="#003a3c" />
-                                                                  </svg>
-                                                                  @link.Name
-                                                                  <svg class="button__arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                                                                      <g id="Icon_CtaChevron_Passive" data-name="Icon/CtaChevron/Passive" transform="translate(1)">
-                                                                          <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(180)">
-                                                                              <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" class="a" />
-                                                                          </g>
-                                                                          <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" class="b" />
-                                                                      </g>
-                                                                  </svg>
-                                                              </a>
-                                                          </span>
-                                                      }
-                                                      else
-                                                      {
-                                                          <p class="link">
-                                                              <a href="@link.Url" target="@link.Target">
-                                                                  @link.Name
-                                                                  <svg class="link-arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                                                                      <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(-180)">
-                                                                          <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" fill="#225773" />
-                                                                      </g>
-                                                                      <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke="#235773" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" />
-                                                                  </svg>
-                                                              </a>
-                                                          </p>
-                                                      }
-                                                  }
-                                              }
-                                          </div>
-                                      }
-                                  </div>
-                              }
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          }
-          if (item.HasProperty("files"))
-          {
-              var files = item.Value<IEnumerable<IPublishedContent>>("files");
-              @item.Value("content")
-              <div class="file-header">
-                  <span>File name</span>
-                  <a href="" class="download-all">Download all</a>
-              </div>
-              foreach (IPublishedContent file in files)
-              {
-                  <div class="file">
-                      <span>@file.Name</span>
-                      <a class="download-click" href="@file.Url()" target="_blank" download="">Download</a>
-                  </div>
-              }
-          }
-          if (item.HasProperty("caption"))
-          {
-              <div class="article__inset">
-                  @if (item.HasValue("image"))
-                  {
-                      IPublishedContent image = item.Value<IPublishedContent>("image");
-                      if (image != null)
-                      {
-                          <a class="expand-image" href="@image.Url()" target="_blank">
-                              <img src="@image.Url()" alt="" />
-                              <svg id="Ico_Btn_NewTab" data-name="Ico Btn NewTab" xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41">
-                                  <g id="CTA_Primary" data-name="CTA/Primary">
-                                      <g id="Bg">
-                                          <rect id="Rectangle_Copy_4" data-name="Rectangle Copy 4" width="40" height="41" rx="20" fill="#cfef00" />
-                                      </g>
-                                  </g>
-                                  <g id="Ico_NewTab" data-name="Ico/NewTab" transform="translate(11 7.5)">
-                                      <path id="Path" d="M1.013,16.2H15.188A1.016,1.016,0,0,0,16.2,15.188v-8.1H14.175v7.088H2.025V2.025H9.113V0h-8.1A1.016,1.016,0,0,0,0,1.013V15.188A1.016,1.016,0,0,0,1.013,16.2Z" transform="translate(0 5.3)" fill="#235773" />
-                                      <path id="Line_2" data-name="Line 2" d="M.5.5v8" transform="translate(14.5)" fill="none" stroke="#235773" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2" />
-                                      <path id="Line_2-2" data-name="Line 2" d="M8.5.5H.5" transform="translate(10.5 4)" fill="none" stroke="#235773" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2" />
-                                  </g>
-                              </svg>
-                          </a>
-                      }
-                  }
-                  <p>@item.Value("caption")</p>
-              </div>
-          }
-          if (item.HasProperty("accordionList"))
-          {
-              IEnumerable<IPublishedElement> accordionItems = item.Value<IEnumerable<IPublishedElement>>("accordionList");
-              <div class="@((bool)item.Value("wide") ? "wide" : null)">
-                  <div class="accordion">
-                      <div class="accordion__inner">
-                          <div class="accordion__header">
-                              <h3 class="accordion__title title">@item.Value("title")</h3>
-                          </div>
-                          <div class="accordion__items">
-                              @foreach (IPublishedElement item2 in accordionItems)
-                              {
-                                  <div class="accordion__item">
-                                      <div class="accordion__item-title">
-                                          <a class="accordion__link" href=""></a>
-                                          <span class="large">@item2.Value("title")</span>
-                                          <svg id="Ico_DownChev_Blue" data-name="Ico/DownChev/Blue" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8">
-                                              <path id="Path" d="M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z" fill="#00243f" />
-                                          </svg>
-                                      </div>
-                                      <div class="accordion__item-content">
-                                          <div class="accordion__cell">
-                                              @item2.Value("content")
-                                          </div>
-                                      </div>
-                                  </div>
-                              }
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          }
-          if (item.HasProperty("stats"))
-          {
-              IEnumerable<IPublishedElement> statItems = item.Value<IEnumerable<IPublishedElement>>("stats");
-              <div class="article__inset stat-container">
-                  <h3>@item.Value("title")</h3>
-                  <div class="stats">
-                      @foreach (IPublishedElement item2 in statItems)
-                      {
-                          <div class="stat">
-                              <div class="stat__title">@item2.Value("title")</div>
-                              <hr />
-                              <div class="stat__number">@item2.Value("number")</div>
-                              <div class="stat__content">
-                                  @{
-                                      if ((bool)item2.Value("decrease"))
-                                      {
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                                              <path id="Triangle" d="M6,0l6-9H0Z" transform="translate(0 9)" fill="#fff" />
-                                          </svg>
-                                      }
-                                      else
-                                      {
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                                              <path id="Triangle" d="M6,0l6,9H0Z" fill="#fff" />
-                                          </svg>
-                                      }
-                                      @item2.Value("content")
-                                  }
-                              </div>
-                          </div>
-                      }
-                  </div>
-                  @item.Value("content")
-              </div>
-          }
-          if (item.HasProperty("linksTitle"))
-          {
-              <div class="article__inset">
-                  <h3>@item.Value("linksTitle")</h3>
-                  @{
-                      IEnumerable<Umbraco.Web.Models.Link> links = item.Value<IEnumerable<Umbraco.Web.Models.Link>>("links");
-                      if (links.Any())
-                      {
-                          <p>
-                              <span class="button">
-                                  <a href="@links.First().Url" target="@links.First().Target">
-                                      @links.First().Name
-                                      <svg class="button__arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                                          <g id="Icon_CtaChevron_Passive" data-name="Icon/CtaChevron/Passive" transform="translate(1)">
-                                              <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(180)">
-                                                  <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" class="a" />
-                                              </g>
-                                              <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" class="b" />
-                                          </g>
-                                      </svg>
-                                  </a>
-                              </span>
-                              @if (links.Count() > 1)
-                              {
-                                  <span class="link">
-                                      <a href="@links.ElementAt(1).Url" target="@links.First().Target">
-                                          @links.ElementAt(1).Name
-                                          <svg class="link-arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                                              <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(-180)">
-                                                  <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" fill="#225773" />
-                                              </g>
-                                              <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke="#235773" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" />
-                                          </svg>
-                                      </a>
-                                  </span>
-                              }
-                          </p>
-                      }
-                  }
-              </div>
-          }
-          if (item.HasProperty("contentAreaBreakout"))
-          {
-              <div class="@((bool)item.Value("wide") ? "wide" : null)">
-                  <div class="breakout @((bool)item.Value("imageReversed") ? "breakout--reverse" : null)">
-                      @if (item.HasValue("image"))
-                      {
-                          IPublishedContent image = item.Value<IPublishedContent>("image");
-                          if (image != null)
-                          {
-                              <div class="breakout__image"><img src="@image.Url()" alt="" /></div>
-                          }
-                      }
-                      <div class="breakout__inner">
-                          <h3>@item.Value("title")</h3>
-                          @item.Value("contentAreaBreakout")
-                          @{
-                              IEnumerable<Umbraco.Web.Models.Link> links = item.Value<IEnumerable<Umbraco.Web.Models.Link>>("links");
-                              if (links.Any())
-                              {
-                                  <p>
-                                      <span class="button">
-                                          <a href="@links.First().Url" target="@links.First().Target">
-                                              @links.First().Name
-                                              <svg class="button__arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                                                  <g id="Icon_CtaChevron_Passive" data-name="Icon/CtaChevron/Passive" transform="translate(1)">
-                                                      <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(180)">
-                                                          <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" class="a" />
-                                                      </g>
-                                                      <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" class="b" />
-                                                  </g>
-                                              </svg>
-                                          </a>
-                                      </span>
-                                      @if (links.Count() > 1)
-                                      {
-                                          <span class="link">
-                                              <a href="@links.ElementAt(1).Url" target="@links.First().Target">
-                                                  @links.ElementAt(1).Name
-                                                  <svg class="link-arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17">
-                                                      <g id="np_chevron_1189476_225773" transform="translate(18 17) rotate(-180)">
-                                                          <path id="Path" d="M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z" transform="translate(0)" fill="#225773" />
-                                                      </g>
-                                                      <path id="Line" d="M13.5.5H.5" transform="translate(0 8)" fill="none" stroke="#235773" stroke-linecap="square" stroke-miterlimit="10" stroke-width="3" />
-                                                  </svg>
-                                              </a>
-                                          </span>
-                                      }
-                                  </p>
-                              }
-                          }
-                      </div>
-                  </div>
-              </div>
-          }
-      }
-    </div> -->
+            </div>
+            <div class="accordion__items"></div>
+        </div>
+    </div>
+    <div class="border-top">
+      <div class="content-areas"></div>
+    </div>
   </div>
 </div>

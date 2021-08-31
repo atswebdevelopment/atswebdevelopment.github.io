@@ -19,7 +19,6 @@ var renderAbout = function renderAbout(data) {
   content = document.querySelector('.blocks');
 
   if (content) {
-    html = '';
     array = JSON.parse(data.Properties.find(function (m) {
       return m.Name === 'content';
     }).Content);
@@ -28,7 +27,7 @@ var renderAbout = function renderAbout(data) {
       array.forEach(function (e, i) {
         var link = JSON.parse(e.link)[0];
         var button = JSON.parse(e.button)[0];
-        html += "<div class=\"block\">\n          ".concat(e.image && "<div class=\"block__image\" style=\"background-image:url(".concat(websiteUrl + e.image, ")\"></div>") || '', "\n          <div class=\"block__content\">\n              <h2 class=\"block__title title title--30\">").concat(e.title, "</h2>\n              <hr class=\"divider\">\n              ").concat(e.content, "\n              <p>\n                ").concat(button && "<span class=\"button\">\n                    <a href=\"".concat(button.udi, "\">\n                        ").concat(button.name, "\n                        <svg class=\"button__arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                            <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(180)\">\n                                <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" class=\"a\" />\n                            </g>\n                            <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" class=\"b\" />\n                        </svg>\n                    </a>\n                </span>") || '', "\n                ").concat(link && "<span class=\"link\">\n                    <a href=\"".concat(link.udi, "\">\n                        ").concat(link.name, "\n                        <svg class=\"link-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                            <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(-180)\">\n                                <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" fill=\"#225773\" />\n                            </g>\n                            <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" />\n                        </svg>\n                    </a>\n                </span>") || '', "\n              </p>\n          </div>\n      </div>");
+        html += "<div class=\"block\">\n          ".concat(e.image && "<div class=\"block__image\" style=\"background-image:url(".concat(websiteUrl + e.image, ")\"></div>") || '', "\n          <div class=\"block__content\">\n              <h2 class=\"block__title title title--30\">").concat(e.title, "</h2>\n              <hr class=\"divider\">\n              ").concat(e.content, "\n              <p>\n                ").concat(button && "<span class=\"button\">\n                    <a href=\"".concat(button.url || button.udi).concat(button.queryString || '', "\">\n                        ").concat(button.name, "\n                        <svg class=\"button__arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                            <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(180)\">\n                                <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" class=\"a\" />\n                            </g>\n                            <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" class=\"b\" />\n                        </svg>\n                    </a>\n                </span>") || '', "\n                ").concat(link && "<span class=\"link\">\n                    <a href=\"".concat(link.url || link.udi).concat(link.queryString || '', "\">\n                        ").concat(link.name, "\n                        <svg class=\"link-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                            <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(-180)\">\n                                <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" fill=\"#225773\" />\n                            </g>\n                            <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" />\n                        </svg>\n                    </a>\n                </span>") || '', "\n              </p>\n          </div>\n      </div>");
       });
     }
 
@@ -49,6 +48,33 @@ var renderAbout = function renderAbout(data) {
     }
 
     content.innerHTML = html;
+  }
+
+  content = document.querySelector('.pullout-container');
+
+  if (content) {
+    html = '';
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'pullout';
+    }).Content);
+
+    if (array && array.length) {
+      var pullout = array[0];
+      var background = pullout.background ? "style=\"background-image:url(".concat(pullout.background, ")\"") : '';
+      var button = pullout.button ? JSON.parse(pullout.button)[0] : null;
+      html += "<div class=\"pullout\" ".concat(background, "\">\n          <div class=\"pullout__inner ").concat(pullout.logos ? 'pullout__inner--wide' : '', "\">\n              <div class=\"").concat(pullout.logos ? 'columns' : '', "\">\n                  <div class=\"").concat(pullout.logos ? 'column' : '', "\">\n                      <div class=\"pullout__title title title--bold\">\n                          ").concat(pullout.title, "\n                      </div>\n                      <hr />\n                      ").concat(pullout.content, "\n                      ").concat(button ? "<p class=\"button center\">\n                          <a href=\"".concat(button.url || button.udi).concat(button.queryString || '', "\">\n                              ").concat(button.name, "\n                              <svg class=\"button__arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                                  <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(180)\">\n                                      <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" class=\"a\" />\n                                  </g>\n                                  <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" class=\"b\" />\n                              </svg>\n                          </a>\n                      </p>") : '', "\n                  </div>");
+
+      if (pullout.logos) {
+        var logos = pullout.logos.split(',');
+        html += '<div class="column">';
+        logos.forEach(function (logo) {
+          html += "<img class=\"partner-logo\" src=\"".concat(websiteUrl + logo, "\" />");
+        });
+        html += '</div>';
+      }
+
+      content.innerHTML = html + "</div>\n          </div>\n      </div>";
+    }
   }
 
   setPageDefaults();
@@ -275,6 +301,35 @@ var getForm = function getForm(i) {
     return "<form action=\"/contact/\" enctype=\"multipart/form-data\" method=\"post\" data-post=\"generalformapi\">    <div class=\"form\">\n        <div class=\"form__field\">\n            <label class=\"required\">In what capacity are you involved in Tennis?</label>\n            <div class=\"select\">\n                <div class=\"select__text\">Select</div>\n                <select class=\"required capacity\" id=\"UserType\" name=\"UserType\"><option value=\"\">Please select</option>\n    <option value=\"Player\">Player</option>\n    <option value=\"Coach\">Coach</option>\n    <option value=\"Official\">Official</option>\n    <option value=\"Staff\">Staff</option>\n    <option value=\"Other\">Other</option>\n    </select>\n                <svg class=\"select__arrow\" id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#235773\"></path>\n                </svg>\n                <div class=\"form__message\"></div>\n            </div>\n        </div>\n        <div class=\"form__field\">\n            <label class=\"required\">Full name</label>\n            <div class=\"input\">\n                <input class=\"required\" id=\"Name\" name=\"Name\" type=\"text\" value=\"\">\n                <div class=\"form__tooltip\">\n                    eg. John Smith\n                </div>\n                <div class=\"form__message\"></div>\n            </div>\n        </div>\n        <div class=\"form__field\">\n            <label class=\"required\">Email address</label>\n            <div class=\"input\">\n                <input class=\"email required\" id=\"Mad\" name=\"Mad\" type=\"email\" value=\"\">\n                <input class=\"fvd\" id=\"Email\" name=\"Email\" type=\"email\" value=\"\">\n                <div class=\"form__message\"></div>\n            </div>\n        </div>\n        <div class=\"form__field\">\n            <label>Country of residence</label>\n            <div class=\"select\">\n                <div class=\"select__text\">United Kingdom</div>\n                <select id=\"Country\" name=\"Country\"><option value=\"\">Please select</option>\n    <option value=\"Afganistan\">Afghanistan</option>\n    <option value=\"Albania\">Albania</option>\n    <option value=\"Algeria\">Algeria</option>\n    <option value=\"American Samoa\">American Samoa</option>\n    <option value=\"Andorra\">Andorra</option>\n    <option value=\"Angola\">Angola</option>\n    <option value=\"Anguilla\">Anguilla</option>\n    <option value=\"Antigua &amp; Barbuda\">Antigua &amp; Barbuda</option>\n    <option value=\"Argentina\">Argentina</option>\n    <option value=\"Armenia\">Armenia</option>\n    <option value=\"Aruba\">Aruba</option>\n    <option value=\"Australia\">Australia</option>\n    <option value=\"Austria\">Austria</option>\n    <option value=\"Azerbaijan\">Azerbaijan</option>\n    <option value=\"Bahamas\">Bahamas</option>\n    <option value=\"Bahrain\">Bahrain</option>\n    <option value=\"Bangladesh\">Bangladesh</option>\n    <option value=\"Barbados\">Barbados</option>\n    <option value=\"Belarus\">Belarus</option>\n    <option value=\"Belgium\">Belgium</option>\n    <option value=\"Belize\">Belize</option>\n    <option value=\"Benin\">Benin</option>\n    <option value=\"Bermuda\">Bermuda</option>\n    <option value=\"Bhutan\">Bhutan</option>\n    <option value=\"Bolivia\">Bolivia</option>\n    <option value=\"Bonaire\">Bonaire</option>\n    <option value=\"Bosnia &amp; Herzegovina\">Bosnia &amp; Herzegovina</option>\n    <option value=\"Botswana\">Botswana</option>\n    <option value=\"Brazil\">Brazil</option>\n    <option value=\"British Indian Ocean Ter\">British Indian Ocean Ter</option>\n    <option value=\"Brunei\">Brunei</option>\n    <option value=\"Bulgaria\">Bulgaria</option>\n    <option value=\"Burkina Faso\">Burkina Faso</option>\n    <option value=\"Burundi\">Burundi</option>\n    <option value=\"Cambodia\">Cambodia</option>\n    <option value=\"Cameroon\">Cameroon</option>\n    <option value=\"Canada\">Canada</option>\n    <option value=\"Canary Islands\">Canary Islands</option>\n    <option value=\"Cape Verde\">Cape Verde</option>\n    <option value=\"Cayman Islands\">Cayman Islands</option>\n    <option value=\"Central African Republic\">Central African Republic</option>\n    <option value=\"Chad\">Chad</option>\n    <option value=\"Channel Islands\">Channel Islands</option>\n    <option value=\"Chile\">Chile</option>\n    <option value=\"China\">China</option>\n    <option value=\"Christmas Island\">Christmas Island</option>\n    <option value=\"Cocos Island\">Cocos Island</option>\n    <option value=\"Colombia\">Colombia</option>\n    <option value=\"Comoros\">Comoros</option>\n    <option value=\"Congo\">Congo</option>\n    <option value=\"Cook Islands\">Cook Islands</option>\n    <option value=\"Costa Rica\">Costa Rica</option>\n    <option value=\"Cote DIvoire\">Cote DIvoire</option>\n    <option value=\"Croatia\">Croatia</option>\n    <option value=\"Cuba\">Cuba</option>\n    <option value=\"Curaco\">Curacao</option>\n    <option value=\"Cyprus\">Cyprus</option>\n    <option value=\"Czech Republic\">Czech Republic</option>\n    <option value=\"Denmark\">Denmark</option>\n    <option value=\"Djibouti\">Djibouti</option>\n    <option value=\"Dominica\">Dominica</option>\n    <option value=\"Dominican Republic\">Dominican Republic</option>\n    <option value=\"East Timor\">East Timor</option>\n    <option value=\"Ecuador\">Ecuador</option>\n    <option value=\"Egypt\">Egypt</option>\n    <option value=\"El Salvador\">El Salvador</option>\n    <option value=\"Equatorial Guinea\">Equatorial Guinea</option>\n    <option value=\"Eritrea\">Eritrea</option>\n    <option value=\"Estonia\">Estonia</option>\n    <option value=\"Ethiopia\">Ethiopia</option>\n    <option value=\"Falkland Islands\">Falkland Islands</option>\n    <option value=\"Faroe Islands\">Faroe Islands</option>\n    <option value=\"Fiji\">Fiji</option>\n    <option value=\"Finland\">Finland</option>\n    <option value=\"France\">France</option>\n    <option value=\"French Guiana\">French Guiana</option>\n    <option value=\"French Polynesia\">French Polynesia</option>\n    <option value=\"French Southern Ter\">French Southern Ter</option>\n    <option value=\"Gabon\">Gabon</option>\n    <option value=\"Gambia\">Gambia</option>\n    <option value=\"Georgia\">Georgia</option>\n    <option value=\"Germany\">Germany</option>\n    <option value=\"Ghana\">Ghana</option>\n    <option value=\"Gibraltar\">Gibraltar</option>\n    <option value=\"Great Britain\">Great Britain</option>\n    <option value=\"Greece\">Greece</option>\n    <option value=\"Greenland\">Greenland</option>\n    <option value=\"Grenada\">Grenada</option>\n    <option value=\"Guadeloupe\">Guadeloupe</option>\n    <option value=\"Guam\">Guam</option>\n    <option value=\"Guatemala\">Guatemala</option>\n    <option value=\"Guinea\">Guinea</option>\n    <option value=\"Guyana\">Guyana</option>\n    <option value=\"Haiti\">Haiti</option>\n    <option value=\"Hawaii\">Hawaii</option>\n    <option value=\"Honduras\">Honduras</option>\n    <option value=\"Hong Kong\">Hong Kong</option>\n    <option value=\"Hungary\">Hungary</option>\n    <option value=\"Iceland\">Iceland</option>\n    <option value=\"Indonesia\">Indonesia</option>\n    <option value=\"India\">India</option>\n    <option value=\"Iran\">Iran</option>\n    <option value=\"Iraq\">Iraq</option>\n    <option value=\"Ireland\">Ireland</option>\n    <option value=\"Isle of Man\">Isle of Man</option>\n    <option value=\"Israel\">Israel</option>\n    <option value=\"Italy\">Italy</option>\n    <option value=\"Jamaica\">Jamaica</option>\n    <option value=\"Japan\">Japan</option>\n    <option value=\"Jordan\">Jordan</option>\n    <option value=\"Kazakhstan\">Kazakhstan</option>\n    <option value=\"Kenya\">Kenya</option>\n    <option value=\"Kiribati\">Kiribati</option>\n    <option value=\"Korea North\">Korea North</option>\n    <option value=\"Korea Sout\">Korea South</option>\n    <option value=\"Kuwait\">Kuwait</option>\n    <option value=\"Kyrgyzstan\">Kyrgyzstan</option>\n    <option value=\"Laos\">Laos</option>\n    <option value=\"Latvia\">Latvia</option>\n    <option value=\"Lebanon\">Lebanon</option>\n    <option value=\"Lesotho\">Lesotho</option>\n    <option value=\"Liberia\">Liberia</option>\n    <option value=\"Libya\">Libya</option>\n    <option value=\"Liechtenstein\">Liechtenstein</option>\n    <option value=\"Lithuania\">Lithuania</option>\n    <option value=\"Luxembourg\">Luxembourg</option>\n    <option value=\"Macau\">Macau</option>\n    <option value=\"Macedonia\">Macedonia</option>\n    <option value=\"Madagascar\">Madagascar</option>\n    <option value=\"Malaysia\">Malaysia</option>\n    <option value=\"Malawi\">Malawi</option>\n    <option value=\"Maldives\">Maldives</option>\n    <option value=\"Mali\">Mali</option>\n    <option value=\"Malta\">Malta</option>\n    <option value=\"Marshall Islands\">Marshall Islands</option>\n    <option value=\"Martinique\">Martinique</option>\n    <option value=\"Mauritania\">Mauritania</option>\n    <option value=\"Mauritius\">Mauritius</option>\n    <option value=\"Mayotte\">Mayotte</option>\n    <option value=\"Mexico\">Mexico</option>\n    <option value=\"Midway Islands\">Midway Islands</option>\n    <option value=\"Moldova\">Moldova</option>\n    <option value=\"Monaco\">Monaco</option>\n    <option value=\"Mongolia\">Mongolia</option>\n    <option value=\"Montserrat\">Montserrat</option>\n    <option value=\"Morocco\">Morocco</option>\n    <option value=\"Mozambique\">Mozambique</option>\n    <option value=\"Myanmar\">Myanmar</option>\n    <option value=\"Nambia\">Nambia</option>\n    <option value=\"Nauru\">Nauru</option>\n    <option value=\"Nepal\">Nepal</option>\n    <option value=\"Netherland Antilles\">Netherland Antilles</option>\n    <option value=\"Netherlands\">Netherlands (Holland, Europe)</option>\n    <option value=\"Nevis\">Nevis</option>\n    <option value=\"New Caledonia\">New Caledonia</option>\n    <option value=\"New Zealand\">New Zealand</option>\n    <option value=\"Nicaragua\">Nicaragua</option>\n    <option value=\"Niger\">Niger</option>\n    <option value=\"Nigeria\">Nigeria</option>\n    <option value=\"Niue\">Niue</option>\n    <option value=\"Norfolk Island\">Norfolk Island</option>\n    <option value=\"Norway\">Norway</option>\n    <option value=\"Oman\">Oman</option>\n    <option value=\"Pakistan\">Pakistan</option>\n    <option value=\"Palau Island\">Palau Island</option>\n    <option value=\"Palestine\">Palestine</option>\n    <option value=\"Panama\">Panama</option>\n    <option value=\"Papua New Guinea\">Papua New Guinea</option>\n    <option value=\"Paraguay\">Paraguay</option>\n    <option value=\"Peru\">Peru</option>\n    <option value=\"Phillipines\">Philippines</option>\n    <option value=\"Pitcairn Island\">Pitcairn Island</option>\n    <option value=\"Poland\">Poland</option>\n    <option value=\"Portugal\">Portugal</option>\n    <option value=\"Puerto Rico\">Puerto Rico</option>\n    <option value=\"Qatar\">Qatar</option>\n    <option value=\"Republic of Montenegro\">Republic of Montenegro</option>\n    <option value=\"Republic of Serbia\">Republic of Serbia</option>\n    <option value=\"Reunion\">Reunion</option>\n    <option value=\"Romania\">Romania</option>\n    <option value=\"Russia\">Russia</option>\n    <option value=\"Rwanda\">Rwanda</option>\n    <option value=\"St Barthelemy\">St Barthelemy</option>\n    <option value=\"St Eustatius\">St Eustatius</option>\n    <option value=\"St Helena\">St Helena</option>\n    <option value=\"St Kitts-Nevis\">St Kitts-Nevis</option>\n    <option value=\"St Lucia\">St Lucia</option>\n    <option value=\"St Maarten\">St Maarten</option>\n    <option value=\"St Pierre &amp; Miquelon\">St Pierre &amp; Miquelon</option>\n    <option value=\"St Vincent &amp; Grenadines\">St Vincent &amp; Grenadines</option>\n    <option value=\"Saipan\">Saipan</option>\n    <option value=\"Samoa\">Samoa</option>\n    <option value=\"Samoa American\">Samoa American</option>\n    <option value=\"San Marino\">San Marino</option>\n    <option value=\"Sao Tome &amp; Principe\">Sao Tome &amp; Principe</option>\n    <option value=\"Saudi Arabia\">Saudi Arabia</option>\n    <option value=\"Senegal\">Senegal</option>\n    <option value=\"Seychelles\">Seychelles</option>\n    <option value=\"Sierra Leone\">Sierra Leone</option>\n    <option value=\"Singapore\">Singapore</option>\n    <option value=\"Slovakia\">Slovakia</option>\n    <option value=\"Slovenia\">Slovenia</option>\n    <option value=\"Solomon Islands\">Solomon Islands</option>\n    <option value=\"Somalia\">Somalia</option>\n    <option value=\"South Africa\">South Africa</option>\n    <option value=\"Spain\">Spain</option>\n    <option value=\"Sri Lanka\">Sri Lanka</option>\n    <option value=\"Sudan\">Sudan</option>\n    <option value=\"Suriname\">Suriname</option>\n    <option value=\"Swaziland\">Swaziland</option>\n    <option value=\"Sweden\">Sweden</option>\n    <option value=\"Switzerland\">Switzerland</option>\n    <option value=\"Syria\">Syria</option>\n    <option value=\"Tahiti\">Tahiti</option>\n    <option value=\"Taiwan\">Taiwan</option>\n    <option value=\"Tajikistan\">Tajikistan</option>\n    <option value=\"Tanzania\">Tanzania</option>\n    <option value=\"Thailand\">Thailand</option>\n    <option value=\"Togo\">Togo</option>\n    <option value=\"Tokelau\">Tokelau</option>\n    <option value=\"Tonga\">Tonga</option>\n    <option value=\"Trinidad &amp; Tobago\">Trinidad &amp; Tobago</option>\n    <option value=\"Tunisia\">Tunisia</option>\n    <option value=\"Turkey\">Turkey</option>\n    <option value=\"Turkmenistan\">Turkmenistan</option>\n    <option value=\"Turks &amp; Caicos Is\">Turks &amp; Caicos Is</option>\n    <option value=\"Tuvalu\">Tuvalu</option>\n    <option value=\"Uganda\">Uganda</option>\n    <option selected=\"selected\" value=\"United Kingdom\">United Kingdom</option>\n    <option value=\"Ukraine\">Ukraine</option>\n    <option value=\"United Arab Erimates\">United Arab Emirates</option>\n    <option value=\"United States of America\">United States of America</option>\n    <option value=\"Uraguay\">Uruguay</option>\n    <option value=\"Uzbekistan\">Uzbekistan</option>\n    <option value=\"Vanuatu\">Vanuatu</option>\n    <option value=\"Vatican City State\">Vatican City State</option>\n    <option value=\"Venezuela\">Venezuela</option>\n    <option value=\"Vietnam\">Vietnam</option>\n    <option value=\"Virgin Islands (Brit)\">Virgin Islands (Brit)</option>\n    <option value=\"Virgin Islands (USA)\">Virgin Islands (USA)</option>\n    <option value=\"Wake Island\">Wake Island</option>\n    <option value=\"Wallis &amp; Futana Is\">Wallis &amp; Futana Is</option>\n    <option value=\"Yemen\">Yemen</option>\n    <option value=\"Zaire\">Zaire</option>\n    <option value=\"Zambia\">Zambia</option>\n    <option value=\"Zimbabwe\">Zimbabwe</option>\n    </select>\n                <div class=\"form__message\"></div>\n                <svg class=\"select__arrow\" id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#235773\"></path>\n                </svg>\n            </div>\n        </div>\n        <div class=\"form__field\">\n            <label>Phone number</label>\n            <div class=\"input\">\n                <input id=\"Phone\" name=\"Phone\" type=\"text\" value=\"\">\n                <div class=\"form__message\"></div>\n            </div>\n        </div>\n        <div class=\"form__field\">\n            <label>Contact preference</label>\n            <div class=\"select\">\n                <div class=\"select__text\">Email</div>\n                <select class=\"required\" id=\"ContactPreference\" name=\"ContactPreference\"><option value=\"Email\">Email</option>\n    <option value=\"Phone\">Phone</option>\n    </select>\n                <svg class=\"select__arrow\" id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#235773\"></path>\n                </svg>\n                <div class=\"form__message\"></div>\n            </div>\n        </div>\n        <div class=\"form__field hidden capacity-hidden\">\n            <label class=\"required\">Tour affiliation</label>\n            <div class=\"select\">\n                <div class=\"select__text\">Select</div>\n                <select class=\"required affiliation\" id=\"Affiliation\" name=\"Affiliation\"><option value=\"\">Please select</option>\n    <option value=\"ATP\">ATP</option>\n    <option value=\"WTA\">WTA</option>\n    <option value=\"ITF\">ITF</option>\n    <option value=\"None\">None</option>\n    </select>\n                <svg class=\"select__arrow\" id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#235773\"></path>\n                </svg>\n                <div class=\"form__message\"></div>\n            </div>\n        </div>\n        <div class=\"form__field hidden affiliation-hidden\">\n            <label class=\"required\">IPIN / Playerzone ID</label>\n            <div class=\"input\">\n                <input class=\"required\" id=\"IDNumber\" name=\"IDNumber\" type=\"text\" value=\"\">\n                <div class=\"form__message\"></div>\n            </div>\n        </div>\n        <div class=\"form__field form__field--submit\">\n            <span class=\"button button--next\">\n                <a href=\"\">\n                    Next\n                    <svg class=\"button__arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                        <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(180)\">\n                            <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" class=\"a\"></path>\n                        </g>\n                        <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" class=\"b\"></path>\n                    </svg>\n                </a>\n            </span>\n        </div>\n    </div>\n    <div class=\"form\">\n    <div class=\"form__field\">\n        <label class=\"required\">Please outline your enquiry below</label>\n        <div class=\"textarea\">\n            <textarea class=\"required\" cols=\"20\" id=\"Message\" name=\"Message\" rows=\"2\"></textarea>\n            <div class=\"form__message\"></div>\n        </div>\n    </div>\n    <div class=\"form__field\">\n        <label>We\u2019re all done, would you like a receipt of this report?</label>\n        <label class=\"inline\" for=\"\">Yes</label>\n        <div class=\"radio\">\n            <input id=\"Receipt\" name=\"Receipt\" type=\"radio\" value=\"True\">\n            <span></span>\n        </div>\n        <label class=\"inline\" for=\"\">No</label>\n        <div class=\"radio\">\n            <input checked=\"checked\" id=\"Receipt\" name=\"Receipt\" type=\"radio\" value=\"False\">\n            <span></span>\n        </div>\n    </div>\n    <div class=\"form__field form__field--submit\">\n        <span class=\"button button--back\">\n            <a href=\"\">\n                Back\n                <svg class=\"button__arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                    <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(180)\">\n                        <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" class=\"a\"></path>\n                    </g>\n                    <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" class=\"b\"></path>\n                </svg>\n            </a>\n        </span>\n        <button class=\"button button--submit\" type=\"submit\">\n            Submit\n            <svg class=\"button__arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(180)\">\n                    <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" class=\"a\"></path>\n                </g>\n                <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" class=\"b\"></path>\n            </svg>\n        </button>\n    </div>\n    </div>\n    <input name=\"ufprt\" type=\"hidden\" value=\"92618DF33B16BFDCFABA1E5247C0913B2AC33B0848854C4DEC5B38DE061A361BC063FDF69932B722E4445FDD128E4C7D1697F4A1A144C87067A55D1EE10BF55CFA3E1B6CC3D099A51A341072E29A5D80DD2EB79F9146B3D59697A650F8AA021824E4660BB7EE4B45977E09FF3119BE63676A8E6748B2D35AF077373E465B14F8\"></form>";
   }
 };
+
+var renderContentPage = function renderContentPage(data) {
+  var content = '';
+  var html = '';
+  var array = [];
+  content = document.querySelector('.content-intro');
+
+  if (content) {
+    content.innerHTML = data.Properties.find(function (m) {
+      return m.Name === 'content';
+    }).Content;
+  }
+
+  content = document.querySelector('.content-areas');
+
+  if (content) {
+    var contentAreas = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'contentNested';
+    }).Content);
+
+    if (contentAreas) {
+      content.innerHTML = renderContentAreas(contentAreas);
+    }
+  }
+
+  setAccordion();
+  setSelects();
+  setPageDefaults();
+};
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -384,6 +439,11 @@ var renderData = function renderData() {
   var data = JSON.parse(content);
   console.log(data);
   window.scrollTo(0, 0);
+  var chatOpen = document.querySelector('.chat');
+
+  if (chatOpen) {
+    chatOpen.classList.remove('chat');
+  }
 
   if (data.Type === "homepage") {
     renderLayout(data);
@@ -394,6 +454,10 @@ var renderData = function renderData() {
 
   if (data.Type === "about" || data.Type === "tadp") {
     renderAbout(data);
+  }
+
+  if (data.Type === "tACP" || data.Type === "tACP1") {
+    renderTacp(data);
   }
 
   if (data.Type === "learn") {
@@ -408,16 +472,36 @@ var renderData = function renderData() {
     renderCaseStudies(data);
   }
 
+  if (data.Type === "sanctions") {
+    renderSanctions(data);
+  }
+
+  if (data.Type === "retirements") {
+    renderRetirements(data);
+  }
+
   if (data.Type === "contact") {
     renderContact(data);
+  }
+
+  if (data.Type === "contentPage") {
+    renderContentPage(data);
   }
 
   if (data.Type === "rules") {
     renderRules(data);
   }
 
+  if (data.Type === "history") {
+    renderHistory(data);
+  }
+
   if (data.Type === "news") {
     renderNews(data);
+  }
+
+  if (data.Type === "investigation") {
+    renderInvestigation(data);
   }
 
   if (data.Type === "newsCategory") {
@@ -552,6 +636,55 @@ var setPageDefaults = function setPageDefaults() {
   });
 };
 
+registerLinks(document);
+
+var renderFaqs = function renderFaqs(data) {
+  var content = '';
+  var html = '';
+  var accordion = JSON.parse(data.Properties.find(function (m) {
+    return m.Name === 'accordion';
+  }).Content)[0];
+  var accordionItems = JSON.parse(accordion.accordionList);
+  content = document.querySelector('.accordion__title');
+
+  if (content) {
+    content.innerHTML = accordion.title;
+  }
+
+  content = document.querySelector('.accordion__items');
+
+  if (content) {
+    html = '';
+    accordionItems.forEach(function (e) {
+      var categories = JSON.parse(e.category);
+
+      if (categories && categories.length) {
+        categories = "accordion__item--".concat(categories[0]);
+      }
+
+      html += "<div class=\"accordion__item ".concat(categories, "\">\n            <div class=\"accordion__item-title\">\n                <a class=\"accordion__link\" href=\"\"></a>\n                <span class=\"large\">").concat(e.title, "</span>\n                <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n                </svg>\n            </div>\n            <div class=\"accordion__item-content\">\n                <div class=\"accordion__cell\">\n                  ").concat(e.content, "\n                </div>\n            </div>\n        </div>");
+    });
+    content.innerHTML = html;
+  }
+
+  content = document.querySelector('.pagination');
+
+  if (content) {
+    html = "<a href=\"#\" class=\"pagination__item pagination__item--left\">\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6.65\" height=\"13.467\" viewBox=\"0 0 6.65 13.467\">\n          <g id=\"arrow_right_\" data-name=\"arrow right \" transform=\"translate(5.25 1.4)\">\n              <path id=\"arrow_right\" data-name=\"arrow right\" d=\"M4,0,0,5.333l4,5.333\" transform=\"translate(-4)\" fill=\"none\" stroke=\"#545567\" stroke-linecap=\"round\" stroke-miterlimit=\"10\" stroke-width=\"2\" />\n          </g>\n      </svg>\n    </a>";
+    var pages = Math.ceil(accordionItems.length / 10);
+
+    for (var i = 0; i < pages; i++) {
+      html += "<a href=\"#\" class=\"pagination__item pagination__item--number ".concat(i === 0 ? 'pagination__item--active' : '', "\">\n          ").concat(i + 1, "\n      </a>");
+    }
+
+    html += "<a href=\"#\" class=\"pagination__item pagination__item--right\">\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6.65\" height=\"13.467\" viewBox=\"0 0 6.65 13.467\">\n          <g id=\"arrow_right_\" data-name=\"arrow right \" transform=\"translate(1.4 1.4)\">\n              <path id=\"arrow_right\" data-name=\"arrow right\" d=\"M-4,0,0,5.333l-4,5.333\" transform=\"translate(4)\" fill=\"none\" stroke=\"#545567\" stroke-linecap=\"round\" stroke-miterlimit=\"10\" stroke-width=\"2\" />\n          </g>\n      </svg>\n    </a>";
+    content.innerHTML = html;
+  }
+
+  setAccordion();
+  setPageDefaults();
+};
+
 var setSelects = function setSelects() {
   var selects = document.querySelectorAll('.select');
   selects.forEach(function (selectContainer, i) {
@@ -598,76 +731,180 @@ var setSelects = function setSelects() {
       }
     });
   });
+  var selectboxes = document.querySelectorAll('.select__link');
+
+  document.onclick = function (e) {
+    if (e.target.classList.value.indexOf('select__link')) {
+      var selectboxesActive = document.querySelectorAll('.select__link.active');
+      selectboxesActive.forEach(function (select, i) {
+        select.classList.remove('active');
+      });
+    }
+  };
+
+  selectboxes.forEach(function (select) {
+    select.addEventListener('click', function (e) {
+      var selectboxesActive = document.querySelectorAll('.select__link.active');
+      selectboxesActive.forEach(function (select, i) {
+        select.classList.remove('active');
+      });
+      select.classList.add('active');
+      e.preventDefault();
+    });
+  });
+  var accordionContainers = document.querySelectorAll('.accordion-container');
+  accordionContainers.forEach(function (accordion) {
+    var selectboxLinks = accordion.querySelectorAll('.select__box a');
+    selectboxLinks.forEach(function (selectLink) {
+      selectLink.addEventListener('click', function (e) {
+        var select = selectLink.parentNode.parentNode.querySelector('select');
+        var selectText = selectLink.parentNode.parentNode.querySelector('.select__text');
+        var selectLinkActive = selectLink.parentNode.querySelector('.active');
+        selectText.innerText = selectLink.innerText;
+
+        if (selectLinkActive) {
+          selectLinkActive.classList.remove('active');
+        }
+
+        selectLink.classList.add('active');
+
+        for (var i = 0; i < select.options.length; i++) {
+          if (select.options[i].value == e.target.getAttribute('data-value')) {
+            select.options[i].selected = true;
+            runAccordion(select, e.target.getAttribute('data-reverse'), accordion);
+            break;
+          }
+        }
+
+        e.preventDefault();
+      });
+    });
+  });
 };
 
 var renderContentContainer = function renderContentContainer(array, cards, html) {
-  html += "<h2 class=\"title column-container__title\">".concat(array[0].title, "</h2>\n  <p class=\"column-container__subtitle\">").concat(array[0].subtitle, "</p><div class=\"columns\">");
+  html += "<div class=\"column-container\"><div class=\"column-container__inner\"><div class=\"column-container__content\"><h2 class=\"title column-container__title\">".concat(array[0].title, "</h2>\n  <p class=\"column-container__subtitle\">").concat(array[0].subtitle, "</p><div class=\"columns\">");
   cards.forEach(function (e, i) {
     var link = JSON.parse(e.itemURL)[0];
-    html += "<div class=\"column\">\n      ".concat(e.image && "<img src=\"".concat(websiteUrl + e.image, "?anchor=center&mode=crop&width=767\" />") || '', "\n      <h3 class=\"title\">").concat(e.title, "</h3>\n      ").concat(e.content, "\n      ").concat(link && link.udi && link.udi.indexOf('pdf') > -1 && "<span class=\"button button--alt\">\n          <a href=\"".concat(link.udi, "\" download=\"\">\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16.5\" height=\"18\" viewBox=\"0 0 16.5 18\">\n                  <path id=\"Shape\" d=\"M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z\" fill=\"#003a3c\" />\n              </svg>\n              ").concat(link[0].name, "\n              <svg class=\"button__arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                  <g id=\"Icon_CtaChevron_Passive\" data-name=\"Icon/CtaChevron/Passive\" transform=\"translate(1)\">\n                      <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(180)\">\n                          <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" class=\"a\" />\n                      </g>\n                      <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" class=\"b\" />\n                  </g>\n              </svg>\n          </a>\n      </span>") || link && "<p class=\"link\">\n          <a href=\"".concat(link.url || link.udi, "\">\n              ").concat(link.name, "\n              <svg class=\"link-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                  <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(-180)\">\n                      <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" fill=\"#225773\" />\n                  </g>\n                  <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\" />\n              </svg>\n          </a>\n      </p>") || '', "\n  </div>");
+    html += "<div class=\"column\">\n      ".concat(e.image && "<img src=\"".concat(websiteUrl + e.image, "?anchor=center&mode=crop&width=767\" />") || '', "\n      <h3 class=\"title\">").concat(e.title, "</h3>\n      ").concat(e.content, "\n      ").concat(link && link.udi && link.udi.indexOf('pdf') > -1 && "<span class=\"button button--alt\">\n          <a href=\"".concat(link.udi, "\" target=\"_blank\" download=\"\">\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16.5\" height=\"18\" viewBox=\"0 0 16.5 18\">\n                  <path id=\"Shape\" d=\"M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z\" fill=\"#003a3c\" />\n              </svg>\n              ").concat(link.name, "\n          </a>\n      </span>") || link && "<p class=\"link\">\n          <a href=\"".concat(link.url || link.udi, "\">\n              ").concat(link.name, "\n              <svg class=\"link-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"17\" viewBox=\"0 0 19 17\">\n                                                    <g id=\"np_chevron_1189476_225773\" transform=\"translate(18 17) rotate(-180)\">\n                                                        <path id=\"Path\" d=\"M0,8.5l.9.994L7.678,17,10,15.011,4.114,8.5,10,1.989,7.678,0,.9,7.505Z\" transform=\"translate(0)\" fill=\"#225773\"></path>\n                                                    </g>\n                                                    <path id=\"Line\" d=\"M13.5.5H.5\" transform=\"translate(0 8)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"3\"></path>\n                                                </svg>\n          </a>\n      </p>") || '', "\n  </div>");
   });
-  return html + '</div>';
+  return html + '</div></div></div></div>';
 };
 
-registerLinks(document);
+var renderContentAreas = function renderContentAreas(contentAreas) {
+  var html = '';
 
-var getDate = function getDate() {
-  var today = new Date();
+  if (!contentAreas) {
+    return;
+  }
+
+  contentAreas.forEach(function (item) {
+    if (item.contentArea) {
+      html += "<div class=\"content-area\">\n          ".concat(item.contentArea, "\n      </div>");
+    }
+
+    if (item.contentAreaGrey) {
+      html += "<div class=\"article__inset\">\n          ".concat(item.contentAreaGrey, "\n      </div>");
+    }
+
+    if (item.cards) {
+      var cards = JSON.parse(item.cards);
+
+      if (cards && cards.length > 0) {
+        html += renderContentContainer([item], cards, html);
+      }
+    }
+
+    if (item.files) {
+      html += "".concat(item.content, "\n        <div class=\"file-header\">\n            <span>File name</span>\n        </div>");
+      item.files.split(',').forEach(function (file) {
+        var fileArray = file.split('/');
+        html += "<div class=\"file\">\n              <span>".concat(fileArray[fileArray.length - 1], "</span>\n              <a class=\"download-click\" href=\"").concat(websiteUrl + file, "\" target=\"_blank\" download=\"\">Download</a>\n          </div>");
+      });
+    }
+
+    if (item.caption) {
+      html += "<div class=\"article__inset\">\n            <a class=\"expand-image\" href=\"".concat(websiteUrl + item.image, "\" target=\"_blank\">\n                <img src=\"").concat(websiteUrl + item.image, "\" alt=\"\" />\n                <svg id=\"Ico_Btn_NewTab\" data-name=\"Ico Btn NewTab\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"41\" viewBox=\"0 0 40 41\">\n                    <g id=\"CTA_Primary\" data-name=\"CTA/Primary\">\n                        <g id=\"Bg\">\n                            <rect id=\"Rectangle_Copy_4\" data-name=\"Rectangle Copy 4\" width=\"40\" height=\"41\" rx=\"20\" fill=\"#cfef00\" />\n                        </g>\n                    </g>\n                    <g id=\"Ico_NewTab\" data-name=\"Ico/NewTab\" transform=\"translate(11 7.5)\">\n                        <path id=\"Path\" d=\"M1.013,16.2H15.188A1.016,1.016,0,0,0,16.2,15.188v-8.1H14.175v7.088H2.025V2.025H9.113V0h-8.1A1.016,1.016,0,0,0,0,1.013V15.188A1.016,1.016,0,0,0,1.013,16.2Z\" transform=\"translate(0 5.3)\" fill=\"#235773\" />\n                        <path id=\"Line_2\" data-name=\"Line 2\" d=\"M.5.5v8\" transform=\"translate(14.5)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"2\" />\n                        <path id=\"Line_2-2\" data-name=\"Line 2\" d=\"M8.5.5H.5\" transform=\"translate(10.5 4)\" fill=\"none\" stroke=\"#235773\" stroke-linecap=\"square\" stroke-miterlimit=\"10\" stroke-width=\"2\" />\n                    </g>\n                </svg>\n            </a>\n            <p>").concat(item.caption, "</p>\n        </div>");
+    }
+
+    if (item.stats) {
+      html += "<div class=\"article__inset stat-container\">\n            <h3>".concat(item.title, "</h3>\n            <div class=\"stats\">");
+      JSON.parse(item.stats).forEach(function (stat) {
+        html += "<div class=\"stat\">\n                  <div class=\"stat__title\">".concat(stat.title, "</div>\n                  <hr />\n                  <div class=\"stat__number\">").concat(stat.number, "</div>\n                  <div class=\"stat__content\">\n                  ").concat(stat.decrease ? "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"9\" viewBox=\"0 0 12 9\">\n                      <path id=\"Triangle\" d=\"M6,0l6-9H0Z\" transform=\"translate(0 9)\" fill=\"#fff\" />\n                  </svg>" : '', "\n                  ").concat(!stat.decrease ? "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"9\" viewBox=\"0 0 12 9\">\n                      <path id=\"Triangle\" d=\"M6,0l6,9H0Z\" fill=\"#fff\" />\n                  </svg>" : '', "\n                  ").concat(stat.content, "\n                  </div>\n              </div>");
+      });
+      html += "</div>\n            ".concat(item.content, "\n        </div>");
+    }
+
+    if (item.contentAreaBreakout) {
+      var links = JSON.parse(item.links);
+      html += "<div class=\"breakout ".concat(item.imageReversed ? "breakout--reverse" : "", "\">\n              ").concat(item.image ? "<div class=\"breakout__image\"><img src=\"".concat(websiteUrl + item.image, "\" alt=\"\" /></div>") : '', "\n              <div class=\"breakout__inner\">\n                  <h3>").concat(item.title, "</h3>\n                  ").concat(item.contentAreaBreakout, "\n                  ").concat(links && links.length ? "<p>\n                        <span class=\"button\">\n                            <a href=\"".concat(links[0].url || links[0].udi).concat(links[0].queryString || '', "\">\n                                ").concat(links[0].name, "\n                            </a>\n                        </span>\n                        ").concat(links[1] ? "<span class=\"link\">\n                            <a href=\"".concat(links[1].url || links[1].udi).concat(links[1].queryString || '', "\">\n                              ").concat(links[1].name, "\n                            </a>\n                        </span>") : '', "\n                    </p>") : '', "\n                </div>\n            </div>\n        </div>");
+    }
+
+    if (item.linksTitle) {
+      var _links = JSON.parse(item.links);
+
+      html += "<div class=\"article__inset\">\n            <h3>".concat(item.linksTitle, "</h3>\n            ").concat(_links && _links.length ? "<p>\n                <span class=\"button\">\n                    <a href=\"".concat(_links[0].url || _links[0].udi).concat(_links[0].queryString || '', "\">\n                        ").concat(_links[0].name, "\n                    </a>\n                </span>\n                ").concat(_links[1] ? "<span class=\"link\">\n                    <a href=\"".concat(_links[1].url || _links[1].udi).concat(_links[1].queryString || '', "\">\n                      ").concat(_links[1].name, "\n                    </a>\n                </span>") : '', "\n            </p>") : '', "\n        </div>");
+    }
+
+    if (item.accordionList) {
+      var accordion = JSON.parse(item.accordionList);
+      html += "<div class=\"accordion\">\n                <div class=\"accordion__inner\">\n                    <div class=\"accordion__header\">\n                        <h3 class=\"accordion__title title\">".concat(item.title, "</h3>\n                    </div>\n                    <div class=\"accordion__items\">");
+      accordion.forEach(function (accordionItem) {
+        html += "<div class=\"accordion__item\">\n            <div class=\"accordion__item-title\">\n                <a class=\"accordion__link\" href=\"\"></a>\n                <span class=\"large\">".concat(accordionItem.title, "</span>\n                <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n                </svg>\n            </div>\n            <div class=\"accordion__item-content\">\n                <div class=\"accordion__cell\">\n                  ").concat(accordionItem.content, "\n                </div>\n            </div>\n        </div>");
+      });
+      html += "</div>\n                </div>\n            </div>\n        </div>";
+    }
+  });
+  return html;
+};
+
+var getDate = function getDate(today) {
+  if (!today) {
+    today = new Date();
+  }
+
   var dd = String(today.getDate()).padStart(2, '0');
   var month = today.toLocaleString('default', {
     month: 'long'
   });
   var yyyy = today.getFullYear();
   return dd + ' ' + month + ' ' + yyyy;
-}; //document.querySelector('.year').innerHTML = new Date().getFullYear()
+};
 
-
-var renderFaqs = function renderFaqs(data) {
+var renderHistory = function renderHistory(data) {
   var content = '';
-  var html = '';
   var array = [];
-  var accordion = JSON.parse(data.Properties.find(function (m) {
-    return m.Name === 'accordion';
-  }).Content)[0];
-  var accordionItems = JSON.parse(accordion.accordionList);
-  content = document.querySelector('.accordion__title');
-
-  if (content) {
-    content.innerHTML = accordion.title;
-  }
-
-  content = document.querySelector('.accordion__items');
+  content = document.querySelector('.timeline');
 
   if (content) {
     html = '';
-    accordionItems.forEach(function (e) {
-      var categories = JSON.parse(e.category);
-
-      if (categories && categories.length) {
-        categories = "accordion__item--".concat(categories[0]);
-      }
-
-      html += "<div class=\"accordion__item ".concat(categories, "\">\n            <div class=\"accordion__item-title\">\n                <a class=\"accordion__link\" href=\"\"></a>\n                <span class=\"large\">").concat(e.title, "</span>\n                <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n                </svg>\n            </div>\n            <div class=\"accordion__item-content\">\n                <div class=\"accordion__cell\">\n                  ").concat(e.content, "\n                </div>\n            </div>\n        </div>");
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'histories';
+    }).Content);
+    array.forEach(function (e) {
+      html += "<div class=\"timeline__item\">\n          <span class=\"timeline__ball\"></span>\n          <h3 class=\"timeline__title title\">".concat(e.title, "</h3>\n          <div class=\"timeline__content\">\n            ").concat(e.content, "\n          </div>\n      </div>");
     });
-    content.innerHTML = html;
+    content.innerHTML = html + '<div class="timeline__indicator"></div>';
   }
 
-  content = document.querySelector('.pagination');
+  content = document.querySelector('h2.title');
 
   if (content) {
-    html = "<a href=\"#\" class=\"pagination__item pagination__item--left\">\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6.65\" height=\"13.467\" viewBox=\"0 0 6.65 13.467\">\n          <g id=\"arrow_right_\" data-name=\"arrow right \" transform=\"translate(5.25 1.4)\">\n              <path id=\"arrow_right\" data-name=\"arrow right\" d=\"M4,0,0,5.333l4,5.333\" transform=\"translate(-4)\" fill=\"none\" stroke=\"#545567\" stroke-linecap=\"round\" stroke-miterlimit=\"10\" stroke-width=\"2\" />\n          </g>\n      </svg>\n    </a>";
-    var pages = Math.ceil(accordionItems.length / 10);
-
-    for (var i = 0; i < pages; i++) {
-      html += "<a href=\"#\" class=\"pagination__item pagination__item--number ".concat(i === 0 ? 'pagination__item--active' : '', "\">\n          ").concat(i + 1, "\n      </a>");
-    }
-
-    html += "<a href=\"#\" class=\"pagination__item pagination__item--right\">\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6.65\" height=\"13.467\" viewBox=\"0 0 6.65 13.467\">\n          <g id=\"arrow_right_\" data-name=\"arrow right \" transform=\"translate(1.4 1.4)\">\n              <path id=\"arrow_right\" data-name=\"arrow right\" d=\"M-4,0,0,5.333l-4,5.333\" transform=\"translate(4)\" fill=\"none\" stroke=\"#545567\" stroke-linecap=\"round\" stroke-miterlimit=\"10\" stroke-width=\"2\" />\n          </g>\n      </svg>\n    </a>";
-    content.innerHTML = html;
+    content.innerHTML = data.Properties.find(function (m) {
+      return m.Name === 'secondaryTitle';
+    }).Content;
   }
 
+  content = document.querySelector('.subtitle--narrow');
+
+  if (content) {
+    content.innerHTML = data.Properties.find(function (m) {
+      return m.Name === 'secondarySubtitle';
+    }).Content;
+  }
+
+  setTimeline();
   setPageDefaults();
-  setAccordion();
 };
 
 var renderHome = function renderHome(data) {
@@ -771,6 +1008,69 @@ var httpGetMessage = function httpGetMessage(theUrl) {
   };
 
   xmlHttp.send(null);
+};
+
+var renderInvestigation = function renderInvestigation(data) {
+  var content = '';
+  var html = '';
+  var array = [];
+  var accordion = JSON.parse(data.Properties.find(function (m) {
+    return m.Name === 'accordion';
+  }).Content)[0];
+  var accordionItems = JSON.parse(accordion.accordionList);
+  content = document.querySelector('.accordion__title');
+
+  if (content) {
+    content.innerHTML = accordion.title;
+  }
+
+  content = document.querySelector('.accordion__items');
+
+  if (content) {
+    html = '';
+    accordionItems.forEach(function (e) {
+      html += "<div class=\"accordion__item\">\n            <div class=\"accordion__item-title\">\n                <a class=\"accordion__link\" href=\"\"></a>\n                <span class=\"large\">".concat(e.title, "</span>\n                <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n                </svg>\n            </div>\n            <div class=\"accordion__item-content\">\n                <div class=\"accordion__cell\">\n                  ").concat(e.content, "\n                </div>\n            </div>\n        </div>");
+    });
+    content.innerHTML = html;
+  }
+
+  content = document.querySelector('.investigation-text');
+
+  if (content) {
+    var text = data.Properties.find(function (m) {
+      return m.Name === 'hoverText';
+    }).Content;
+    content.innerHTML = "<h2 class=\"content-footer__title title\">Click / Tap on a section for more info</h2>\n    <p>".concat(text, "</p>");
+  }
+
+  content = document.querySelector('.investigation');
+
+  if (content) {
+    html = "<img class=\"investigation__image\" src=\"".concat(websiteUrl, "/Images/InvestigationProcess.png?anchor=center&mode=crop&width=767\" />");
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'investigationProcess';
+    }).Content);
+    array.forEach(function (e) {
+      html += '<a href=""></a>';
+    });
+    content.innerHTML = html;
+  }
+
+  content = document.querySelector('.investigation-content');
+
+  if (content) {
+    html = '';
+    var invP = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'investigationProcess';
+    }).Content);
+    invP.forEach(function (e) {
+      html += "<div class=\"investigation-content__item\">\n          <h2 class=\"content-footer__title title\">".concat(e.title, "</h2>\n          ").concat(e.content, "\n      </div>");
+    });
+    content.innerHTML = html;
+  }
+
+  setAccordion();
+  setPageDefaults();
 };
 
 var renderLearn = function renderLearn(data) {
@@ -1017,10 +1317,79 @@ var renderPartners = function renderPartners(data) {
   setPageDefaults();
 };
 
+var renderRetirements = function renderRetirements(data) {
+  var content = '';
+  var html = '';
+  var array = []; //Tabs
+
+  var tabs = document.querySelectorAll('.tab');
+
+  if (tabs.length) {
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function (e) {
+        document.querySelector('.tab--active').classList.remove('tab--active');
+        e.target.classList.add('tab--active');
+        document.querySelector('.tab-content--active').classList.remove('tab-content--active');
+        document.querySelectorAll('.tab-content')[i].classList.add('tab-content--active');
+        e.preventDefault();
+      });
+    });
+  }
+
+  content = document.querySelector('.accordion__items--1');
+
+  if (content) {
+    html = '';
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'retirements';
+    }).Content);
+    var dateRetireds = array.filter(function (m) {
+      return !m.dateReinstated;
+    });
+    var newArray = dateRetireds.sort(function (a, b) {
+      return Date.parse(a.dateRetired) - Date.parse(b.dateRetired);
+    });
+    newArray.forEach(function (item) {
+      html += "<div class=\"accordion__item\">\n            <div class=\"accordion__item-title xlarge\">\n                <div class=\"accordion__row\">\n                    <div class=\"accordion__column\">\n                        <span><b class=\"sort1\">".concat(item.playerName, "</b></span>\n                    </div>\n                    <div class=\"accordion__column\">\n                        <span><b class=\"sort2\">").concat(getDate(new Date(item.dateRetired)), "</b></span>\n                    </div>\n                    <div class=\"accordion__column\">\n                        <span><b class=\"sort3\">").concat(item.nationality, "</b></span>\n                    </div>\n                </div>\n            </div>\n        </div>");
+    });
+    content.innerHTML = html;
+  }
+
+  content = document.querySelector('.accordion__items--2');
+
+  if (content) {
+    html = '';
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'retirements';
+    }).Content);
+    var dateReinstateds = array.filter(function (m) {
+      return m.dateReinstated;
+    });
+
+    var _newArray = dateReinstateds.sort(function (a, b) {
+      return Date.parse(a.dateReinstated) - Date.parse(b.dateReinstated);
+    });
+
+    _newArray.forEach(function (item) {
+      html += "<div class=\"accordion__item\">\n            <div class=\"accordion__item-title xlarge\">\n                <div class=\"accordion__row\">\n                    <div class=\"accordion__column\">\n                        <span><b class=\"sort1\">".concat(item.playerName, "</b></span>\n                    </div>\n                    <div class=\"accordion__column\">\n                        <span><b class=\"sort2\">").concat(getDate(new Date(item.dateReinstated)), "</b></span>\n                    </div>\n                    <div class=\"accordion__column\">\n                        <span><b class=\"sort3\">").concat(item.nationality, "</b></span>\n                    </div>\n                </div>\n            </div>\n        </div>");
+    });
+
+    content.innerHTML = html;
+  }
+
+  setSelects();
+  setAccordion();
+  setPageDefaults();
+};
+
 var renderRules = function renderRules(data) {
   var content = '';
   var html = '';
   var array = [];
+  var accordion = JSON.parse(data.Properties.find(function (m) {
+    return m.Name === 'accordion';
+  }).Content)[0];
+  var accordionItems = JSON.parse(accordion.accordionList);
   content = document.querySelector('.panel');
 
   if (content) {
@@ -1047,6 +1416,22 @@ var renderRules = function renderRules(data) {
     content.innerHTML = html;
   }
 
+  content = document.querySelector('.accordion__title');
+
+  if (content) {
+    content.innerHTML = accordion.title;
+  }
+
+  content = document.querySelector('.accordion__items');
+
+  if (content) {
+    html = '';
+    accordionItems.forEach(function (e) {
+      html += "<div class=\"accordion__item\">\n            <div class=\"accordion__item-title\">\n                <a class=\"accordion__link\" href=\"\"></a>\n                <span class=\"large\">".concat(e.title, "</span>\n                <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                    <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n                </svg>\n            </div>\n            <div class=\"accordion__item-content\">\n                <div class=\"accordion__cell\">\n                  ").concat(e.content, "\n                </div>\n            </div>\n        </div>");
+    });
+    content.innerHTML = html;
+  }
+
   content = document.querySelector('.scroll');
 
   if (content) {
@@ -1057,7 +1442,196 @@ var renderRules = function renderRules(data) {
     content.innerHTML = html;
   }
 
-  setPageDefaults();
+  content = document.querySelector('.introduction__content');
+
+  if (content) {
+    content.innerHTML = data.Properties.find(function (m) {
+      return m.Name === 'introduction';
+    }).Content;
+  }
+
+  content = document.querySelector('.share');
+
+  if (content) {
+    var pdf = data.Properties.find(function (m) {
+      return m.Name === 'pDF';
+    }).Content;
+
+    if (pdf) {
+      content.innerHTML = "<span class=\"button button--alt\">\n          <a href=\"".concat(websiteUrl + pdf, "\" target=\"_blank\" download=\"\">\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16.5\" height=\"18\" viewBox=\"0 0 16.5 18\">\n                  <path id=\"Shape\" d=\"M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z\" fill=\"#003a3c\" />\n              </svg>\n              Download PDF\n          </a>\n      </span>");
+    }
+  }
+
+  content = document.querySelector('.content-areas');
+
+  if (content) {
+    var contentAreas = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'contentNested';
+    }).Content);
+
+    if (contentAreas && contentAreas.length) {
+      content.innerHTML = renderContentAreas(contentAreas);
+    }
+  }
+
+  var related = document.querySelectorAll('.introduction__content h2, .section__inner h2, .accordion__title');
+  var relatedContainer = document.querySelector('.onthispage');
+  html = '';
+  related.forEach(function (e) {
+    html += "<p><a href=\"\">".concat(e.innerText, "</a></p>");
+  });
+
+  if (relatedContainer) {
+    relatedContainer.innerHTML = html;
+    relatedContainer.querySelectorAll('a').forEach(function (e, i) {
+      e.addEventListener('click', function (el) {
+        var scrolledPos = 0;
+        var totopAnimate = setInterval(function () {
+          var pos = related[i].getBoundingClientRect().top - 90;
+
+          if (scrolledPos === pos) {
+            clearInterval(totopAnimate);
+          }
+
+          scrolledPos = pos;
+          window.scrollTo(0, window.scrollY + pos / 50);
+        }, 1);
+        el.preventDefault();
+      });
+    });
+  }
+
+  setAccordion();
   setSelects();
+  setPageDefaults();
+};
+
+var renderSanctions = function renderSanctions(data) {
+  var content = '';
+  var html = '';
+  var array = []; //Tabs
+
+  var tabs = document.querySelectorAll('.tab');
+
+  if (tabs.length) {
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function (e) {
+        document.querySelector('.tab--active').classList.remove('tab--active');
+        e.target.classList.add('tab--active');
+        document.querySelector('.tab-content--active').classList.remove('tab-content--active');
+        document.querySelectorAll('.tab-content')[i].classList.add('tab-content--active');
+        e.preventDefault();
+      });
+    });
+  }
+
+  content = document.querySelector('.accordion__items--1');
+
+  if (content) {
+    html = '';
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'sanctionsList';
+    }).Content)[0];
+    var sanctionItems = JSON.parse(array.accordionList);
+    var sanctionItemsLifeTime = sanctionItems.filter(function (m) {
+      return !m.endDate;
+    });
+    var sanctionItemsCurrent = sanctionItems.filter(function (m) {
+      return Date.parse(m.endDate) >= Date.now();
+    });
+    var newArray = sanctionItemsCurrent.concat(sanctionItemsLifeTime).sort(function (a, b) {
+      return Date.parse(a.endDate) - Date.parse(b.endDate);
+    });
+    newArray.forEach(function (item) {
+      html += "<div class=\"accordion__item ".concat(item.program ? "accordion__item--".concat(item.program) : '', "\">\n          <div class=\"accordion__item-title xlarge\">\n              <a class=\"accordion__link\" href=\"\"></a>\n              <div class=\"accordion__row\">\n                  <div class=\"accordion__column\">\n                      <span><b class=\"sort1\">").concat(item.title || '', "</b></span>\n                  </div>\n                  <div class=\"accordion__column\">\n                      <span><b>").concat(item.program || '', "</b></span>\n                  </div>\n                  <div class=\"accordion__column\">\n                      <span><b class=\"sort2\">").concat(item.sanction || '', "</b></span>\n                  </div>\n              </div>\n              <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                  <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n              </svg>\n          </div>\n          <div class=\"accordion__item-content\">\n              <div class=\"accordion__column\">\n                  ").concat(item.dateOfViolation ? "<p>\n                  <b>Date of Violation</b><br />\n                  ".concat(getDate(new Date(item.dateOfViolation)), "\n                  </p>") : '', "\n                  ").concat(item.startDate ? "<p>\n                  <b>Start date of Sanction</b><br />\n                  ".concat(getDate(new Date(item.startDate)), "\n                  </p>") : '', "\n                  ").concat(item.endDate ? "<p>\n                  <b>End date of Sanction</b><br />\n                  ".concat(getDate(new Date(item.endDate)), "\n                  </p>") : '', "\n                  ").concat(item.ruleViolated ? "<p>\n                  <b>Rule Violated</b><br />\n                  ".concat(item.ruleViolated, "\n                  </p>") : '', "\n                  ").concat(item.substance ? "<p>\n                  <b>Substance</b><br />\n                  ".concat(item.substance, "\n                  </p>") : '', "\n                  ").concat(item.substanceClass ? "<p>\n                  <b>Substance Class</b><br />\n                  ".concat(item.substanceClass, "\n                  </p>") : '', "\n                  ").concat(item.description ? "<p>\n                  ".concat(item.description, "\n                  </p>") : '', "\n              </div>\n              <div class=\"accordion__column\">\n                ").concat(item.details ? "<p>\n                    <span class=\"button\">\n                        <a href=\"".concat(websiteUrl + item.details, "\">\n                            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16.5\" height=\"18\" viewBox=\"0 0 16.5 18\">\n                                <path id=\"Shape\" d=\"M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z\" fill=\"#003a3c\" />\n                            </svg>\n                            Download Decision\n                        </a>\n                    </span>\n                </p>") : '');
+
+      if (item.relatedArticles) {
+        related = item.relatedArticles.split(',');
+        html += '<p>Related Content</p>';
+        related.forEach(function (e) {
+          html += "<div class=\"accordion__card\">\n              <a href=\"".concat(e, "\">\n                  <p>").concat(e, "</p>\n              </a>\n          </div>");
+        });
+      }
+
+      html += '</div></div></div>';
+    });
+    content.innerHTML = html;
+  }
+
+  content = document.querySelector('.accordion__items--2');
+
+  if (content) {
+    html = '';
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'sanctionsList';
+    }).Content)[0];
+
+    var _sanctionItems = JSON.parse(array.accordionList);
+
+    var sanctionItemsHistorical = _sanctionItems.filter(function (m) {
+      return Date.parse(m.endDate) < Date.now();
+    });
+
+    sanctionItemsHistorical.forEach(function (item) {
+      html += "<div class=\"accordion__item ".concat(item.program ? "accordion__item--".concat(item.program) : '', "\">\n          <div class=\"accordion__item-title xlarge\">\n              <a class=\"accordion__link\" href=\"\"></a>\n              <div class=\"accordion__row\">\n                  <div class=\"accordion__column\">\n                      <span><b class=\"sort1\">").concat(item.title || '', "</b></span>\n                  </div>\n                  <div class=\"accordion__column\">\n                      <span><b>").concat(item.program || '', "</b></span>\n                  </div>\n                  <div class=\"accordion__column\">\n                      <span><b class=\"sort2\">").concat(item.sanction || '', "</b></span>\n                  </div>\n              </div>\n              <svg id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n                  <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#00243f\" />\n              </svg>\n          </div>\n          <div class=\"accordion__item-content\">\n              <div class=\"accordion__column\">\n                  ").concat(item.dateOfViolation ? "<p>\n                  <b>Date of Violation</b><br />\n                  ".concat(getDate(new Date(item.dateOfViolation)), "\n                  </p>") : '', "\n                  ").concat(item.startDate ? "<p>\n                  <b>Start date of Sanction</b><br />\n                  ".concat(getDate(new Date(item.startDate)), "\n                  </p>") : '', "\n                  ").concat(item.endDate ? "<p>\n                  <b>End date of Sanction</b><br />\n                  ".concat(getDate(new Date(item.endDate)), "\n                  </p>") : '', "\n                  ").concat(item.ruleViolated ? "<p>\n                  <b>Rule Violated</b><br />\n                  ".concat(item.ruleViolated, "\n                  </p>") : '', "\n                  ").concat(item.substance ? "<p>\n                  <b>Substance</b><br />\n                  ".concat(item.substance, "\n                  </p>") : '', "\n                  ").concat(item.substanceClass ? "<p>\n                  <b>Substance Class</b><br />\n                  ".concat(item.substanceClass, "\n                  </p>") : '', "\n                  ").concat(item.description ? "<p>\n                  ".concat(item.description, "\n                  </p>") : '', "\n              </div>\n              <div class=\"accordion__column\">\n                ").concat(item.details ? "<p>\n                    <span class=\"button\">\n                        <a href=\"".concat(websiteUrl + item.details, "\">\n                            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16.5\" height=\"18\" viewBox=\"0 0 16.5 18\">\n                                <path id=\"Shape\" d=\"M16.5,18H0V3H6V4.5H1.5v12H15V4.5H10.5V3h6V18ZM8.25,12.75h0L4.5,8.25h3V0H9V8.25h3l-3.749,4.5Z\" fill=\"#003a3c\" />\n                            </svg>\n                            Download Decision\n                        </a>\n                    </span>\n                </p>") : '');
+
+      if (item.relatedArticles) {
+        related = item.relatedArticles.split(',');
+        html += '<p>Related Content</p>';
+        related.forEach(function (e) {
+          html += "<div class=\"accordion__card\">\n              <a href=\"".concat(e, "\">\n                  <p>").concat(e, "</p>\n              </a>\n          </div>");
+        });
+      }
+
+      html += '</div></div></div>';
+    });
+    content.innerHTML = html;
+  } //Tooltips
+
+
+  var info = document.querySelectorAll('.info');
+  info.forEach(function (e, i) {
+    e.addEventListener('mouseenter', function () {
+      if (e.getBoundingClientRect().top - window.innerHeight > -215 && e.getBoundingClientRect().left - window.innerWidth > -400) {
+        e.classList.add('br');
+      } else if (e.getBoundingClientRect().top - window.innerHeight > -215) {
+        e.classList.add('bl');
+      } else if (e.getBoundingClientRect().left - window.innerWidth > -400) {
+        e.classList.add('tr');
+      }
+
+      e.classList.add('show');
+    });
+    e.addEventListener('mouseleave', function () {
+      e.classList.remove('show');
+      e.classList.remove('bl', 'tr', 'br');
+    });
+  });
+  setSelects();
+  setAccordion();
+  setPageDefaults();
+};
+
+var renderTacp = function renderTacp(data) {
+  var content = '';
+  var html = '';
+  var array = [];
+  content = document.querySelector('.tacp');
+
+  if (content) {
+    html = '';
+    array = JSON.parse(data.Properties.find(function (m) {
+      return m.Name === 'content';
+    }).Content);
+    var cards = JSON.parse(array[0].cards);
+
+    if (cards && cards.length > 0) {
+      html = renderContentContainer(array, cards, html);
+    }
+
+    content.innerHTML = html;
+  }
+
+  setPageDefaults();
 };
 //# sourceMappingURL=main.js.map

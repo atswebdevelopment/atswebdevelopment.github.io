@@ -13,47 +13,28 @@
   <div class="inner">
     <div class="introduction">
       <div>
-        <div class="investigation">
-          <img class="img-load investigation__image" data-src="/Images/InvestigationProcess.png" alt="" />
-          <!-- @foreach (IPublishedElement item in investigationItems)
-          {
-              <a href=""></a>
-          } -->
-        </div>
+        <div class="investigation"></div>
         <div class="content-footer">
           <div class="content-footer__inner">
               <svg class="content-footer__icon investigation-icon" xmlns="http://www.w3.org/2000/svg" transform="rotate(-90)" width="30" height="30" viewBox="0 0 30 30">
                   <circle id="Oval" cx="15" cy="15" r="15" fill="#235773" />
                   <path id="Triangle" d="M5.5,0,11,11H0Z" transform="translate(22 10) rotate(90)" fill="#d8d8d8" />
               </svg>
-              <div class="investigation-text">
-                  <h2 class="content-footer__title title">Click / Tap on a section for more info</h2>
-                  <!-- <p>@Model.Value("hoverText")</p> -->
-              </div>
+              <div class="investigation-text"></div>
           </div>
         </div>
-        <div class="investigation-content hidden">
-          <!-- @foreach (IPublishedElement item in investigationItems)
-          {
-              <div class="investigation-content__item">
-                  <h2 class="content-footer__title title">@item.Value("title")</h2>
-                  @item.Value("content")
-              </div>
-          } -->
-        </div>
+        <div class="investigation-content hidden"></div>
       </div>
     </div>
-    <!-- @{
-        if (Model.HasValue("accordion"))
-        {
-            @Html.Partial("Accordion/Accordion", Model, new ViewDataDictionary(this.ViewData) {
-                { "alias", "accordion" },
-                { "controls", "false" },
-                { "filter", "true" },
-                { "search", "false" },
-                { "pagination", "false" }
-            });
-        }
-    } -->
+    <div class="accordion">
+        <div class="accordion__inner">
+            <div class="accordion__header controls">
+              <div class="controls__left">
+                  <h3 class="accordion__title title"></h3>
+              </div>
+            </div>
+            <div class="accordion__items"></div>
+        </div>
+    </div>
   </div>
 </div>
