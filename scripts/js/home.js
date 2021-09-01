@@ -78,6 +78,12 @@ const renderHome = (data) => {
           ${text}
         </div>
       </div>`
+      if(document.querySelector('.ellipsis')) {
+        document.querySelector('.ellipsis').remove()
+      }
+      window.innerHTML += `<div class="ellipsis">
+        ...
+      </div>`
       document.querySelector('.chatbot__input input').value = ''
       setTimeout(() => {
         httpGetMessage(websiteUrl + '/umbraco/api/contentapi/GetResults?text=' + text)
@@ -91,6 +97,9 @@ const renderHome = (data) => {
 
 const loadMessages = (xdata) => {
   const data = JSON.parse(xdata)
+  if(document.querySelector('.ellipsis')) {
+    document.querySelector('.ellipsis').remove()
+  }
   const window = document.querySelector('.chatbot__messages')
   if (data.ExceptionMessage) {
     window.innerHTML += `<div class="message">

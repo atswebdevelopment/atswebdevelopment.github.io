@@ -592,14 +592,15 @@ var registerLinks = function registerLinks(container) {
   container.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      url = link.getAttribute('href');
+      var getUrl = link.getAttribute('href');
 
       if (url === '#' || !url) {// null
-      } else if (url.indexOf('http') > -1) {
-        cordova.InAppBrowser.open(url, '_system', 'location=yes');
-      } else if (url.indexOf('/media/') > -1) {
-        cordova.InAppBrowser.open(url, '_system', 'location=yes');
+      } else if (getUrl.indexOf('http') > -1) {
+        cordova.InAppBrowser.open(getUrl, '_system', 'location=yes');
+      } else if (getUrl.indexOf('/media/') > -1) {
+        cordova.InAppBrowser.open(getUrl, '_system', 'location=yes');
       } else {
+        url = getUrl;
         console.log('Launching request...');
         document.querySelector('.loading').classList.remove('hidden');
 
@@ -963,6 +964,12 @@ var renderHome = function renderHome(data) {
       var _window = document.querySelector('.chatbot__messages');
 
       _window.innerHTML += "<div class=\"message message--user\">\n        <div class=\"message__text\">\n          ".concat(text, "\n        </div>\n      </div>");
+
+      if (document.querySelector('.ellipsis')) {
+        document.querySelector('.ellipsis').remove();
+      }
+
+      _window.innerHTML += "<div class=\"ellipsis\">\n        ...\n      </div>";
       document.querySelector('.chatbot__input input').value = '';
       setTimeout(function () {
         httpGetMessage(websiteUrl + '/umbraco/api/contentapi/GetResults?text=' + text);
@@ -976,6 +983,11 @@ var renderHome = function renderHome(data) {
 
 var loadMessages = function loadMessages(xdata) {
   var data = JSON.parse(xdata);
+
+  if (document.querySelector('.ellipsis')) {
+    document.querySelector('.ellipsis').remove();
+  }
+
   var window = document.querySelector('.chatbot__messages');
 
   if (data.ExceptionMessage) {
