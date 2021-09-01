@@ -182,17 +182,25 @@ const renderLayout = (data) => {
           </li>
           ${subPageHtml}
       </ul>`
-      html += `<li class="menu__item"><span>
+      html += `<li class="menu__item"><div></div><span>
           ${e.Name}
           <svg class="menu__icon" id="Ico_DownChev_Blue" data-name="Ico/DownChev/Blue" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8">
               <path id="Path" d="M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z" fill="#235773" />
           </svg>
       </span>${subHtml}</li>`
     } else {
-      html += `<li class="menu__item"><a href="${e.Url}">${e.Name}</a></li>`
+      html += `<li class="menu__item"><div></div><a href="${e.Url}">${e.Name}</a></li>`
     }
   })
   content.innerHTML = html
+  document.querySelectorAll('.menu__item > div').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (document.querySelector('.menu-open')) {
+        document.querySelector('.menu-open').classList.remove('menu-open')
+      }
+      link.parentNode.classList.add('menu-open')
+    })
+  })
   registerLinks(content)
 
   content = document.querySelector('.partners__inner')
@@ -239,14 +247,15 @@ const registerLinks = (container) => {
   container.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault()
-      url = link.getAttribute('href')
-      if (url === '#' || !url) {
+      const getUrl = link.getAttribute('href')
+      if (getUrl === '#' || !getUrl) {
         // null
-      } else if (url.indexOf('http') > -1) {
-        cordova.InAppBrowser.open(url, '_system', 'location=yes')
-      } else if (url.indexOf('/media/') > -1) {
-        cordova.InAppBrowser.open(url, '_system', 'location=yes')
+      } else if (getUrl.indexOf('http') > -1) {
+        cordova.InAppBrowser.open(getUrl, '_system', 'location=yes')
+      } else if (getUrl.indexOf('/media/') > -1) {
+        cordova.InAppBrowser.open(getUrl, '_system', 'location=yes')
       } else {
+        url = getUrl
         console.log('Launching request...')
         document.querySelector('.loading').classList.remove('hidden')
         if (!url || url === '/') {

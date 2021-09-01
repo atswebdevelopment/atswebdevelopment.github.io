@@ -90,7 +90,7 @@
     margin-bottom: 14px;
     box-shadow: 20px 0px 12px rgba(0, 0, 0, 0.1);
     vertical-align: top;
-    
+
     &:nth-child(even){
       margin-left: 14px;
     }
@@ -189,7 +189,9 @@
     z-index: 1;
   }
 }
-
+.ellipsis {
+  text-align: left;
+}
 .message {
   text-align: left;
   display: flex;
@@ -249,4 +251,24 @@
       }
     }
   }
+}
+
+.menu__item > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.menu__item:hover .submenu, .menu__item:focus .submenu {
+  display: none;
+  transform: translateX(-50%);
+}
+
+.menu__item.menu-open .submenu {
+  display: block;
+  transform: none;
+  opacity: 1;
 }
