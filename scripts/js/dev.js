@@ -189,7 +189,7 @@ const renderLayout = (data) => {
           </svg>
       </span>${subHtml}</li>`
     } else {
-      html += `<li class="menu__item"><div></div><a href="${e.Url}">${e.Name}</a></li>`
+      html += `<li class="menu__item"><a href="${e.Url}">${e.Name}</a></li>`
     }
   })
   content.innerHTML = html

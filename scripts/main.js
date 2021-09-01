@@ -531,7 +531,7 @@ var renderLayout = function renderLayout(data) {
       var subHtml = "<ul class=\"submenu\">\n          <li class=\"submenu__item\">\n              <a href=\"".concat(e.Url, "\">").concat(e.Name, " home</a>\n          </li>\n          ").concat(subPageHtml, "\n      </ul>");
       html += "<li class=\"menu__item\"><div></div><span>\n          ".concat(e.Name, "\n          <svg class=\"menu__icon\" id=\"Ico_DownChev_Blue\" data-name=\"Ico/DownChev/Blue\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"8\" viewBox=\"0 0 12 8\">\n              <path id=\"Path\" d=\"M0,1.73,1.655,0,6,4.554,10.345,0,12,1.73,6,8Z\" fill=\"#235773\" />\n          </svg>\n      </span>").concat(subHtml, "</li>");
     } else {
-      html += "<li class=\"menu__item\"><div></div><a href=\"".concat(e.Url, "\">").concat(e.Name, "</a></li>");
+      html += "<li class=\"menu__item\"><a href=\"".concat(e.Url, "\">").concat(e.Name, "</a></li>");
     }
   });
   content.innerHTML = html;
